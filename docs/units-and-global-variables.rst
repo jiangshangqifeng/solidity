@@ -10,7 +10,6 @@ PlatON Units
 A literal number can take a suffix of ``von``, ``kvon``, ``mvon``, ``gvon``, ``szabo``, ``finney``, ``lat``, ``klat``, ``mlat`` or ``glat`` to specify a subdenomination of PlatON, where PlatON numbers without a postfix are assumed to be von.
 
 ::
-
     assert(1 von == 1);
 	assert(1 kvon == 1e3);
 	assert(1 mvon == 1e6);
