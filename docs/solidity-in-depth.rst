@@ -3,9 +3,6 @@ Solidity in Depth
 #################
 
 This section should provide you with all you need to know about Solidity.
-If something is missing here, please contact us on
-`Gitter <https://gitter.im/ethereum/solidity>`_ or create a pull request on
-`Github <https://github.com/ethereum/solidity/pulls>`_.
 
 .. toctree::
    :maxdepth: 2
@@ -19,4 +16,3 @@ If something is missing here, please contact us on
    assembly.rst
    miscellaneous.rst
    050-breaking-changes.rst
-   060-breaking-changes.rst

@@ -12,15 +12,14 @@ Withdrawal from Contracts
 
 The recommended method of sending funds after an effect
 is using the withdrawal pattern. Although the most intuitive
-method of sending Ether, as a result of an effect, is a
+method of sending lat, as a result of an effect, is a
 direct ``transfer`` call, this is not recommended as it
 introduces a potential security risk. You may read
 more about this on the :ref:`security_considerations` page.
 
 The following is an example of the withdrawal pattern in practice in
 a contract where the goal is to send the most money to the
-contract in order to become the "richest", inspired by
-`King of the Ether <https://www.kingoftheether.com/>`_.
+contract in order to become the "richest".
 
 In the following contract, if you are no longer the richest,
 you receive the funds of the person who is now the richest.
@@ -185,7 +184,7 @@ restrictions highly readable.
         modifier costs(uint _amount) {
             require(
                 msg.value >= _amount,
-                "Not enough Ether provided."
+                "Not enough lat provided."
             );
             _;
             if (msg.value > _amount)
@@ -195,7 +194,7 @@ restrictions highly readable.
         function forceOwnerChange(address _newOwner)
             public
             payable
-            costs(200 ether)
+            costs(200 lat)
         {
             owner = _newOwner;
             // just some example condition

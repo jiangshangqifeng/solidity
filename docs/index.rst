@@ -22,7 +22,8 @@ and multi-signature wallets.
 When deploying contracts, you should use the latest released
 version of Solidity. This is because breaking changes as well as
 new features and bug fixes are introduced regularly. We currently use
-a 0.x version number `to indicate this fast pace of change <https://semver.org/#spec-item-4>`_.
+..a 0.x version number `to indicate this fast pace of change <https://semver.org/#spec-item-4>`_.
+a 0.x version number .
 
 .. warning::
 
@@ -63,24 +64,6 @@ our `gitter channel <https://gitter.im/ethereum/solidity/>`_.
 Ideas for improving Solidity or this documentation are always welcome,
 read our :doc:`contributors guide <contributing>` for more details.
 
-.. _translations:
-
-Translations
-------------
-
-Community volunteers help translate this documentation into several languages.
-They have varying degrees of completeness and up-to-dateness. The English
-version stands as a reference.
-
-* `French <http://solidity-fr.readthedocs.io>`_ (in progress)
-* `Italian <https://github.com/damianoazzolini/solidity>`_ (in progress)
-* `Japanese <https://solidity-jp.readthedocs.io>`_
-* `Korean <http://solidity-kr.readthedocs.io>`_ (in progress)
-* `Russian <https://github.com/ethereum/wiki/wiki/%5BRussian%5D-%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE-%D0%BF%D0%BE-Solidity>`_ (rather outdated)
-* `Simplified Chinese <http://solidity-cn.readthedocs.io>`_ (in progress)
-* `Spanish <https://solidity-es.readthedocs.io>`_
-* `Turkish <https://github.com/denizozzgur/Solidity_TR/blob/master/README.md>`_ (partial)
-
 Contents
 ========
 
@@ -94,14 +77,10 @@ Contents
    solidity-by-example.rst
    solidity-in-depth.rst
    natspec-format.rst
-   security-considerations.rst
    resources.rst
    using-the-compiler.rst
    metadata.rst
    abi-spec.rst
-   yul.rst
    style-guide.rst
    common-patterns.rst
-   bugs.rst
-   contributing.rst
    lll.rst

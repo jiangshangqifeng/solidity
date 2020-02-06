@@ -133,7 +133,7 @@ Encoding of the Metadata Hash in the Bytecode
 
 Because we might support other ways to retrieve the metadata file in the future,
 the mapping ``{"ipfs": <IPFS hash>, "solc": <compiler version>}`` is stored
-`CBOR <https://tools.ietf.org/html/rfc7049>`_-encoded. Since the mapping might
+cbor-encoded. Since the mapping might
 contain more keys (see below) and the beginning of that
 encoding is not easy to find, its length is added in a two-byte big-endian
 encoding. The current version of the Solidity compiler usually adds the following
@@ -194,6 +194,3 @@ This automatically verifies the metadata since its hash is part of the bytecode.
 Excess data corresponds to the constructor input data, which should be decoded
 according to the interface and presented to the user.
 
-In the repository `source-verify <https://github.com/ethereum/source-verify>`_
-(`npm package <https://www.npmjs.com/package/source-verify>`_) you can see
-example code that shows how to use this feature.
