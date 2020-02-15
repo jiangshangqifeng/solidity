@@ -15,49 +15,6 @@ are not guaranteed to be working and despite best efforts they might contain und
 and/or broken changes. We recommend using the latest release. Package installers below
 will use the latest release.
 
-Remix
-=====
-
-*We recommend Remix for small contracts and for quickly learning Solidity.*
-
-`Access Remix online <https://remix.ethereum.org/>`_, you do not need to install anything.
-If you want to use it without connection to the Internet, go to
-https://github.com/ethereum/remix-live/tree/gh-pages and download the ``.zip`` file as
-explained on that page. Remix is also a convenient option for testing nightly builds
-without installing multiple Solidity versions.
-
-Further options on this page detail installing commandline Solidity compiler software
-on your computer. Choose a commandline compiler if you are working on a larger contract
-or if you require more compilation options.
-
-.. _solcjs:
-
-npm / Node.js
-=============
-
-Use `npm` for a convenient and portable way to install `solcjs`, a Solidity compiler. The
-`solcjs` program has fewer features than the ways to access the compiler described
-further down this page. The
-:ref:`commandline-compiler` documentation assumes you are using
-the full-featured compiler, `solc`. The usage of `solcjs` is documented inside its own
-`repository <https://github.com/ethereum/solc-js>`_.
-
-Note: The solc-js project is derived from the C++
-`solc` by using Emscripten which means that both use the same compiler source code.
-`solc-js` can be used in JavaScript projects directly (such as Remix).
-Please refer to the solc-js repository for instructions.
-
-.. code-block:: bash
-
-    npm install -g solc
-
-.. note::
-
-    The commandline executable is named `solcjs`.
-
-    The comandline options of `solcjs` are not compatible with `solc` and tools (such as `geth`)
-    expecting the behaviour of `solc` will not work with `solcjs`.
-
 Docker
 ======
 
