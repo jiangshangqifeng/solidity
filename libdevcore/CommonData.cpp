@@ -123,8 +123,8 @@ bool dev::passesAddressChecksum(string const& _str)
 {
 	if (_str.length() != 42)
 		return false;
-	
-	pair<string, bytes> ret = bech32decode(_str);
+
+	pair<string,bytes> ret = bech32decode(_str);
 	string hrp = ret.first;
 	if (hrp != "lat" && hrp != "lax") {
 		return false;
@@ -298,7 +298,7 @@ bool convertbits(bytes& out, const bytes& in) {
 
 /** Decode a bech32 address. */
 bytes dev::decodeAddress(const std::string& hrp, const std::string& addr) {
-    pair<string, bytes> dec = dev::bech32decode(addr);	
+	pair<string, bytes> dec = dev::bech32decode(addr);
     if (dec.first != hrp || dec.second.size() < 1) return bytes();
     bytes output;
 	bool r = convertbits<5, 8, false>(output, dec.second);
