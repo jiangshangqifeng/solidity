@@ -423,7 +423,7 @@ u256 AddressType::literalValue(Literal const* _literal) const
 	string hrp = _literal->value().substr(0, 3);
 	solAssert((hrp == "lat" || hrp == "lax"), "");
 
-	bytes r = dev::decodeAddress(hrp, _literal->value());	
+	bytes r = dev::decodeAddress(hrp, _literal->valueWithoutUnderscores());	
 	solAssert(r.size() == 20, "decodeAddress failed");
 
 	return u256(toHex(r, HexPrefix::Add));
