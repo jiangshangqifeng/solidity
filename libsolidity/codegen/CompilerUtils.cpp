@@ -651,10 +651,12 @@ void CompilerUtils::convertType(
 	// previous operations.
 	// @todo: store in the AST whether the operand might have "dirty" higher order bits
 
+	printf("_typeOnStack=%d, _targetType=%d \n", (int)_typeOnStack.category(), (int)_targetType.category());
 	if (_typeOnStack == _targetType && !_cleanupNeeded)
 		return;
 	Type::Category stackTypeCategory = _typeOnStack.category();
 	Type::Category targetTypeCategory = _targetType.category();
+
 
 	bool enumOverflowCheckPending = (targetTypeCategory == Type::Category::Enum || stackTypeCategory == Type::Category::Enum);
 	bool chopSignBitsPending = _chopSignBits && targetTypeCategory == Type::Category::Integer;
@@ -813,10 +815,11 @@ void CompilerUtils::convertType(
 			storeStringData(data);
 		}
 		else
-			solAssert(
-				false,
-				"Invalid conversion from string literal to " + _targetType.toString(false) + " requested."
-			);
+		//	solAssert(
+		//		false,
+		//		"Invalid conversion from string literal to " + _targetType.toString(false) + " requested."
+		//	);
+		    printf("Invalid conversion from string literal to %s", _targetType.toString(false).c_str());
 		break;
 	}
 	case Type::Category::Array:

@@ -2317,16 +2317,11 @@ void TypeChecker::endVisit(Literal const& _literal)
 
 	if (_literal.looksLikeAddress())
 	{
-		// Assign type here if it even looks like an address. This prevents double errors for invalid addresses
-		_literal.annotation().type = make_shared<AddressType>(StateMutability::Payable);
-
 		string msg;
-		if (_literal.valueWithoutUnderscores().length() != 42) // must 42 length
-			msg =
-				"This looks like an address but is not exactly bech32 fmt.";
-		else if (!_literal.passesAddressChecksum())
+		if (!_literal.passesAddressChecksum())
 		{
 			msg = "This looks like an address but has an invalid checksum.";
+			_literal.annotation().type = make_shared<IntegerType>(160, IntegerType::Modifier::Address);
 		}
 
 		if (!msg.empty())

@@ -589,12 +589,12 @@ bool Literal::looksLikeAddress() const
 	if (subDenomination() != SubDenomination::None)
 		return false;
 
-	pair<string, bytes> ret = bech32decode(valueWithoutUnderscores());
+	pair<string, bytes> ret = bech32decode(boost::erase_all_copy(value(), "_"));
 
 	string hrp = ret.first;
 	
 	if (hrp.empty() || (hrp != "lat" && hrp != "lax")) {
-        return false;
+            return false;
     }
 
 	return true;
@@ -602,14 +602,7 @@ bool Literal::looksLikeAddress() const
 
 bool Literal::passesAddressChecksum() const
 {
-	solAssert(isHexNumber(), "Expected hex number");
-	return dev::passesAddressChecksum(value());
-}
-
-
-bool Literal::passesAddressChecksum() const
-{
-	return dev::passesAddressChecksum(valueWithoutUnderscores());
+	return dev::passesAddressChecksum(boost::erase_all_copy(value(), "_"));
 }
 
 /** Convert from one power-of-2 number base to another. */
