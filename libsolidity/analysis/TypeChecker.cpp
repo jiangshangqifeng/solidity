@@ -2317,14 +2317,23 @@ void TypeChecker::endVisit(Literal const& _literal)
 
 	if (_literal.looksLikeAddress())
 	{
-		if (_literal.passesAddressChecksum())
-			_literal.annotation().type = make_shared<IntegerType>(160, IntegerType::Modifier::Address);
-		else
-			m_errorReporter.warning(
+		// Assign type here if it even looks like an address. This prevents double errors for invalid addresses
+		_literal.annotation().type = make_shared<AddressType>(StateMutability::Payable);
+
+		string msg;
+		if (_literal.valueWithoutUnderscores().length() != 42) // must 42 length
+			msg =
+				"This looks like an address but is not exactly bech32 fmt.";
+		else if (!_literal.passesAddressChecksum())
+		{
+			msg = "This looks like an address but has an invalid checksum.";
+		}
+
+		if (!msg.empty())
+			m_errorReporter.syntaxError(
 				_literal.location(),
-				"This looks like an address but has an invalid checksum. "
-				"If this is not used as an address, please prepend '00'. " +
-				(!_literal.getChecksummedAddress().empty() ? "Correct checksummed address: '" + _literal.getChecksummedAddress() + "'. " : "") +
+				msg +
+				" If this is not used as an address, please prepend '00'. " +
 				"For more information please see https://solidity.readthedocs.io/en/develop/types.html#address-literals"
 			);
 	}

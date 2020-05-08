@@ -422,6 +422,103 @@ MemberList::MemberMap Type::boundFunctions(Type const& _type, ContractDefinition
 	return members;
 }
 
+AddressType::AddressType(StateMutability _stateMutability):
+	m_stateMutability(_stateMutability)
+{
+	solAssert(m_stateMutability == StateMutability::Payable || m_stateMutability == StateMutability::NonPayable, "");
+}
+
+string AddressType::richIdentifier() const
+{
+	if (m_stateMutability == StateMutability::Payable)
+		return "t_address_payable";
+	else
+		return "t_address";
+}
+
+bool AddressType::isImplicitlyConvertibleTo(Type const& _other) const
+{
+	if (_other.category() != category())
+		return false;
+	AddressType const& other = dynamic_cast<AddressType const&>(_other);
+
+	return other.m_stateMutability <= m_stateMutability;
+}
+
+bool AddressType::isExplicitlyConvertibleTo(Type const& _convertTo) const
+{
+	if (auto const* contractType = dynamic_cast<ContractType const*>(&_convertTo))
+		return (m_stateMutability >= StateMutability::Payable) || !contractType->isPayable();
+	return isImplicitlyConvertibleTo(_convertTo) ||
+		   _convertTo.category() == Category::Integer ||
+		   (_convertTo.category() == Category::FixedBytes && 160 == dynamic_cast<FixedBytesType const&>(_convertTo).numBytes() * 8);
+}
+
+string AddressType::toString(bool) const
+{
+	if (m_stateMutability == StateMutability::Payable)
+		return "address payable";
+	else
+		return "address";
+}
+
+string AddressType::canonicalName() const
+{
+	return "address";
+}
+
+u256 AddressType::literalValue(Literal const* _literal) const
+{
+	solAssert(_literal, "");
+	string hrp = _literal->value().substr(0, 3);
+	solAssert((hrp == "lat" || hrp == "lax"), "");
+
+	bytes r = dev::decodeAddress(hrp, _literal->valueWithoutUnderscores());	
+	solAssert(r.size() == 20, "decodeAddress failed");
+
+	return u256(toHex(r, HexPrefix::Add));
+}
+
+TypePointer AddressType::unaryOperatorResult(Token _operator) const
+{
+	return _operator == Token::Delete ? make_shared<TupleType>() : TypePointer();
+}
+
+
+TypePointer AddressType::binaryOperatorResult(Token _operator, TypePointer const& _other) const
+{
+	// Addresses can only be compared.
+	if (!TokenTraits::isCompareOp(_operator))
+		return TypePointer();
+
+	return Type::commonType(shared_from_this(), _other);
+}
+
+bool AddressType::operator==(Type const& _other) const
+{
+	if (_other.category() != category())
+		return false;
+	AddressType const& other = dynamic_cast<AddressType const&>(_other);
+	return other.m_stateMutability == m_stateMutability;
+}
+
+MemberList::MemberMap AddressType::nativeMembers(ContractDefinition const*) const
+{
+	MemberList::MemberMap members = {
+		{"balance", make_shared<IntegerType>(256)},
+		{"call", make_shared<FunctionType>(strings{"bytes memory"}, strings{"bool", "bytes memory"}, FunctionType::Kind::BareCall, false, StateMutability::Payable)},
+		{"callcode", make_shared<FunctionType>(strings{"bytes memory"}, strings{"bool", "bytes memory"}, FunctionType::Kind::BareCallCode, false, StateMutability::Payable)},
+		{"delegatecall", make_shared<FunctionType>(strings{"bytes memory"}, strings{"bool", "bytes memory"}, FunctionType::Kind::BareDelegateCall, false)},
+		{"staticcall", make_shared<FunctionType>(strings{"bytes memory"}, strings{"bool", "bytes memory"}, FunctionType::Kind::BareStaticCall, false, StateMutability::View)}
+	};
+	if (m_stateMutability == StateMutability::Payable)
+	{
+		members.emplace_back(MemberList::Member{"send", make_shared<FunctionType>(strings{"uint"}, strings{"bool"}, FunctionType::Kind::Send)});
+		members.emplace_back(MemberList::Member{"transfer", make_shared<FunctionType>(strings{"uint"}, strings(), FunctionType::Kind::Transfer)});
+	}
+	return members;
+}
+
 namespace
 {
 

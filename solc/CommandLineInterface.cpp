@@ -485,9 +485,10 @@ bool CommandLineInterface::parseLibraryOption(string const& _input)
 			string addrString(lib.begin() + colon + 1, lib.end());
 			boost::trim(libName);
 			boost::trim(addrString);
-			if (!passesAddressChecksum(addrString, false))
+
+			if (!passesAddressChecksum(addrString))
 			{
-				cerr << "Invalid checksum on library address \"" << libName << "\": " << addrString << endl;
+				serr() << "Invalid checksum on address for library \"" << libName << "\": " << addrString << endl;
 				return false;
 			}
 			bytes binAddr = fromHex(addrString);

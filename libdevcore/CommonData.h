@@ -229,13 +229,97 @@ bool contains(T const& _t, V const& _v)
 	return std::end(_t) != std::find(std::begin(_t), std::end(_t), _v);
 }
 
-/// @returns true iff @a _str passess the hex address checksum test.
-/// @param _strict if false, hex strings with only uppercase or only lowercase letters
-/// are considered valid.
-bool passesAddressChecksum(std::string const& _str, bool _strict);
+/// Function that iterates over a vector, calling a function on each of its
+/// elements. If that function returns a vector, the element is replaced by
+/// the returned vector. During the iteration, the original vector is only valid
+/// on the current element and after that. The actual replacement takes
+/// place at the end, but already visited elements might be invalidated.
+/// If nothing is replaced, no copy is performed.
+template <typename T, typename F>
+void iterateReplacing(std::vector<T>& _vector, const F& _f)
+{
+	// Concept: _f must be Callable, must accept param T&, must return optional<vector<T>>
+	bool useModified = false;
+	std::vector<T> modifiedVector;
+	for (size_t i = 0; i < _vector.size(); ++i)
+	{
+		if (boost::optional<std::vector<T>> r = _f(_vector[i]))
+		{
+			if (!useModified)
+			{
+				std::move(_vector.begin(), _vector.begin() + i, back_inserter(modifiedVector));
+				useModified = true;
+			}
+			modifiedVector += std::move(*r);
+		}
+		else if (useModified)
+			modifiedVector.emplace_back(std::move(_vector[i]));
+	}
+	if (useModified)
+		_vector = std::move(modifiedVector);
+}
 
-/// @returns the checksummed version of an address
-/// @param hex strings that look like an address
-std::string getChecksummedAddress(std::string const& _addr);
+namespace detail
+{
+template <typename T, typename F, std::size_t... I>
+void iterateReplacingWindow(std::vector<T>& _vector, F const& _f, std::index_sequence<I...>)
+{
+	// Concept: _f must be Callable, must accept sizeof...(I) parameters of type T&, must return optional<vector<T>>
+	bool useModified = false;
+	std::vector<T> modifiedVector;
+	size_t i = 0;
+	for (; i + sizeof...(I) <= _vector.size(); ++i)
+	{
+		if (boost::optional<std::vector<T>> r = _f(_vector[i + I]...))
+		{
+			if (!useModified)
+			{
+				std::move(_vector.begin(), _vector.begin() + i, back_inserter(modifiedVector));
+				useModified = true;
+			}
+			modifiedVector += std::move(*r);
+			i += sizeof...(I) - 1;
+		}
+		else if (useModified)
+			modifiedVector.emplace_back(std::move(_vector[i]));
+	}
+	if (useModified)
+	{
+		for (; i < _vector.size(); ++i)
+			modifiedVector.emplace_back(std::move(_vector[i]));
+		_vector = std::move(modifiedVector);
+	}
+}
+
+}
+
+/// Function that iterates over the vector @param _vector,
+/// calling the function @param _f on sequences of @tparam N of its
+/// elements. If @param _f returns a vector, these elements are replaced by
+/// the returned vector and the iteration continues with the next @tparam N elements.
+/// If the function does not return a vector, the iteration continues with an overlapping
+/// sequence of @tparam N elements that starts with the second element of the previous
+/// iteration.
+/// During the iteration, the original vector is only valid
+/// on the current element and after that. The actual replacement takes
+/// place at the end, but already visited elements might be invalidated.
+/// If nothing is replaced, no copy is performed.
+template <std::size_t N, typename T, typename F>
+void iterateReplacingWindow(std::vector<T>& _vector, F const& _f)
+{
+	// Concept: _f must be Callable, must accept N parameters of type T&, must return optional<vector<T>>
+	detail::iterateReplacingWindow(_vector, _f, std::make_index_sequence<N>{});
+}
+
+/// @returns true iff @a _str passess the bech32 address checksum test.
+bool passesAddressChecksum(std::string const& _str);
+
+
+/** Decode a Bech32 string. Returns (hrp, data). Empty hrp means failure. */
+std::pair<std::string, bytes> bech32decode(const std::string& str);
+
+/** Decode a bech32 address. return witprog. */
+bytes decodeAddress(const std::string& hrp, const std::string& addr);
+
 
 }
