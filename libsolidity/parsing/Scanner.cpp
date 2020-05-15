@@ -724,8 +724,7 @@ Token::Value Scanner::scanString()
 		return Token::Illegal;
 	literal.complete();
 	advance();  // consume quote
-	return dev::passesAddressChecksum(m_nextToken.literal)? Token::Number: Token::StringLiteral;
-	//return Token::StringLiteral;
+	return Token::StringLiteral;
 }
 
 Token::Value Scanner::scanHexString()

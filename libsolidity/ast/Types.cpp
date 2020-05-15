@@ -37,6 +37,7 @@
 #include <boost/range/algorithm/copy.hpp>
 #include <boost/range/adaptor/sliced.hpp>
 #include <boost/range/adaptor/transformed.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include <limits>
 
@@ -535,9 +536,9 @@ u256 IntegerType::literalValue(Literal const* _literal) const
 	solAssert(_literal, "");
 	string hrp = _literal->value().substr(0, 3);
 	solAssert((hrp == "lat" || hrp == "lax"), "");
-	bytes r = dev::decodeAddress(hrp, _literal->value());	
+	bytes r = dev::decodeAddress(hrp, boost::erase_all_copy(_literal->value(), "_"));
 	solAssert(r.size() == 20, "decodeAddress failed");
-
+	
 	return u256(toHex(r, HexPrefix::Add));
 }
 

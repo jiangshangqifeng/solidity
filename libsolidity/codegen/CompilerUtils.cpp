@@ -651,7 +651,6 @@ void CompilerUtils::convertType(
 	// previous operations.
 	// @todo: store in the AST whether the operand might have "dirty" higher order bits
 
-	printf("_typeOnStack=%d, _targetType=%d \n", (int)_typeOnStack.category(), (int)_targetType.category());
 	if (_typeOnStack == _targetType && !_cleanupNeeded)
 		return;
 	Type::Category stackTypeCategory = _typeOnStack.category();
