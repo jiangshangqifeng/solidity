@@ -664,7 +664,6 @@ void CompilerUtils::convertType(
 		const IntegerType& targetIntegerType = dynamic_cast<const IntegerType &>(_targetType);
 		chopSignBitsPending = targetIntegerType.isSigned();
 	}
-
 	switch (stackTypeCategory)
 	{
 	case Type::Category::FixedBytes:
@@ -814,11 +813,10 @@ void CompilerUtils::convertType(
 			storeStringData(data);
 		}
 		else
-		//	solAssert(
-		//		false,
-		//		"Invalid conversion from string literal to " + _targetType.toString(false) + " requested."
-		//	);
-		    printf("Invalid conversion from string literal to %s", _targetType.toString(false).c_str());
+			solAssert(
+				false,
+				"Invalid conversion from string literal to " + _targetType.toString(false) + " requested."
+	    	);
 		break;
 	}
 	case Type::Category::Array:

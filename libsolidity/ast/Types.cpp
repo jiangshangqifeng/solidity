@@ -535,7 +535,7 @@ u256 IntegerType::literalValue(Literal const* _literal) const
 	solAssert(m_modifier == Modifier::Address, "");
 	solAssert(_literal, "");
 	string hrp = _literal->value().substr(0, 3);
-	solAssert((hrp == "lat" || hrp == "lax"), "");
+	solAssert((hrp == "lat" || hrp == "lax"), "This is not a bech32 address");
 	bytes r = dev::decodeAddress(hrp, boost::erase_all_copy(_literal->value(), "_"));
 	solAssert(r.size() == 20, "decodeAddress failed");
 	
@@ -776,11 +776,6 @@ tuple<bool, rational> RationalNumberType::isValidLiteral(Literal const& _literal
 			// process as hex
 			value = bigint(_literal.value());
 		}
-		else if (_literal.looksLikeAddress())
-		{
-			// process as bech32 address
-
-		}
 		else if (expPoint != _literal.value().end())
 		{
 			// Parse base and exponent. Checks numeric limit.
@@ -870,11 +865,13 @@ bool RationalNumberType::isImplicitlyConvertibleTo(Type const& _convertTo) const
 {
 	if (_convertTo.category() == Category::Integer)
 	{
+		IntegerType const& targetType = dynamic_cast<IntegerType const&>(_convertTo);
+		if(targetType.isAddress())
+			return false;
 		if (m_value == rational(0))
 			return true;
 		if (isFractional())
 			return false;
-		IntegerType const& targetType = dynamic_cast<IntegerType const&>(_convertTo);
 		unsigned forSignBit = (targetType.isSigned() ? 1 : 0);
 		if (m_value > rational(0))
 		{
@@ -909,6 +906,12 @@ bool RationalNumberType::isImplicitlyConvertibleTo(Type const& _convertTo) const
 
 bool RationalNumberType::isExplicitlyConvertibleTo(Type const& _convertTo) const
 {
+	if (_convertTo.category() == Category::Integer)
+	{
+		IntegerType const& targetType = dynamic_cast<IntegerType const&>(_convertTo);
+		if(targetType.isAddress())
+			return false;
+	}
 	TypePointer mobType = mobileType();
 	return mobType && mobType->isExplicitlyConvertibleTo(_convertTo);
 }
