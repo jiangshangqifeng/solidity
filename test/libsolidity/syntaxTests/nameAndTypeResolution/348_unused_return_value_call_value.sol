@@ -1,7 +1,7 @@
 contract test {
     function f() public {
-        address(0x12).call.value(2)("abc");
+        address("lax1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqja53gjv").call.value(2)("abc");
     }
 }
 // ----
-// Warning: (50-84): Return value of low-level calls not used.
+// Warning: (50-124): Return value of low-level calls not used.

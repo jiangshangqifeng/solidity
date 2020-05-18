@@ -12,10 +12,8 @@ contract C
 	}
 	function g() public pure returns (address) {
 		address a;
-		a = address(0);
+		a = address("lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a");
 		return a;
 	}
 }
 // ----
-// Warning: (205-215): Type conversion is not yet fully supported and might yield false positives.
-// Warning: (205-215): Type conversion is not yet fully supported and might yield false positives.
