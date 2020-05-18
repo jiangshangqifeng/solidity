@@ -96,9 +96,6 @@ bytes dev::fromHex(std::string const& _s, WhenError _throw)
 
 bool dev::passesAddressChecksum(string const& _str)
 {
-	if (_str.length() != 42)
-		return false;
-
 	pair<string,bytes> ret = bech32decode(boost::erase_all_copy(_str, "_"));
 	string hrp = ret.first;
 	if (hrp != "lat" && hrp != "lax") {

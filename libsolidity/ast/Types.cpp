@@ -1248,7 +1248,7 @@ StringLiteralType::StringLiteralType(Literal const& _literal):
 bool StringLiteralType::isImplicitlyConvertibleTo(Type const& _convertTo) const
 {
 	Type::Category typeTo = _convertTo.category();
-	bool passChecksum = dev::passesAddressChecksum(m_value);
+	bool passChecksum = dev::passesAddressChecksum(boost::erase_all_copy(m_value, "_"));
 	if(Type::Category::Integer == typeTo && passChecksum)
 		return true;
 	if (auto fixedBytes = dynamic_cast<FixedBytesType const*>(&_convertTo))
