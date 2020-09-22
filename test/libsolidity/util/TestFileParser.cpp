@@ -475,7 +475,7 @@ void TestFileParser::Scanner::scanNextToken()
 		if (_literal == "true") return TokenDesc{Token::Boolean, _literal};
 		if (_literal == "false") return TokenDesc{Token::Boolean, _literal};
 		if (_literal == "lat") return TokenDesc{Token::Lat, _literal};
-		if (_literal == "von") return TokenDesc{Token::Wei, _literal};
+		if (_literal == "von") return TokenDesc{Token::Von, _literal};
 		if (_literal == "left") return TokenDesc{Token::Left, _literal};
 		if (_literal == "library") return TokenDesc{Token::Library, _literal};
 		if (_literal == "right") return TokenDesc{Token::Right, _literal};

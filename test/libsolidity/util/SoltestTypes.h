@@ -242,7 +242,7 @@ enum class FunctionValueUnit
 struct FunctionValue
 {
 	u256 value;
-	FunctionValueUnit unit = FunctionValueUnit::Wei;
+	FunctionValueUnit unit = FunctionValueUnit::Von;
 };
 
 /**

@@ -68,7 +68,7 @@ string TestFunctionCall::format(
 		{
 			if (m_call.value.unit == FunctionValueUnit::Lat)
 				stream << comma << ws << (m_call.value.value / exp256(10, 18)) << ws << lat;
-			else if (m_call.value.unit == FunctionValueUnit::Wei)
+			else if (m_call.value.unit == FunctionValueUnit::Von)
 				stream << comma << ws << m_call.value.value << ws << von;
 			else
 				soltestAssert(false, "");

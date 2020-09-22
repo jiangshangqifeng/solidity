@@ -1001,9 +1001,9 @@ Literal::SubDenomination ASTJsonImporter::subdenomination(Json::Value const& _no
 	string const subDenStr = subDen.asString();
 
 	if (subDenStr == "von")
-		return Literal::SubDenomination::Wei;
+		return Literal::SubDenomination::Von;
 	else if (subDenStr == "gvon")
-		return Literal::SubDenomination::Gwei;
+		return Literal::SubDenomination::Gvon;
 	else if (subDenStr == "szabo")
 		return Literal::SubDenomination::Szabo;
 	else if (subDenStr == "finney")
