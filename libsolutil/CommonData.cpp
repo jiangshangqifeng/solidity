@@ -124,50 +124,16 @@ bytes solidity::util::fromHex(std::string const& _s, WhenError _throw)
 }
 
 
-<<<<<<< HEAD:libdevcore/CommonData.cpp
-bool dev::passesAddressChecksum(string const& _str)
-=======
-bool solidity::util::passesAddressChecksum(string const& _str, bool _strict)
->>>>>>> v0.6.12:libsolutil/CommonData.cpp
+bool solidity::util::passesAddressChecksum(string const& _str)
 {
 	if (_str.length() != 42)
 		return false;
 
-<<<<<<< HEAD:libdevcore/CommonData.cpp
 	pair<string,bytes> ret = bech32decode(boost::erase_all_copy(_str, "_"));
 	string hrp = ret.first;
 	if (hrp != "lat" && hrp != "lax") {
 		return false;
-=======
-	if (!_strict && (
-		s.find_first_of("abcdef") == string::npos ||
-		s.find_first_of("ABCDEF") == string::npos
-	))
-		return true;
-
-	return s == solidity::util::getChecksummedAddress(s);
-}
-
-string solidity::util::getChecksummedAddress(string const& _addr)
-{
-	string s = _addr.substr(0, 2) == "0x" ? _addr.substr(2) : _addr;
-	assertThrow(s.length() == 40, InvalidAddress, "");
-	assertThrow(s.find_first_not_of("0123456789abcdefABCDEF") == string::npos, InvalidAddress, "");
-
-	h256 hash = keccak256(boost::algorithm::to_lower_copy(s, std::locale::classic()));
-
-	string ret = "0x";
-	for (unsigned i = 0; i < 40; ++i)
-	{
-		char addressCharacter = s[i];
-		uint8_t nibble = hash[i / 2u] >> (4u * (1u - (i % 2u))) & 0xf;
-		if (nibble >= 8)
-			ret += static_cast<char>(toupper(addressCharacter));
-		else
-			ret += static_cast<char>(tolower(addressCharacter));
->>>>>>> v0.6.12:libsolutil/CommonData.cpp
 	}
-
 	return true;
 }
 
@@ -194,7 +160,6 @@ bool solidity::util::isValidDecimal(string const& _string)
 	return true;
 }
 
-<<<<<<< HEAD:libdevcore/CommonData.cpp
 /** The Bech32 character set for decoding. */
 const int8_t charset_rev[128] = {
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
@@ -333,10 +298,7 @@ bytes dev::decodeAddress(const std::string& hrp, const std::string& addr) {
     return output;
 }
 
-string dev::formatAsStringOrNumber(string const& _value)
-=======
 string solidity::util::formatAsStringOrNumber(string const& _value)
->>>>>>> v0.6.12:libsolutil/CommonData.cpp
 {
 	assertThrow(_value.length() <= 32, StringTooLong, "String to be formatted longer than 32 bytes.");
 
