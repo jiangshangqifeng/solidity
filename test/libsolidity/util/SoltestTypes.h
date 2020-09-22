@@ -49,8 +49,8 @@ namespace solidity::frontend::test
 	T(String, "string", 0)         \
 	T(Identifier, "identifier", 0) \
 	/* type keywords */            \
-	K(Ether, "ether", 0)           \
-	K(Wei, "wei", 0)               \
+	K(Lat, "lat", 0)           \
+	K(Von, "von", 0)               \
 	K(Hex, "hex", 0)               \
 	K(Boolean, "boolean", 0)       \
 	/* special keywords */         \
@@ -233,12 +233,12 @@ struct FunctionCallArgs
 /// Units that can be used to express function value
 enum class FunctionValueUnit
 {
-	Wei,
-	Ether
+	Von,
+	Lat
 };
 
 /// Holds value along with unit it was expressed in originally.
-/// @a value is always in wei - it is converted back when stringifying again.
+/// @a value is always in von - it is converted back when stringifying again.
 struct FunctionValue
 {
 	u256 value;
@@ -254,7 +254,7 @@ struct FunctionCall
 	/// Signature of the function call, e.g. `f(uint256, uint256)`.
 	std::string signature;
 	/// Optional value that can be sent with the call.
-	/// Value is expressed in wei, smallest unit of ether
+	/// Value is expressed in von, smallest unit of lat
 	/// Value has a field unit which represents denomination on which value was expressed originally
 	FunctionValue value;
 	/// Object that holds all function parameters in their `bytes`

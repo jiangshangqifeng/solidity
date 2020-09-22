@@ -207,17 +207,17 @@ FunctionValue TestFileParser::parseFunctionCallValue()
 	{
 		u256 value{ parseDecimalNumber() };
 		Token token = m_scanner.currentToken();
-		if (token != Token::Ether && token != Token::Wei)
-			throw TestParserError("Invalid value unit provided. Coins can be wei or ether.");
+		if (token != Token::Lat && token != Token::Von)
+			throw TestParserError("Invalid value unit provided. Coins can be von or lat.");
 
 		m_scanner.scanNextToken();
 
-		FunctionValueUnit unit = token == Token::Wei ? FunctionValueUnit::Wei : FunctionValueUnit::Ether;
-		return { (unit == FunctionValueUnit::Wei ? u256(1) : exp256(u256(10), u256(18))) * value, unit };
+		FunctionValueUnit unit = token == Token::Von ? FunctionValueUnit::Von : FunctionValueUnit::Lat;
+		return { (unit == FunctionValueUnit::Von ? u256(1) : exp256(u256(10), u256(18))) * value, unit };
 	}
 	catch (std::exception const&)
 	{
-		throw TestParserError("Ether value encoding invalid.");
+		throw TestParserError("Lat value encoding invalid.");
 	}
 }
 
@@ -474,8 +474,8 @@ void TestFileParser::Scanner::scanNextToken()
 	auto detectKeyword = [](std::string const& _literal = "") -> TokenDesc {
 		if (_literal == "true") return TokenDesc{Token::Boolean, _literal};
 		if (_literal == "false") return TokenDesc{Token::Boolean, _literal};
-		if (_literal == "ether") return TokenDesc{Token::Ether, _literal};
-		if (_literal == "wei") return TokenDesc{Token::Wei, _literal};
+		if (_literal == "lat") return TokenDesc{Token::Lat, _literal};
+		if (_literal == "von") return TokenDesc{Token::Wei, _literal};
 		if (_literal == "left") return TokenDesc{Token::Left, _literal};
 		if (_literal == "library") return TokenDesc{Token::Library, _literal};
 		if (_literal == "right") return TokenDesc{Token::Right, _literal};

@@ -428,12 +428,12 @@ BOOST_AUTO_TEST_CASE(comments_mixed_in_sequence)
 
 BOOST_AUTO_TEST_CASE(ether_subdenominations)
 {
-	Scanner scanner(CharStream("wei gwei szabo finney ether", ""));
-	BOOST_CHECK_EQUAL(scanner.currentToken(), Token::SubWei);
+	Scanner scanner(CharStream("von gvon szabo finney lat", ""));
+	BOOST_CHECK_EQUAL(scanner.currentToken(), Token::SubVon);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::Identifier);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::SubSzabo);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::SubFinney);
-	BOOST_CHECK_EQUAL(scanner.next(), Token::SubEther);
+	BOOST_CHECK_EQUAL(scanner.next(), Token::SubLat);
 }
 
 BOOST_AUTO_TEST_CASE(time_subdenominations)

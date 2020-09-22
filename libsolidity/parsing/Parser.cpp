@@ -704,7 +704,7 @@ ASTPointer<VariableDeclaration> Parser::parseVariableDeclaration(
 		fatalParserError(
 			2915_error,
 			"Expected a state variable declaration. If you intended this as a fallback function "
-			"or a function to handle plain ether transactions, use the \"fallback\" keyword "
+			"or a function to handle plain lat transactions, use the \"fallback\" keyword "
 			"or the \"receive\" keyword instead."
 		);
 
@@ -1827,13 +1827,13 @@ ASTPointer<Expression> Parser::parsePrimaryExpression()
 		break;
 	case Token::Number:
 		if (
-			(m_scanner->peekNextToken() == Token::Identifier && m_scanner->peekLiteral() == "gwei") ||
+			(m_scanner->peekNextToken() == Token::Identifier && m_scanner->peekLiteral() == "gvon") ||
 			TokenTraits::isEtherSubdenomination(m_scanner->peekNextToken())
 		)
 		{
 			ASTPointer<ASTString> literal = getLiteralAndAdvance();
 			nodeFactory.markEndPosition();
-			Token actualToken = m_scanner->currentToken() == Token::Identifier ? Token::SubGwei : m_scanner->currentToken();
+			Token actualToken = m_scanner->currentToken() == Token::Identifier ? Token::SubGvon : m_scanner->currentToken();
 
 			Literal::SubDenomination subdenomination = static_cast<Literal::SubDenomination>(actualToken);
 			m_scanner->next();

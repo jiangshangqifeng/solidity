@@ -47,12 +47,12 @@ using rational = boost::rational<bigint>;
 using Address = util::h160;
 
 // The various denominations; here for ease of use where needed within code.
-static const u256 wei = 1;
+static const u256 von = 1;
 static const u256 shannon = u256("1000000000");
-static const u256 gwei = shannon;
+static const u256 gvon = shannon;
 static const u256 szabo = shannon * 1000;
 static const u256 finney = szabo * 1000;
-static const u256 ether = finney * 1000;
+static const u256 lat = finney * 1000;
 
 class ExecutionFramework
 {
