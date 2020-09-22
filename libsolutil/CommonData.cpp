@@ -234,7 +234,7 @@ pair<string, bytes> solidity::util::bech32decode(const string& str) {
     bool lower = false, upper = false;
     bool ok = true;
     for (size_t i = 0; ok && i < str.size(); ++i) {
-        unsigned char c = str[i];
+        unsigned char c = (unsigned char)str[i];
         if (c < 33 || c > 126) ok = false;
         if (c >= 'a' && c <= 'z') lower = true;
         if (c >= 'A' && c <= 'Z') upper = true;
@@ -245,14 +245,14 @@ pair<string, bytes> solidity::util::bech32decode(const string& str) {
         bytes values;
         values.resize(str.size() - 1 - pos);
         for (size_t i = 0; i < str.size() - 1 - pos; ++i) {
-            unsigned char c = str[i + pos + 1];
+            unsigned char c = (unsigned char)str[i + pos + 1];
             if (charset_rev[c] == -1) ok = false;
-            values[i] = charset_rev[c];
+            values[i] = (unsigned char)charset_rev[c];
         }
         if (ok) {
             string hrp;
             for (size_t i = 0; i < pos; ++i) {
-                hrp += lc(str[i]);
+                hrp += lc((unsigned char)str[i]);
             }
             if (verify_checksum(hrp, values)) {
                 return make_pair(hrp, bytes(values.begin(), values.end() - 6));
