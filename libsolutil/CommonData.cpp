@@ -203,7 +203,7 @@ bytes expand_hrp(const string& hrp) {
     bytes ret;
     ret.resize(hrp.size() * 2 + 1);
     for (size_t i = 0; i < hrp.size(); ++i) {
-        unsigned char c = hrp[i];
+        unsigned char c = (unsigned char)hrp[i];
         ret[i] = c >> 5;
         ret[i + hrp.size() + 1] = c & 0x1f;
     }
@@ -230,7 +230,7 @@ bytes create_checksum(const string& hrp, const bytes& values) {
 }
 
 /** Decode a Bech32 string. */
-pair<string, bytes> dev::bech32decode(const string& str) {
+pair<string, bytes> solidity::util::bech32decode(const string& str) {
     bool lower = false, upper = false;
     bool ok = true;
     for (size_t i = 0; ok && i < str.size(); ++i) {
@@ -287,8 +287,8 @@ bool convertbits(bytes& out, const bytes& in) {
 }
 
 /** Decode a bech32 address. */
-bytes dev::decodeAddress(const std::string& hrp, const std::string& addr) {
-	pair<string, bytes> dec = dev::bech32decode(addr);
+bytes solidity::util::decodeAddress(const std::string& hrp, const std::string& addr) {
+	pair<string, bytes> dec = solidity::util::bech32decode(addr);
     if (dec.first != hrp || dec.second.size() < 1) return bytes();
     bytes output;
 	bool r = convertbits<5, 8, false>(output, dec.second);
