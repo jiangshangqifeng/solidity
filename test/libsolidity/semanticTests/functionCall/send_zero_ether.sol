@@ -17,5 +17,5 @@ contract Main {
 // ====
 // compileViaYul: also
 // ----
-// constructor(), 20 wei ->
+// constructor(), 20 von ->
 // s() -> true

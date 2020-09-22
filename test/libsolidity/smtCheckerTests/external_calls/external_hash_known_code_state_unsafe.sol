@@ -34,10 +34,10 @@ contract C {
 	function inv() public view {
 		// This is safe but external calls do not yet support the state
 		// of the called contract.
-		assert(owner == address(0) || y != z);
+		assert(owner == address(uint160(0)) || y != z);
 	}
 }
 // ----
 // Warning 4661: (442-468): Assertion violation happens here
-// Warning 5084: (617-627): Type conversion is not yet fully supported and might yield false positives.
-// Warning 4661: (601-638): Assertion violation happens here
+// Warning 5084: (625-635): Type conversion is not yet fully supported and might yield false positives.
+// Warning 4661: (601-647): Assertion violation happens here

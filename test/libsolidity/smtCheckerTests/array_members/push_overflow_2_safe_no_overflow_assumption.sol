@@ -11,3 +11,5 @@ contract C {
 		assert(x[0] == 42);
 	}
 }
+// ----
+// Warning 4661: (196-214): Assertion violation happens here

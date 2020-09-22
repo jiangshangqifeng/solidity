@@ -19,5 +19,5 @@ contract test {
 }
 
 // ----
-// constructor(), 20 wei ->
+// constructor(), 20 von ->
 // sendAmount(uint256): 5 -> 8

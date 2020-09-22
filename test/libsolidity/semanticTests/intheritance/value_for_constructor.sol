@@ -39,7 +39,7 @@ contract Main {
 }
 
 // ----
-// constructor(), 22 wei ->
+// constructor(), 22 von ->
 // getFlag() -> true
 // getName() -> "abc"
 // getBalances() -> 12, 10

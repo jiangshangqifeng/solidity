@@ -3,7 +3,7 @@ pragma experimental SMTChecker;
 contract Other {
 	C c;
 	function h() public {
-		c.setOwner(address(0));
+		c.setOwner(address(uint160(0)));
 	}
 }
 
@@ -42,6 +42,6 @@ contract C {
 	}
 }
 // ----
-// Warning 5084: (92-102): Type conversion is not yet fully supported and might yield false positives.
-// Warning 4661: (459-473): Assertion violation happens here
-// Warning 4661: (477-503): Assertion violation happens here
+// Warning 5084: (100-110): Type conversion is not yet fully supported and might yield false positives.
+// Warning 4661: (468-482): Assertion violation happens here
+// Warning 4661: (486-512): Assertion violation happens here

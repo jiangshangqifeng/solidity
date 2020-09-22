@@ -4,5 +4,5 @@ contract C {
 // ====
 // compileViaYul: also
 // ----
-// (), 1 ether
-// (), 1 ether: 1 -> FAILURE
+// (), 1 lat
+// (), 1 lat: 1 -> FAILURE

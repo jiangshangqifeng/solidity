@@ -11,4 +11,5 @@ contract C {
 	}
 }
 // ----
-// Warning 2529: (150-157): Empty array "pop" detected here.
+// Warning 1147: (135-142): Empty array "pop" might happen here.
+// Warning 1147: (150-157): Empty array "pop" might happen here.
