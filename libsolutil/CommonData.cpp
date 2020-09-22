@@ -252,7 +252,7 @@ pair<string, bytes> solidity::util::bech32decode(const string& str) {
         if (ok) {
             string hrp;
             for (size_t i = 0; i < pos; ++i) {
-                hrp += lc((unsigned char)str[i]);
+                hrp += (char)lc((unsigned char)str[i]);
             }
             if (verify_checksum(hrp, values)) {
                 return make_pair(hrp, bytes(values.begin(), values.end() - 6));
