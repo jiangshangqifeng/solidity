@@ -5,6 +5,6 @@ contract test {
     }
 }
 // ----
-// Warning 1621: (50-74): Using ".value(...)" is deprecated. Use "{value: ...}" instead.
-// Warning 9302: (50-84): Return value of low-level calls not used.
-// Warning 9302: (94-129): Return value of low-level calls not used.
+// Warning 1621: (50-114): Using ".value(...)" is deprecated. Use "{value: ...}" instead.
+// Warning 9302: (50-124): Return value of low-level calls not used.
+// Warning 9302: (134-209): Return value of low-level calls not used.

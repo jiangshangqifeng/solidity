@@ -767,7 +767,7 @@ bool Literal::looksLikeAddress() const
 	if (subDenomination() != SubDenomination::None)
 		return false;
 
-	pair<string, bytes> ret = bech32decode(valueWithoutUnderscores());
+	pair<string, bytes> ret = solidity::util::bech32decode(valueWithoutUnderscores());
 
 	string hrp = ret.first;
 	
@@ -780,7 +780,7 @@ bool Literal::looksLikeAddress() const
 
 bool Literal::passesAddressChecksum() const
 {
-	return dev::passesAddressChecksum(valueWithoutUnderscores());
+	return solidity::util::passesAddressChecksum(valueWithoutUnderscores());
 }
 
 /** Convert from one power-of-2 number base to another. */

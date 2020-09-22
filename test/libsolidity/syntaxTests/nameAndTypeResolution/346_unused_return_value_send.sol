@@ -4,4 +4,4 @@ contract test {
     }
 }
 // ----
-// Warning 5878: (50-71): Failure condition of 'send' ignored. Consider using 'transfer' instead.
+// TypeError 9862: (50-108): "send" and "transfer" are only available for objects of type "address payable", not "address".
