@@ -8,13 +8,15 @@
       [
         5
       ]
-    }
+    },
+    "license": null
   },
   "children":
   [
     {
       "attributes":
       {
+        "abstract": false,
         "baseContracts":
         [
           null
@@ -47,9 +49,10 @@
               null
             ],
             "name": "",
+            "overrides": null,
             "scope": 5,
             "stateMutability": "nonpayable",
-            "superFunction": null,
+            "virtual": false,
             "visibility": "public"
           },
           "children":

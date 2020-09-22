@@ -8,10 +8,12 @@
     ]
   },
   "id": 18,
+  "license": null,
   "nodeType": "SourceUnit",
   "nodes":
   [
     {
+      "abstract": false,
       "baseContracts": [],
       "contractDependencies": [],
       "contractKind": "contract",
@@ -35,12 +37,14 @@
             "statements": []
           },
           "documentation": null,
+          "functionSelector": "d6cd4974",
           "id": 16,
           "implemented": true,
           "kind": "function",
           "modifiers": [],
           "name": "f",
           "nodeType": "FunctionDefinition",
+          "overrides": null,
           "parameters":
           {
             "id": 7,
@@ -50,8 +54,10 @@
               {
                 "constant": false,
                 "id": 6,
+                "mutability": "mutable",
                 "name": "x",
                 "nodeType": "VariableDeclaration",
+                "overrides": null,
                 "scope": 16,
                 "src": "24:44:1",
                 "stateVariable": false,
@@ -81,8 +87,10 @@
                       {
                         "constant": false,
                         "id": 3,
+                        "mutability": "mutable",
                         "name": "",
                         "nodeType": "VariableDeclaration",
+                        "overrides": null,
                         "scope": 5,
                         "src": "61:4:1",
                         "stateVariable": false,
@@ -134,8 +142,10 @@
               {
                 "constant": false,
                 "id": 13,
+                "mutability": "mutable",
                 "name": "",
                 "nodeType": "VariableDeclaration",
+                "overrides": null,
                 "scope": 16,
                 "src": "79:40:1",
                 "stateVariable": false,
@@ -165,8 +175,10 @@
                       {
                         "constant": false,
                         "id": 10,
+                        "mutability": "mutable",
                         "name": "",
                         "nodeType": "VariableDeclaration",
+                        "overrides": null,
                         "scope": 12,
                         "src": "113:4:1",
                         "stateVariable": false,
@@ -212,7 +224,7 @@
           "scope": 17,
           "src": "13:109:1",
           "stateMutability": "nonpayable",
-          "superFunction": null,
+          "virtual": false,
           "visibility": "public"
         }
       ],

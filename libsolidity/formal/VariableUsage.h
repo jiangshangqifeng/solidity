@@ -14,6 +14,7 @@
 	You should have received a copy of the GNU General Public License
 	along with solidity.  If not, see <http://www.gnu.org/licenses/>.
 */
+// SPDX-License-Identifier: GPL-3.0
 
 #pragma once
 
@@ -22,11 +23,7 @@
 #include <vector>
 #include <set>
 
-namespace dev
-{
-namespace solidity
-{
-namespace smt
+namespace solidity::frontend::smt
 {
 
 /**
@@ -60,6 +57,4 @@ private:
 	bool m_inlineFunctionCalls = false;
 };
 
-}
-}
 }

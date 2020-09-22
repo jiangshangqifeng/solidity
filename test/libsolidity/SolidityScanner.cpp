@@ -24,13 +24,9 @@
 #include <boost/test/unit_test.hpp>
 
 using namespace std;
-using namespace langutil;
+using namespace solidity::langutil;
 
-namespace dev
-{
-namespace solidity
-{
-namespace test
+namespace solidity::frontend::test
 {
 
 BOOST_AUTO_TEST_SUITE(SolidityScanner)
@@ -365,7 +361,7 @@ BOOST_AUTO_TEST_CASE(multiline_documentation_comments_parsed)
 	BOOST_CHECK_EQUAL(scanner.next(), Token::Identifier);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::Identifier);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::EOS);
-	BOOST_CHECK_EQUAL(scanner.currentCommentLiteral(), "Send $(value / 1000) chocolates to the user");
+	BOOST_CHECK_EQUAL(scanner.currentCommentLiteral(), " Send $(value / 1000) chocolates to the user");
 }
 
 BOOST_AUTO_TEST_CASE(multiline_documentation_no_stars)
@@ -389,7 +385,7 @@ BOOST_AUTO_TEST_CASE(multiline_documentation_whitespace_hell)
 	BOOST_CHECK_EQUAL(scanner.next(), Token::Identifier);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::Identifier);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::EOS);
-	BOOST_CHECK_EQUAL(scanner.currentCommentLiteral(), "Send $(value / 1000) chocolates to the user");
+	BOOST_CHECK_EQUAL(scanner.currentCommentLiteral(), " Send $(value / 1000) chocolates to the user");
 }
 
 BOOST_AUTO_TEST_CASE(comment_before_eos)
@@ -432,8 +428,9 @@ BOOST_AUTO_TEST_CASE(comments_mixed_in_sequence)
 
 BOOST_AUTO_TEST_CASE(ether_subdenominations)
 {
-	Scanner scanner(CharStream("wei szabo finney ether", ""));
+	Scanner scanner(CharStream("wei gwei szabo finney ether", ""));
 	BOOST_CHECK_EQUAL(scanner.currentToken(), Token::SubWei);
+	BOOST_CHECK_EQUAL(scanner.next(), Token::Identifier);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::SubSzabo);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::SubFinney);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::SubEther);
@@ -666,6 +663,4 @@ BOOST_AUTO_TEST_CASE(irregular_line_breaks_in_strings)
 
 BOOST_AUTO_TEST_SUITE_END()
 
-}
-}
 } // end namespaces

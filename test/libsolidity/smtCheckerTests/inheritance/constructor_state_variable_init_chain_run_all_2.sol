@@ -6,7 +6,7 @@ contract C {
 	}
 }
 
-contract B is C {
+abstract contract B is C {
 	uint b;
 	constructor(uint x) public {
 		b = x + 10;
@@ -22,5 +22,10 @@ contract A is B {
 }
 
 // ----
-// Warning: (162-168): Overflow (resulting value larger than 2**256 - 1) happens here
-// Warning: (285-303): Assertion violation happens here
+// Warning 2661: (171-177): Overflow (resulting value larger than 2**256 - 1) happens here
+// Warning 2661: (231-236): Overflow (resulting value larger than 2**256 - 1) happens here
+// Warning 2661: (171-177): Overflow (resulting value larger than 2**256 - 1) happens here
+// Warning 2661: (261-266): Overflow (resulting value larger than 2**256 - 1) happens here
+// Warning 2661: (283-289): Overflow (resulting value larger than 2**256 - 1) happens here
+// Warning 2661: (306-311): Overflow (resulting value larger than 2**256 - 1) happens here
+// Warning 4661: (294-312): Assertion violation happens here

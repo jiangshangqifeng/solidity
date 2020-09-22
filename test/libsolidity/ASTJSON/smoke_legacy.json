@@ -8,13 +8,15 @@
       [
         1
       ]
-    }
+    },
+    "license": null
   },
   "children":
   [
     {
       "attributes":
       {
+        "abstract": false,
         "baseContracts":
         [
           null

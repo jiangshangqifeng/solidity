@@ -8,10 +8,12 @@
     ]
   },
   "id": 12,
+  "license": null,
   "nodeType": "SourceUnit",
   "nodes":
   [
     {
+      "abstract": false,
       "baseContracts": [],
       "contractDependencies": [],
       "contractKind": "contract",
@@ -44,8 +46,10 @@
                   {
                     "constant": false,
                     "id": 4,
+                    "mutability": "mutable",
                     "name": "a",
                     "nodeType": "VariableDeclaration",
+                    "overrides": null,
                     "scope": 9,
                     "src": "35:6:1",
                     "stateVariable": false,
@@ -140,12 +144,14 @@
             ]
           },
           "documentation": null,
+          "functionSelector": "26121ff0",
           "id": 10,
           "implemented": true,
           "kind": "function",
           "modifiers": [],
           "name": "f",
           "nodeType": "FunctionDefinition",
+          "overrides": null,
           "parameters":
           {
             "id": 1,
@@ -163,7 +169,7 @@
           "scope": 11,
           "src": "13:39:1",
           "stateMutability": "nonpayable",
-          "superFunction": null,
+          "virtual": false,
           "visibility": "public"
         }
       ],

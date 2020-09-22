@@ -26,6 +26,7 @@ storage.
 
 ::
 
+    // SPDX-License-Identifier: GPL-3.0
     pragma solidity >=0.4.0 <0.7.0;
 
     contract SimpleStorage {
@@ -46,6 +47,7 @@ Functions are the executable units of code within a contract.
 
 ::
 
+    // SPDX-License-Identifier: GPL-3.0
     pragma solidity >=0.4.0 <0.7.0;
 
     contract SimpleAuction {
@@ -67,8 +69,14 @@ Function Modifiers
 Function modifiers can be used to amend the semantics of functions in a declarative way
 (see :ref:`modifiers` in the contracts section).
 
+Overloading, that is, having the same modifier name with different parameters,
+is not possible.
+
+Like functions, modifiers can be :ref:`overridden <modifier-overriding>`.
+
 ::
 
+    // SPDX-License-Identifier: GPL-3.0
     pragma solidity >=0.4.22 <0.7.0;
 
     contract Purchase {
@@ -96,6 +104,7 @@ Events are convenience interfaces with the EVM logging facilities.
 
 ::
 
+    // SPDX-License-Identifier: GPL-3.0
     pragma solidity >=0.4.21 <0.7.0;
 
     contract SimpleAuction {
@@ -120,6 +129,7 @@ Structs are custom defined types that can group several variables (see
 
 ::
 
+    // SPDX-License-Identifier: GPL-3.0
     pragma solidity >=0.4.0 <0.7.0;
 
     contract Ballot {
@@ -141,6 +151,7 @@ Enums can be used to create custom types with a finite set of 'constant values' 
 
 ::
 
+    // SPDX-License-Identifier: GPL-3.0
     pragma solidity >=0.4.0 <0.7.0;
 
     contract Purchase {

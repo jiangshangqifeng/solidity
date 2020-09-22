@@ -8,10 +8,12 @@
     ]
   },
   "id": 5,
+  "license": null,
   "nodeType": "SourceUnit",
   "nodes":
   [
     {
+      "abstract": false,
       "baseContracts": [],
       "contractDependencies": [],
       "contractKind": "contract",
@@ -29,8 +31,10 @@
         {
           "constant": false,
           "id": 3,
+          "mutability": "mutable",
           "name": "i",
           "nodeType": "VariableDeclaration",
+          "overrides": null,
           "scope": 4,
           "src": "13:8:1",
           "stateVariable": true,

@@ -14,11 +14,13 @@
 	You should have received a copy of the GNU General Public License
 	along with solidity.  If not, see <http://www.gnu.org/licenses/>.
 */
+// SPDX-License-Identifier: GPL-3.0
 
 #include <test/libyul/YulOptimizerTest.h>
 
 #include <test/libsolidity/util/SoltestErrors.h>
-#include <test/Options.h>
+#include <test/libyul/Common.h>
+#include <test/Common.h>
 
 #include <libyul/optimiser/BlockFlattener.h>
 #include <libyul/optimiser/VarDeclInitializer.h>
@@ -27,6 +29,7 @@
 #include <libyul/optimiser/DeadCodeEliminator.h>
 #include <libyul/optimiser/Disambiguator.h>
 #include <libyul/optimiser/CallGraphGenerator.h>
+#include <libyul/optimiser/CircularReferencesPruner.h>
 #include <libyul/optimiser/ConditionalUnsimplifier.h>
 #include <libyul/optimiser/ConditionalSimplifier.h>
 #include <libyul/optimiser/CommonSubexpressionEliminator.h>
@@ -60,6 +63,7 @@
 #include <libyul/backends/evm/EVMDialect.h>
 #include <libyul/backends/evm/EVMMetrics.h>
 #include <libyul/backends/wasm/WordSizeTransform.h>
+#include <libyul/backends/wasm/WasmDialect.h>
 #include <libyul/AsmPrinter.h>
 #include <libyul/AsmParser.h>
 #include <libyul/AsmAnalysis.h>
@@ -69,7 +73,9 @@
 #include <liblangutil/ErrorReporter.h>
 #include <liblangutil/Scanner.h>
 
-#include <libdevcore/AnsiColorized.h>
+#include <libsolutil/AnsiColorized.h>
+
+#include <libsolidity/interface/OptimiserSettings.h>
 
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
@@ -77,15 +83,17 @@
 #include <fstream>
 #include <variant>
 
-using namespace dev;
-using namespace langutil;
-using namespace yul;
-using namespace yul::test;
-using namespace dev::solidity;
-using namespace dev::solidity::test;
+using namespace solidity;
+using namespace solidity::util;
+using namespace solidity::langutil;
+using namespace solidity::yul;
+using namespace solidity::yul::test;
+using namespace solidity::frontend;
+using namespace solidity::frontend::test;
 using namespace std;
 
-YulOptimizerTest::YulOptimizerTest(string const& _filename)
+YulOptimizerTest::YulOptimizerTest(string const& _filename):
+	EVMVersionRestrictedTestCase(_filename)
 {
 	boost::filesystem::path path(_filename);
 
@@ -93,24 +101,12 @@ YulOptimizerTest::YulOptimizerTest(string const& _filename)
 		BOOST_THROW_EXCEPTION(runtime_error("Filename path has to contain a directory: \"" + _filename + "\"."));
 	m_optimizerStep = std::prev(std::prev(path.end()))->string();
 
-	ifstream file(_filename);
-	soltestAssert(file, "Cannot open test contract: \"" + _filename + "\".");
-	file.exceptions(ios::badbit);
+	m_source = m_reader.source();
 
-	m_source = parseSourceAndSettings(file);
-	if (m_settings.count("yul"))
-	{
-		m_yul = true;
-		m_validatedSettings["yul"] = "true";
-		m_settings.erase("yul");
-	}
-	if (m_settings.count("step"))
-	{
-		m_validatedSettings["step"] = m_settings["step"];
-		m_settings.erase("step");
-	}
+	auto dialectName = m_reader.stringSetting("dialect", "evm");
+	m_dialect = &dialect(dialectName, solidity::test::CommonOptions::get().evmVersion());
 
-	m_expectation = parseSimpleExpectations(file);
+	m_expectation = m_reader.simpleExpectations();
 }
 
 TestCase::TestResult YulOptimizerTest::run(ostream& _stream, string const& _linePrefix, bool const _formatted)
@@ -235,6 +231,7 @@ TestCase::TestResult YulOptimizerTest::run(ostream& _stream, string const& _line
 		CommonSubexpressionEliminator::run(*m_context, *m_ast);
 		ExpressionSimplifier::run(*m_context, *m_ast);
 		UnusedPruner::run(*m_context, *m_ast);
+		CircularReferencesPruner::run(*m_context, *m_ast);
 		DeadCodeEliminator::run(*m_context, *m_ast);
 		ExpressionJoiner::run(*m_context, *m_ast);
 		ExpressionJoiner::run(*m_context, *m_ast);
@@ -243,6 +240,12 @@ TestCase::TestResult YulOptimizerTest::run(ostream& _stream, string const& _line
 	{
 		disambiguate();
 		UnusedPruner::run(*m_context, *m_ast);
+	}
+	else if (m_optimizerStep == "circularReferencesPruner")
+	{
+		disambiguate();
+		FunctionHoister::run(*m_context, *m_ast);
+		CircularReferencesPruner::run(*m_context, *m_ast);
 	}
 	else if (m_optimizerStep == "deadCodeEliminator")
 	{
@@ -253,6 +256,7 @@ TestCase::TestResult YulOptimizerTest::run(ostream& _stream, string const& _line
 	else if (m_optimizerStep == "ssaTransform")
 	{
 		disambiguate();
+		ForLoopInitRewriter::run(*m_context, *m_ast);
 		SSATransform::run(*m_context, *m_ast);
 	}
 	else if (m_optimizerStep == "redundantAssignEliminator")
@@ -334,7 +338,7 @@ TestCase::TestResult YulOptimizerTest::run(ostream& _stream, string const& _line
 	{
 		disambiguate();
 		ExpressionSplitter::run(*m_context, *m_ast);
-		WordSizeTransform::run(*m_dialect, *m_ast, *m_nameDispenser);
+		WordSizeTransform::run(*m_dialect, *m_dialect, *m_ast, *m_nameDispenser);
 	}
 	else if (m_optimizerStep == "fullSuite")
 	{
@@ -342,7 +346,7 @@ TestCase::TestResult YulOptimizerTest::run(ostream& _stream, string const& _line
 		yul::Object obj;
 		obj.code = m_ast;
 		obj.analysisInfo = m_analysisInfo;
-		OptimiserSuite::run(*m_dialect, &meter, obj, true);
+		OptimiserSuite::run(*m_dialect, &meter, obj, true, solidity::frontend::OptimiserSettings::DefaultYulOptimiserSteps);
 	}
 	else
 	{
@@ -350,74 +354,22 @@ TestCase::TestResult YulOptimizerTest::run(ostream& _stream, string const& _line
 		return TestResult::FatalError;
 	}
 
-	m_obtainedResult = AsmPrinter{m_yul}(*m_ast) + "\n";
+	m_obtainedResult = "step: " + m_optimizerStep + "\n\n" + AsmPrinter{ *m_dialect }(*m_ast) + "\n";
 
-	if (m_optimizerStep != m_validatedSettings["step"])
-	{
-		string nextIndentLevel = _linePrefix + "  ";
-		AnsiColorized(_stream, _formatted, {formatting::BOLD, formatting::CYAN}) <<
-			_linePrefix <<
-			"Invalid optimizer step. Given: \"" <<
-			m_validatedSettings["step"] <<
-			"\", should be: \"" <<
-			m_optimizerStep <<
-			"\"." <<
-			endl;
-		return TestResult::FatalError;
-	}
-	if (m_expectation != m_obtainedResult)
-	{
-		string nextIndentLevel = _linePrefix + "  ";
-		AnsiColorized(_stream, _formatted, {formatting::BOLD, formatting::CYAN}) << _linePrefix << "Expected result:" << endl;
-		// TODO could compute a simple diff with highlighted lines
-		printIndented(_stream, m_expectation, nextIndentLevel);
-		AnsiColorized(_stream, _formatted, {formatting::BOLD, formatting::CYAN}) << _linePrefix << "Obtained result:" << endl;
-		printIndented(_stream, m_obtainedResult, nextIndentLevel);
-		return TestResult::Failure;
-	}
-	return TestResult::Success;
-}
-
-void YulOptimizerTest::printSource(ostream& _stream, string const& _linePrefix, bool const) const
-{
-	printIndented(_stream, m_source, _linePrefix);
-}
-
-void YulOptimizerTest::printUpdatedSettings(ostream& _stream, const string& _linePrefix, const bool _formatted)
-{
-	m_validatedSettings["step"] = m_optimizerStep;
-	EVMVersionRestrictedTestCase::printUpdatedSettings(_stream, _linePrefix, _formatted);
-}
-
-void YulOptimizerTest::printUpdatedExpectations(ostream& _stream, string const& _linePrefix) const
-{
-	printIndented(_stream, m_obtainedResult, _linePrefix);
-}
-
-void YulOptimizerTest::printIndented(ostream& _stream, string const& _output, string const& _linePrefix) const
-{
-	stringstream output(_output);
-	string line;
-	while (getline(output, line))
-		_stream << _linePrefix << line << endl;
+	return checkResult(_stream, _linePrefix, _formatted);
 }
 
 bool YulOptimizerTest::parse(ostream& _stream, string const& _linePrefix, bool const _formatted)
 {
-	AssemblyStack stack(
-		dev::test::Options::get().evmVersion(),
-		m_yul ? AssemblyStack::Language::Yul : AssemblyStack::Language::StrictAssembly,
-		dev::solidity::OptimiserSettings::none()
-	);
-	if (!stack.parseAndAnalyze("", m_source) || !stack.errors().empty())
+	ErrorList errors;
+	soltestAssert(m_dialect, "");
+	std::tie(m_ast, m_analysisInfo) = yul::test::parse(m_source, *m_dialect, errors);
+	if (!m_ast || !m_analysisInfo || !Error::containsOnlyWarnings(errors))
 	{
 		AnsiColorized(_stream, _formatted, {formatting::BOLD, formatting::RED}) << _linePrefix << "Error parsing source." << endl;
-		printErrors(_stream, stack.errors());
+		printErrors(_stream, errors);
 		return false;
 	}
-	m_dialect = m_yul ? &Dialect::yul() : &EVMDialect::strictAssemblyForEVMObjects(dev::test::Options::get().evmVersion());
-	m_ast = stack.parserResult()->code;
-	m_analysisInfo = stack.parserResult()->analysisInfo;
 	return true;
 }
 

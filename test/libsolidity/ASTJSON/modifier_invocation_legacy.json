@@ -8,13 +8,15 @@
       [
         14
       ]
-    }
+    },
+    "license": null
   },
   "children":
   [
     {
       "attributes":
       {
+        "abstract": false,
         "baseContracts":
         [
           null
@@ -40,6 +42,8 @@
           {
             "documentation": null,
             "name": "M",
+            "overrides": null,
+            "virtual": false,
             "visibility": "internal"
           },
           "children":
@@ -51,7 +55,9 @@
                   "attributes":
                   {
                     "constant": false,
+                    "mutability": "mutable",
                     "name": "i",
+                    "overrides": null,
                     "scope": 6,
                     "stateVariable": false,
                     "storageLocation": "default",
@@ -103,13 +109,15 @@
           "attributes":
           {
             "documentation": null,
+            "functionSelector": "28811f59",
             "implemented": true,
             "isConstructor": false,
             "kind": "function",
             "name": "F",
+            "overrides": null,
             "scope": 14,
             "stateMutability": "nonpayable",
-            "superFunction": null,
+            "virtual": false,
             "visibility": "public"
           },
           "children":

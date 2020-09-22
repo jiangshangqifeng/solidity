@@ -12,10 +12,12 @@
     ]
   },
   "id": 5,
+  "license": null,
   "nodeType": "SourceUnit",
   "nodes":
   [
     {
+      "abstract": false,
       "baseContracts": [],
       "contractDependencies": [],
       "contractKind": "contract",
@@ -33,6 +35,7 @@
       "src": "0:14:1"
     },
     {
+      "abstract": false,
       "baseContracts":
       [
         {

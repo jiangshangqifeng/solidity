@@ -8,13 +8,15 @@
       [
         17
       ]
-    }
+    },
+    "license": null
   },
   "children":
   [
     {
       "attributes":
       {
+        "abstract": false,
         "baseContracts":
         [
           null
@@ -39,6 +41,7 @@
           "attributes":
           {
             "documentation": null,
+            "functionSelector": "d6cd4974",
             "implemented": true,
             "isConstructor": false,
             "kind": "function",
@@ -47,9 +50,10 @@
               null
             ],
             "name": "f",
+            "overrides": null,
             "scope": 17,
             "stateMutability": "nonpayable",
-            "superFunction": null,
+            "virtual": false,
             "visibility": "public"
           },
           "children":
@@ -61,7 +65,9 @@
                   "attributes":
                   {
                     "constant": false,
+                    "mutability": "mutable",
                     "name": "x",
+                    "overrides": null,
                     "scope": 16,
                     "stateVariable": false,
                     "storageLocation": "default",
@@ -100,7 +106,9 @@
                               "attributes":
                               {
                                 "constant": false,
+                                "mutability": "mutable",
                                 "name": "",
+                                "overrides": null,
                                 "scope": 5,
                                 "stateVariable": false,
                                 "storageLocation": "default",
@@ -152,7 +160,9 @@
                   "attributes":
                   {
                     "constant": false,
+                    "mutability": "mutable",
                     "name": "",
+                    "overrides": null,
                     "scope": 16,
                     "stateVariable": false,
                     "storageLocation": "default",
@@ -191,7 +201,9 @@
                               "attributes":
                               {
                                 "constant": false,
+                                "mutability": "mutable",
                                 "name": "",
+                                "overrides": null,
                                 "scope": 12,
                                 "stateVariable": false,
                                 "storageLocation": "default",

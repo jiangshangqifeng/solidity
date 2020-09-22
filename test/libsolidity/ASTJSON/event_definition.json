@@ -8,10 +8,12 @@
     ]
   },
   "id": 4,
+  "license": null,
   "nodeType": "SourceUnit",
   "nodes":
   [
     {
+      "abstract": false,
       "baseContracts": [],
       "contractDependencies": [],
       "contractKind": "contract",

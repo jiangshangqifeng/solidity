@@ -24,13 +24,15 @@
       [
         13
       ]
-    }
+    },
+    "license": null
   },
   "children":
   [
     {
       "attributes":
       {
+        "abstract": false,
         "baseContracts":
         [
           null
@@ -60,6 +62,7 @@
     {
       "attributes":
       {
+        "abstract": false,
         "contractDependencies":
         [
           1
@@ -113,6 +116,7 @@
     {
       "attributes":
       {
+        "abstract": false,
         "contractDependencies":
         [
           1,
@@ -168,6 +172,7 @@
     {
       "attributes":
       {
+        "abstract": false,
         "contractDependencies":
         [
           1,
@@ -225,6 +230,7 @@
     {
       "attributes":
       {
+        "abstract": false,
         "contractDependencies":
         [
           1,
