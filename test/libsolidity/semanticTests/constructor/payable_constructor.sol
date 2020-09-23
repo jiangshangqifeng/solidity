@@ -5,4 +5,4 @@ contract C {
 // ====
 // compileViaYul: also
 // ----
-// constructor(), 27 wei ->
+// constructor(), 27 von ->

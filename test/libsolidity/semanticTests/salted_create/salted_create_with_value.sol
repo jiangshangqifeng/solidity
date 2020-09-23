@@ -21,4 +21,4 @@ contract A {
 // compileViaYul: also
 // EVMVersion: >=constantinople
 // ----
-// f(), 10 ether -> 3007, 3008, 3009
+// f(), 10 lat -> 3007, 3008, 3009

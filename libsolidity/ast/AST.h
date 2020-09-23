@@ -2094,9 +2094,9 @@ public:
 	enum class SubDenomination
 	{
 		None = static_cast<int>(Token::Illegal),
-		Wei = static_cast<int>(Token::SubWei),
-		Gwei = static_cast<int>(Token::SubGwei),
-		Ether = static_cast<int>(Token::SubEther),
+		Von = static_cast<int>(Token::SubVon),
+		Gvon = static_cast<int>(Token::SubGvon),
+		Lat = static_cast<int>(Token::SubLat),
 		Second = static_cast<int>(Token::SubSecond),
 		Minute = static_cast<int>(Token::SubMinute),
 		Hour = static_cast<int>(Token::SubHour),
@@ -2130,8 +2130,6 @@ public:
 	bool looksLikeAddress() const;
 	/// @returns true if it passes the address checksum test.
 	bool passesAddressChecksum() const;
-	/// @returns the checksummed version of an address (or empty string if not valid)
-	std::string getChecksummedAddress() const;
 
 private:
 	Token m_token;

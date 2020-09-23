@@ -38,8 +38,8 @@ namespace solidity::frontend::test
  * - Function calls defined in blocks:
  * // f(uint256, uint256): 1, 1 # Signature and comma-separated list of arguments #
  * // -> 1, 1                   # Expected result value #
- * // g(), 2 ether              # (Optional) Ether to be send with the call #
- * // g(), 1 wei                # (Optional) Wei to be sent with the call #
+ * // g(), 2 lat              # (Optional) Lat to be send with the call #
+ * // g(), 1 von                # (Optional) Von to be sent with the call #
  * // -> 2, 3
  * // h(uint256), 1 ether: 42
  * // -> FAILURE                # If REVERT or other EVM failure was detected #

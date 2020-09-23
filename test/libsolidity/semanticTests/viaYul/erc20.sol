@@ -1,5 +1,6 @@
 pragma solidity >=0.4.0 <0.8.0;
 
+
 contract ERC20 {
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
@@ -54,7 +55,7 @@ contract ERC20 {
     }
 
     function _transfer(address from, address to, uint256 value) internal {
-        require(to != address(0), "ERC20: transfer to the zero address");
+        require(to != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), "ERC20: transfer to the zero address");
 
         // The subtraction and addition here will revert on overflow.
         _balances[from] = _balances[from] - value;
@@ -63,26 +64,26 @@ contract ERC20 {
     }
 
     function _mint(address account, uint256 value) internal {
-        require(account != address(0), "ERC20: mint to the zero address");
+        require(account != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), "ERC20: mint to the zero address");
 
         // The additions here will revert on overflow.
         _totalSupply = _totalSupply + value;
         _balances[account] = _balances[account] + value;
-        emit Transfer(address(0), account, value);
+        emit Transfer(address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), account, value);
     }
 
     function _burn(address account, uint256 value) internal {
-        require(account != address(0), "ERC20: burn from the zero address");
+        require(account != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), "ERC20: burn from the zero address");
 
         // The subtractions here will revert on overflow.
         _totalSupply = _totalSupply - value;
         _balances[account] = _balances[account] - value;
-        emit Transfer(account, address(0), value);
+        emit Transfer(account, address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), value);
     }
 
     function _approve(address owner, address spender, uint256 value) internal {
-        require(owner != address(0), "ERC20: approve from the zero address");
-        require(spender != address(0), "ERC20: approve to the zero address");
+        require(owner != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), "ERC20: approve from the zero address");
+        require(spender != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), "ERC20: approve to the zero address");
 
         _allowances[owner][spender] = value;
         emit Approval(owner, spender, value);

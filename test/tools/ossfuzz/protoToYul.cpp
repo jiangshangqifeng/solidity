@@ -1057,7 +1057,7 @@ void ProtoConverter::visit(LowLevelCall const& _x)
 	m_output << ", ";
 	if (type == LowLevelCall::CALL || type == LowLevelCall::CALLCODE)
 	{
-		visit(_x.wei());
+		visit(_x.von());
 		m_output << ", ";
 	}
 	visit(_x.in());
@@ -1091,7 +1091,7 @@ void ProtoConverter::visit(Create const& _x)
 		m_output << "create2(";
 		break;
 	}
-	visit(_x.wei());
+	visit(_x.von());
 	m_output << ", ";
 	visit(_x.position());
 	m_output << ", ";

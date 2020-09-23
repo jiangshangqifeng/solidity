@@ -10,5 +10,4 @@ contract C {
 	}
 }
 // ----
-// Warning 3944: (162-177): Underflow (resulting value less than 0) happens here
-// Warning 6328: (150-184): Assertion violation happens here
+// Warning 4144: (162-177): Underflow (resulting value less than 0) happens here

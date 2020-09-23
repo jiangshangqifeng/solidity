@@ -6,7 +6,7 @@ contract C
 		if (true) {
 			a = g();
 			_;
-			assert(a == address(0));
+			assert(a == address("lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a"));
 		}
 	}
 
@@ -14,11 +14,8 @@ contract C
 	}
 	function g() public pure returns (address) {
 		address a;
-		a = address(0);
+		a = address("lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a");
 		return a;
 	}
 }
 // ----
-// Warning 5084: (249-259): Type conversion is not yet fully supported and might yield false positives.
-// Warning 5084: (118-128): Type conversion is not yet fully supported and might yield false positives.
-// Warning 5084: (249-259): Type conversion is not yet fully supported and might yield false positives.
