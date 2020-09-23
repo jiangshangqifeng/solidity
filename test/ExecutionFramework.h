@@ -288,7 +288,7 @@ protected:
 	bool m_transactionSuccessful = true;
 	Address m_sender = account(0);
 	Address m_contractAddress;
-	u256 const m_gasPrice = 10 * gwei;
+	u256 const m_gasPrice = 10 * gvon;
 	u256 const m_gas = 100000000;
 	bytes m_output;
 	u256 m_gasUsed;

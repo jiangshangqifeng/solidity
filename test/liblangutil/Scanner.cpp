@@ -522,8 +522,6 @@ BOOST_AUTO_TEST_CASE(ether_subdenominations)
 	Scanner scanner(CharStream("von gvon szabo finney lat", ""));
 	BOOST_CHECK_EQUAL(scanner.currentToken(), Token::SubVon);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::Identifier);
-	BOOST_CHECK_EQUAL(scanner.next(), Token::SubSzabo);
-	BOOST_CHECK_EQUAL(scanner.next(), Token::SubFinney);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::SubLat);
 }
 

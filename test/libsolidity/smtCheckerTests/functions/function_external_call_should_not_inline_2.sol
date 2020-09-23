@@ -3,7 +3,7 @@ contract Other {
 	C c;
 	function h(bool b) public {
 		if (b)
-			c.setOwner(address(0));
+			c.setOwner(address(uint160(0)));
 	}
 }
 contract C {

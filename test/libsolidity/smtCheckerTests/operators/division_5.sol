@@ -10,4 +10,3 @@ contract C {
 	}
 }
 // ----
-// Warning 1218: (151-156): Error trying to invoke SMT solver.

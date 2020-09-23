@@ -10,4 +10,3 @@ contract C {
 	}
 }
 // ----
-// Warning 4144: (162-177): Underflow (resulting value less than 0) happens here
