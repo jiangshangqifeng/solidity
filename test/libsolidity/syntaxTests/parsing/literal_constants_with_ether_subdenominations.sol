@@ -3,7 +3,7 @@ contract C {
     {
          a = 1 von;
          b = 4 lat;
-         e = 5 gvon;
+         c = 5 gvon;
     }
     uint256 a;
     uint256 b;
