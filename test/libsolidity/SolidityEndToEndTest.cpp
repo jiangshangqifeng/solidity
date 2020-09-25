@@ -1662,7 +1662,7 @@ BOOST_AUTO_TEST_CASE(contracts_as_addresses)
 {
 	char const* sourceCode = R"(
 		contract helper {
-			receive() external payable { } // can receive lat
+			receive() external payable { } // can receive atp
 		}
 		contract test {
 			helper h;
@@ -5428,7 +5428,7 @@ BOOST_AUTO_TEST_CASE(no_nonpayable_circumvention_by_modifier)
 	char const* sourceCode = R"(
 		contract C {
 			modifier tryCircumvent {
-				if (false) _; // avoid the function, we should still not accept lat
+				if (false) _; // avoid the function, we should still not accept atp
 			}
 			function f() tryCircumvent public returns (uint) {
 				return msgvalue();

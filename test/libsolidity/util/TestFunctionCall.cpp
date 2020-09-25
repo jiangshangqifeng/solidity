@@ -51,7 +51,7 @@ string TestFunctionCall::format(
 		string colon = formatToken(Token::Colon);
 		string comma = formatToken(Token::Comma);
 		string comment = formatToken(Token::Comment);
-		string lat = formatToken(Token::Lat);
+		string atp = formatToken(Token::Atp);
 		string von = formatToken(Token::Von);
 		string newline = formatToken(Token::Newline);
 		string failure = formatToken(Token::Failure);
@@ -66,8 +66,8 @@ string TestFunctionCall::format(
 		stream << _linePrefix << newline << ws << m_call.signature;
 		if (m_call.value.value > u256(0))
 		{
-			if (m_call.value.unit == FunctionValueUnit::Lat)
-				stream << comma << ws << (m_call.value.value / exp256(10, 18)) << ws << lat;
+			if (m_call.value.unit == FunctionValueUnit::Atp)
+				stream << comma << ws << (m_call.value.value / exp256(10, 18)) << ws << atp;
 			else if (m_call.value.unit == FunctionValueUnit::Von)
 				stream << comma << ws << m_call.value.value << ws << von;
 			else

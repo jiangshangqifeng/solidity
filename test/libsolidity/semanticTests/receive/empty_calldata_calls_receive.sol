@@ -12,4 +12,4 @@ contract A {
 // x() -> 2
 // x(), 1 von -> FAILURE
 // (): hex"00" -> FAILURE
-// (), 1 lat: hex"00" -> FAILURE
+// (), 1 atp: hex"00" -> FAILURE

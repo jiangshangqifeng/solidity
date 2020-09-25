@@ -3,8 +3,8 @@ pragma experimental SMTChecker;
 
 contract A {
 
-    address constant public MY_ADDRESS = 'lat1ur6jq6aaqw08kpvjmzgcsgqzfc48gdaewm7z53';
-    address public myFriendsAddress = 'lat1crl7uf289y5k53dr3ptrntr7zrua2jtem6yudt';
+    address constant public MY_ADDRESS = 'atp1ur6jq6aaqw08kpvjmzgcsgqzfc48gdaehdg6t7';
+    address public myFriendsAddress = 'atp1crl7uf289y5k53dr3ptrntr7zrua2jtezvjyjy';
 
     uint public used;
     uint public test = 5;
@@ -23,7 +23,7 @@ contract A {
 
 contract B is A {
 
-    address public mySistersAddress = 'lat1nxvenncsgmngudhp4ghqupcstmwaruyw59wty3';
+    address public mySistersAddress = 'atp1nxvenncsgmngudhp4ghqupcstmwaruywdncnm7';
 
     fallback () external {
         used = 0;

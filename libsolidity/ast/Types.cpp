@@ -519,7 +519,7 @@ u256 AddressType::literalValue(Literal const* _literal) const
 {
 	solAssert(_literal, "");
 	string hrp = _literal->value().substr(0, 3);
-	solAssert((hrp == "lat" || hrp == "lax"), "");
+	solAssert((hrp == "atp" || hrp == "atx"), "");
 
 	bytes r = solidity::util::decodeAddress(hrp, _literal->valueWithoutUnderscores());	
 	solAssert(r.size() == 20, "decodeAddress failed");
@@ -965,7 +965,7 @@ tuple<bool, rational> RationalNumberType::isValidLiteral(Literal const& _literal
 		case Literal::SubDenomination::Finney:
 			value *= bigint("1000000000000000");
 			break;
-		case Literal::SubDenomination::Lat:
+		case Literal::SubDenomination::Atp:
 			value *= bigint("1000000000000000000");
 			break;
 		case Literal::SubDenomination::Minute:
@@ -3064,7 +3064,7 @@ BoolResult FunctionType::isImplicitlyConvertibleTo(Type const& _convertTo) const
 	if (m_stateMutability != StateMutability::Payable && convertTo.stateMutability() == StateMutability::Payable)
 		return false;
 
-	// payable should be convertible to non-payable, because you are free to pay 0 lat
+	// payable should be convertible to non-payable, because you are free to pay 0 atp
 	if (m_stateMutability == StateMutability::Payable && convertTo.stateMutability() == StateMutability::NonPayable)
 		return true;
 

@@ -2,7 +2,7 @@ contract C {
         struct X { bytes31 [ 3 ] x1 ;
                 uint x2 ;
         }
-        struct S { uint256 [ ] [ 0.425781 lat ] s1 ;
+        struct S { uint256 [ ] [ 0.425781 atp ] s1 ;
                 uint [ 2 ** 0xFF ] [ 2 ** 0x42 ] s2 ;
                 X s3 ;
                 mapping ( uint => address payable ) c ;

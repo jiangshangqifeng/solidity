@@ -49,7 +49,7 @@ namespace solidity::frontend::test
 	T(String, "string", 0)         \
 	T(Identifier, "identifier", 0) \
 	/* type keywords */            \
-	K(Lat, "lat", 0)           \
+	K(Atp, "atp", 0)           \
 	K(Von, "von", 0)               \
 	K(Hex, "hex", 0)               \
 	K(Boolean, "boolean", 0)       \
@@ -234,7 +234,7 @@ struct FunctionCallArgs
 enum class FunctionValueUnit
 {
 	Von,
-	Lat
+	Atp
 };
 
 /// Holds value along with unit it was expressed in originally.
@@ -247,14 +247,14 @@ struct FunctionValue
 
 /**
  * Represents a function call read from an input stream. It contains the signature, the
- * arguments, an optional lat value and an expected execution result.
+ * arguments, an optional atp value and an expected execution result.
  */
 struct FunctionCall
 {
 	/// Signature of the function call, e.g. `f(uint256, uint256)`.
 	std::string signature;
 	/// Optional value that can be sent with the call.
-	/// Value is expressed in von, smallest unit of lat
+	/// Value is expressed in von, smallest unit of atp
 	/// Value has a field unit which represents denomination on which value was expressed originally
 	FunctionValue value;
 	/// Object that holds all function parameters in their `bytes`

@@ -27,7 +27,7 @@ import "./ManagedAccount.sol";
 abstract contract DAOInterface {
 
     // The amount of days for which people who try to participate in the
-    // creation by calling the fallback function will still get their lat back
+    // creation by calling the fallback function will still get their atp back
     uint constant creationGracePeriod = 40 days;
     // The minimum debate period that a generic proposal can have
     uint constant minProposalDebatePeriod = 2 weeks;
@@ -44,7 +44,7 @@ abstract contract DAOInterface {
     // a fraction of total Ether spent plus balance of the DAO
     uint constant maxDepositDivisor = 100;
 
-    // Proposals to spend the DAO's lat or to choose a new Curator
+    // Proposals to spend the DAO's atp or to choose a new Curator
     Proposal[] public proposals;
     // The quorum needed for each proposal is partially calculated by
     // totalSupply / minQuorumDivisor
@@ -54,13 +54,13 @@ abstract contract DAOInterface {
 
     // Address of the curator
     address payable public curator;
-    // The whitelist: List of addresses the DAO is allowed to send lat to
+    // The whitelist: List of addresses the DAO is allowed to send atp to
     mapping (address => bool) public allowedRecipients;
 
     // Tracks the addresses that own Reward Tokens. Those addresses can only be
     // DAOs that have split from the original DAO. Conceptually, Reward Tokens
     // represent the proportion of the rewards that the DAO has the right to
-    // receive. These Reward Tokens are generated when the DAO spends lat.
+    // receive. These Reward Tokens are generated when the DAO spends atp.
     mapping (address => uint) public rewardToken;
     // Total supply of rewardToken
     uint public totalRewardToken;
@@ -177,10 +177,10 @@ abstract contract DAOInterface {
     receive() virtual external payable;
 
 
-    /// @dev This function is used to send lat back
+    /// @dev This function is used to send atp back
     /// to the DAO, it can also be used to receive payments that should not be
     /// counted as rewards (donations, grants, etc.)
-    /// @return Whether the DAO received the lat successfully
+    /// @return Whether the DAO received the atp successfully
     function receiveEther() public virtual returns (bool);
 
     /// @notice `msg.sender` creates a proposal to send `_amount` Wei to
@@ -240,7 +240,7 @@ abstract contract DAOInterface {
         bytes memory _transactionData
     ) public virtual returns (bool _success);
 
-    /// @notice ATTENTION! I confirm to move my remaining lat to a new DAO
+    /// @notice ATTENTION! I confirm to move my remaining atp to a new DAO
     /// with `_newCurator` as the new Curator, as has been
     /// proposed in proposal `_proposalID`. This will burn my tokens. This can
     /// not be undone and will split the DAO into two DAO's, with two
@@ -249,7 +249,7 @@ abstract contract DAOInterface {
     /// @param _newCurator The new Curator of the new DAO
     /// @dev This function, when called for the first time for this proposal,
     /// will create a new DAO and send the sender's portion of the remaining
-    /// lat and Reward Tokens to the new DAO. It will also burn the DAO Tokens
+    /// atp and Reward Tokens to the new DAO. It will also burn the DAO Tokens
     /// of the sender.
     function splitDAO(
         uint _proposalID,
@@ -257,7 +257,7 @@ abstract contract DAOInterface {
     ) public virtual returns (bool _success);
 
     /// @dev can only be called by the DAO itself through a proposal
-    /// updates the contract of the DAO by sending all lat and rewardTokens
+    /// updates the contract of the DAO by sending all atp and rewardTokens
     /// to the new DAO. The new DAO needs to be approved by the Curator
     /// @param _newContract the address of the new contract
     function newContract(address payable _newContract) virtual public;
@@ -439,7 +439,7 @@ contract DAO is DAOInterface, Token, TokenCreation {
         if (now + _debatingPeriod < now) // prevents overflow
             revert();
 
-        // to prevent a 51% attacker to convert the lat into deposit
+        // to prevent a 51% attacker to convert the atp into deposit
         if (msg.sender == address(this))
             revert();
 
@@ -593,7 +593,7 @@ contract DAO is DAOInterface, Token, TokenCreation {
 
             _success = true;
 
-            // only create reward tokens when lat is not sent to the DAO itself and
+            // only create reward tokens when atp is not sent to the DAO itself and
             // related addresses. Proxy addresses should be forbidden by the curator.
             if (p.recipient != address(this) && p.recipient != address(rewardAccount)
                 && p.recipient != address(DAOrewardAccount)
@@ -659,7 +659,7 @@ contract DAO is DAOInterface, Token, TokenCreation {
             p.proposalPassed = true;
         }
 
-        // Move lat and assign new Tokens
+        // Move atp and assign new Tokens
         uint fundsToBeMoved =
             (balances[msg.sender] * p.splitData[0].splitBalance) /
             p.splitData[0].totalSupply;
@@ -696,7 +696,7 @@ contract DAO is DAOInterface, Token, TokenCreation {
 
     function newContract(address payable _newContract) public override {
         if (msg.sender != address(this) || !allowedRecipients[_newContract]) return;
-        // move all lat
+        // move all atp
         (bool success,) = _newContract.call.value(address(this).balance)("");
         if (!success) {
             revert();

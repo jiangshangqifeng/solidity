@@ -1,5 +1,5 @@
 contract A {
-    address public immutable user = address("lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a");
+    address public immutable user = address("atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdruy9j");
 }
 
 contract Test {
