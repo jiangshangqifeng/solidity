@@ -513,7 +513,7 @@ public:
 	/// Returns the fallback function or nullptr if no fallback function was specified.
 	FunctionDefinition const* fallbackFunction() const;
 
-	/// Returns the ether receiver function or nullptr if no receive function was specified.
+	/// Returns the lat receiver function or nullptr if no receive function was specified.
 	FunctionDefinition const* receiveFunction() const;
 
 	std::string fullyQualifiedName() const { return sourceUnitName() + ":" + name(); }
