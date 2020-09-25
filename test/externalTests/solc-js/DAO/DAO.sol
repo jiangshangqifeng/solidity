@@ -41,7 +41,7 @@ abstract contract DAOInterface {
     // (used in the case `executeProposal` fails because it throws)
     uint constant executeProposalPeriod = 10 days;
     // Denotes the maximum proposal deposit that can be given. It is given as
-    // a fraction of total Ether spent plus balance of the DAO
+    // a fraction of total Lat spent plus balance of the DAO
     uint constant maxDepositDivisor = 100;
 
     // Proposals to spend the DAO's lat or to choose a new Curator
@@ -183,7 +183,7 @@ abstract contract DAOInterface {
     /// @return Whether the DAO received the lat successfully
     function receiveEther() public virtual returns (bool);
 
-    /// @notice `msg.sender` creates a proposal to send `_amount` Wei to
+    /// @notice `msg.sender` creates a proposal to send `_amount` Von to
     /// `_recipient` with the transaction data `_transactionData`. If
     /// `_newCurator` is true, then this is a proposal that splits the
     /// DAO and sets `_recipient` as the new DAO's Curator.
