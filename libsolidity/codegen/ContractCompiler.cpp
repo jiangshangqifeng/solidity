@@ -418,7 +418,7 @@ void ContractCompiler::appendFunctionSelector(ContractDefinition const& _contrac
 	// always reverts.
 	evmasm::AssemblyItem notFound = (!fallback && !etherReceiver) ? notFoundOrReceiveEther : m_context.newTag();
 
-	// directly jump to fallback or ether receiver if the data is too short to contain a function selector
+	// directly jump to fallback or lat receiver if the data is too short to contain a function selector
 	// also guards against short data
 	m_context << u256(4) << Instruction::CALLDATASIZE << Instruction::LT;
 	m_context.appendConditionalJumpTo(notFoundOrReceiveEther);

@@ -247,7 +247,7 @@ struct FunctionValue
 
 /**
  * Represents a function call read from an input stream. It contains the signature, the
- * arguments, an optional ether value and an expected execution result.
+ * arguments, an optional lat value and an expected execution result.
  */
 struct FunctionCall
 {

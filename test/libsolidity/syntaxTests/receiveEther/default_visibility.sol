@@ -1,5 +1,5 @@
 contract C {
-    // Check that visibility is also enforced for the receive ether function.
+    // Check that visibility is also enforced for the receive lat function.
     receive() {}
 }
 // ----
