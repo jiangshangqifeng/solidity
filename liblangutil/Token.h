@@ -200,7 +200,7 @@ namespace solidity::langutil
 	/* Atp subdenominations */                                         \
 	K(SubVon, "von", 0)                                                \
 	K(SubGvon, "gvon", 0)                                              \
-	K(SubLat, "atp", 0)                                                \
+	K(SubAtp, "atp", 0)                                                \
 	K(SubSecond, "seconds", 0)                                         \
 	K(SubMinute, "minutes", 0)                                         \
 	K(SubHour, "hours", 0)                                             \
