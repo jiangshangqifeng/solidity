@@ -457,7 +457,7 @@ void ContractLevelChecker::checkPayableFallbackWithoutReceive(ContractDefinition
 			m_errorReporter.warning(
 				3628_error,
 				_contract.location(),
-				"This contract has a payable fallback function, but no receive lat function. Consider adding a receive lat function.",
+				"This contract has a payable fallback function, but no receive atp function. Consider adding a receive atp function.",
 				SecondarySourceLocation{}.append("The payable fallback function is defined here.", fallback->location())
 			);
 }

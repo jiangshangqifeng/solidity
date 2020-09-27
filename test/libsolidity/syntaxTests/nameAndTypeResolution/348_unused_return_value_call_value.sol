@@ -1,7 +1,7 @@
 contract test {
     function f() public {
-        address("lax1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqja53gjv").call.value(2)("abc");
-        address("lax1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqja53gjv").call{value: 2}("abc");
+        address("atx1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjppf4sx").call.value(2)("abc");
+        address("atx1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjppf4sx").call{value: 2}("abc");
     }
 }
 // ----

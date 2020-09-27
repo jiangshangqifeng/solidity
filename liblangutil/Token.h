@@ -197,10 +197,10 @@ namespace solidity::langutil
 	K(Virtual, "virtual", 0)                                           \
 	K(While, "while", 0)                                               \
 	\
-	/* Lat subdenominations */                                         \
+	/* Atp subdenominations */                                         \
 	K(SubVon, "von", 0)                                                \
 	K(SubGvon, "gvon", 0)                                              \
-	K(SubLat, "lat", 0)                                                \
+	K(SubLat, "atp", 0)                                                \
 	K(SubSecond, "seconds", 0)                                         \
 	K(SubMinute, "minutes", 0)                                         \
 	K(SubHour, "hours", 0)                                             \
@@ -316,7 +316,7 @@ namespace TokenTraits
 		return op == Token::Pure || op == Token::View || op == Token::Payable;
 	}
 
-	constexpr bool isEtherSubdenomination(Token op) { return op >= Token::SubVon && op <= Token::SubLat; }
+	constexpr bool isEtherSubdenomination(Token op) { return op >= Token::SubVon && op <= Token::SubAtp; }
 	constexpr bool isTimeSubdenomination(Token op) { return op == Token::SubSecond || op == Token::SubMinute || op == Token::SubHour || op == Token::SubDay || op == Token::SubWeek || op == Token::SubYear; }
 	constexpr bool isReservedKeyword(Token op) { return (Token::After <= op && op <= Token::Unchecked); }
 

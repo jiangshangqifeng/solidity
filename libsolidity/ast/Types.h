@@ -916,8 +916,8 @@ public:
 	/// See documentation of m_super
 	bool isSuper() const { return m_super; }
 
-	// @returns true if and only if the contract has a receive lat function or a payable fallback function, i.e.
-	// if it has code that will be executed on plain lat transfers
+	// @returns true if and only if the contract has a receive atp function or a payable fallback function, i.e.
+	// if it has code that will be executed on plain atp transfers
 	bool isPayable() const;
 
 	ContractDefinition const& contractDefinition() const { return m_contract; }

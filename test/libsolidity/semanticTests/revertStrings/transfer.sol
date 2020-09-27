@@ -11,7 +11,7 @@ contract C {
 		address(a).transfer(1 von);
 	}
 	function h() public {
-		address(a).transfer(100 lat);
+		address(a).transfer(100 atp);
 	}
 	function g() public view returns (uint) {
 		return address(this).balance;

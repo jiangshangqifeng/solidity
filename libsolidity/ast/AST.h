@@ -513,7 +513,7 @@ public:
 	/// Returns the fallback function or nullptr if no fallback function was specified.
 	FunctionDefinition const* fallbackFunction() const;
 
-	/// Returns the lat receiver function or nullptr if no receive function was specified.
+	/// Returns the atp receiver function or nullptr if no receive function was specified.
 	FunctionDefinition const* receiveFunction() const;
 
 	std::string fullyQualifiedName() const { return sourceUnitName() + ":" + name(); }
@@ -2096,7 +2096,7 @@ public:
 		None = static_cast<int>(Token::Illegal),
 		Von = static_cast<int>(Token::SubVon),
 		Gvon = static_cast<int>(Token::SubGvon),
-		Lat = static_cast<int>(Token::SubLat),
+		Atp = static_cast<int>(Token::SubAtp),
 		Second = static_cast<int>(Token::SubSecond),
 		Minute = static_cast<int>(Token::SubMinute),
 		Hour = static_cast<int>(Token::SubHour),

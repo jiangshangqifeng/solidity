@@ -1020,8 +1020,8 @@ Literal::SubDenomination ASTJsonImporter::subdenomination(Json::Value const& _no
 		return Literal::SubDenomination::Von;
 	else if (subDenStr == "gvon")
 		return Literal::SubDenomination::Gvon;
-	else if (subDenStr == "lat")
-		return Literal::SubDenomination::Lat;
+	else if (subDenStr == "atp")
+		return Literal::SubDenomination::Atp;
 	else if (subDenStr == "seconds")
 		return Literal::SubDenomination::Second;
 	else if (subDenStr == "minutes")

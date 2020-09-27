@@ -207,17 +207,17 @@ FunctionValue TestFileParser::parseFunctionCallValue()
 	{
 		u256 value{ parseDecimalNumber() };
 		Token token = m_scanner.currentToken();
-		if (token != Token::Lat && token != Token::Von)
-			throw TestParserError("Invalid value unit provided. Coins can be von or lat.");
+		if (token != Token::Atp && token != Token::Von)
+			throw TestParserError("Invalid value unit provided. Coins can be von or atp.");
 
 		m_scanner.scanNextToken();
 
-		FunctionValueUnit unit = token == Token::Von ? FunctionValueUnit::Von : FunctionValueUnit::Lat;
+		FunctionValueUnit unit = token == Token::Von ? FunctionValueUnit::Von : FunctionValueUnit::Atp;
 		return { (unit == FunctionValueUnit::Von ? u256(1) : exp256(u256(10), u256(18))) * value, unit };
 	}
 	catch (std::exception const&)
 	{
-		throw TestParserError("Lat value encoding invalid.");
+		throw TestParserError("Atp value encoding invalid.");
 	}
 }
 
@@ -474,7 +474,7 @@ void TestFileParser::Scanner::scanNextToken()
 	auto detectKeyword = [](std::string const& _literal = "") -> TokenDesc {
 		if (_literal == "true") return TokenDesc{Token::Boolean, _literal};
 		if (_literal == "false") return TokenDesc{Token::Boolean, _literal};
-		if (_literal == "lat") return TokenDesc{Token::Lat, _literal};
+		if (_literal == "atp") return TokenDesc{Token::Atp, _literal};
 		if (_literal == "von") return TokenDesc{Token::Von, _literal};
 		if (_literal == "left") return TokenDesc{Token::Left, _literal};
 		if (_literal == "library") return TokenDesc{Token::Library, _literal};

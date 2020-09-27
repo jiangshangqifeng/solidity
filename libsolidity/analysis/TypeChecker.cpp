@@ -1818,22 +1818,22 @@ void TypeChecker::typeCheckReceiveFunction(FunctionDefinition const& _function)
 	solAssert(_function.isReceive(), "");
 
 	if (_function.libraryFunction())
-		m_errorReporter.typeError(4549_error, _function.location(), "Libraries cannot have receive lat functions.");
+		m_errorReporter.typeError(4549_error, _function.location(), "Libraries cannot have receive atp functions.");
 
 	if (_function.stateMutability() != StateMutability::Payable)
 		m_errorReporter.typeError(
 			7793_error,
 			_function.location(),
-			"Receive lat function must be payable, but is \"" +
+			"Receive atp function must be payable, but is \"" +
 			stateMutabilityToString(_function.stateMutability()) +
 			"\"."
 		);
 	if (_function.visibility() != Visibility::External)
-		m_errorReporter.typeError(4095_error, _function.location(), "Receive lat function must be defined as \"external\".");
+		m_errorReporter.typeError(4095_error, _function.location(), "Receive atp function must be defined as \"external\".");
 	if (!_function.returnParameters().empty())
-		m_errorReporter.typeError(6899_error, _function.returnParameterList()->location(), "Receive lat function cannot return values.");
+		m_errorReporter.typeError(6899_error, _function.returnParameterList()->location(), "Receive atp function cannot return values.");
 	if (!_function.parameters().empty())
-		m_errorReporter.typeError(6857_error, _function.parameterList().location(), "Receive lat function cannot take parameters.");
+		m_errorReporter.typeError(6857_error, _function.parameterList().location(), "Receive atp function cannot take parameters.");
 }
 
 

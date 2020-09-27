@@ -519,10 +519,10 @@ BOOST_AUTO_TEST_CASE(comments_mixed_in_sequence)
 
 BOOST_AUTO_TEST_CASE(ether_subdenominations)
 {
-	Scanner scanner(CharStream("von gvon szabo finney lat", ""));
+	Scanner scanner(CharStream("von gvon szabo finney atp", ""));
 	BOOST_CHECK_EQUAL(scanner.currentToken(), Token::SubVon);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::Identifier);
-	BOOST_CHECK_EQUAL(scanner.next(), Token::SubLat);
+	BOOST_CHECK_EQUAL(scanner.next(), Token::SubAtp);
 }
 
 BOOST_AUTO_TEST_CASE(time_subdenominations)

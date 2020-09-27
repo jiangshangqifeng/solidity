@@ -18,4 +18,4 @@ contract C {
 // ====
 // compileViaYul: also
 // ----
-// f(), 2000 lat -> true
+// f(), 2000 atp -> true

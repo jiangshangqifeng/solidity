@@ -7,5 +7,5 @@ contract C {
   }
 }
 // ----
-// Warning 3628: (0-139): This contract has a payable fallback function, but no receive lat function. Consider adding a receive lat function.
+// Warning 3628: (0-139): This contract has a payable fallback function, but no receive atp function. Consider adding a receive atp function.
 // TypeError 7398: (92-96): Explicit type conversion not allowed from non-payable "address" to "contract C", which has a payable fallback function.

@@ -10,5 +10,5 @@ contract B is A {}
 // getData() -> 0
 // () ->
 // getData() -> 1
-// (), 1 lat ->
+// (), 1 atp ->
 // getData() -> 2

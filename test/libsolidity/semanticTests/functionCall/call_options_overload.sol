@@ -12,5 +12,5 @@ contract C {
 // ====
 // compileViaYul: also
 // ----
-// (), 1 lat
+// (), 1 atp
 // call() -> 1, 2, 2, 2

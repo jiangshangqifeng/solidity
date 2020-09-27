@@ -131,7 +131,7 @@ bool solidity::util::passesAddressChecksum(string const& _str)
 
 	pair<string,bytes> ret = bech32decode(boost::erase_all_copy(_str, "_"));
 	string hrp = ret.first;
-	if (hrp != "lat" && hrp != "lax") {
+	if (hrp != "atp" && hrp != "atx") {
 		return false;
 	}
 	return true;
