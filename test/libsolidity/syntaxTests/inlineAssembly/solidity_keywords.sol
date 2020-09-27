@@ -57,7 +57,7 @@ contract C {
   let while := 1
   let von := 1
   let gvon := 1
-  let lat := 1
+  let atp := 1
   let seconds := 1
   let minutes := 1
   let hours := 1

@@ -1,5 +1,5 @@
 contract C {
-	uint constant x = 1 lat + 1 gvon + 1 von;
+	uint constant x = 1 atp + 1 gvon + 1 von;
 
 	function f() public view returns(uint) { return x; }
 }

@@ -46,7 +46,7 @@ using rational = boost::rational<bigint>;
 /// @NOTE This is not endian-specific; it's just a bunch of bytes.
 using Address = util::h160;
 
-// The lat and gvon denominations; here for ease of use where needed within code.
+// The atp and gvon denominations; here for ease of use where needed within code.
 static const u256 von = 1;
 static const u256 shannon = u256("1000000000");
 static const u256 gvon = shannon;
