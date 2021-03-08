@@ -16,3 +16,5 @@ contract C {
 		//assert(y == x);
 	}
 }
+// ----
+// Warning 4661: (234-248): Assertion violation happens here

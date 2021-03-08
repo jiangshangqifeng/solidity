@@ -1,4 +1,4 @@
-// Sending zero ether to a contract should still invoke the receive ether function
+// Sending zero lat to a contract should still invoke the receive lat function
 // (it previously did not because the gas stipend was not provided by the EVM)
 contract Receiver {
     receive() external payable {}
@@ -18,5 +18,5 @@ contract Main {
 // compileViaYul: also
 // compileToEwasm: also
 // ----
-// constructor(), 20 wei ->
+// constructor(), 20 von ->
 // s() -> true

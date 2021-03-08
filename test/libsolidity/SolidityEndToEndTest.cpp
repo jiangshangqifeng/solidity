@@ -1450,7 +1450,7 @@ BOOST_AUTO_TEST_CASE(contracts_as_addresses)
 {
 	char const* sourceCode = R"(
 		contract helper {
-			receive() external payable { } // can receive ether
+			receive() external payable { } // can receive lat
 		}
 		contract test {
 			helper h;

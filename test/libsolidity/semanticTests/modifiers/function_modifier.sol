@@ -10,4 +10,4 @@ contract C {
 
 // ----
 // getOne() -> 0
-// getOne(), 1 wei -> 1
+// getOne(), 1 von -> 1

@@ -222,7 +222,7 @@ BOOST_AUTO_TEST_CASE(int_with_wei_ether_subdenomination)
 	char const* sourceCode = R"(
 		contract test {
 			constructor() {
-				 uint x = 1 wei;
+				 uint x = 1 von;
 			}
 		}
 	)";
@@ -237,7 +237,7 @@ BOOST_AUTO_TEST_CASE(int_with_gwei_ether_subdenomination)
 	char const* sourceCode = R"(
 		contract test {
 			function f() public {
-				uint x = 1 gwei;
+				uint x = 1 gvon;
 			}
 		}
 	)";
@@ -252,7 +252,7 @@ BOOST_AUTO_TEST_CASE(int_with_ether_ether_subdenomination)
 	char const* sourceCode = R"(
 		contract test {
 			constructor() {
-				 uint x = 1 ether;
+				 uint x = 1 lat;
 			}
 		}
 	)";

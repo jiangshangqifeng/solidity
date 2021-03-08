@@ -9,5 +9,5 @@ contract test {
 // ====
 // compileViaYul: also
 // ----
-// constructor(), 23 wei ->
+// constructor(), 23 von ->
 // getBalance() -> 23

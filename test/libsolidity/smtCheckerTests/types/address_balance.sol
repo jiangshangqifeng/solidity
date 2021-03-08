@@ -3,7 +3,7 @@ pragma experimental SMTChecker;
 contract C
 {
 	function f(address a, address b) public view {
-		uint x = b.balance + 1000 ether;
+		uint x = b.balance + 1000 lat;
 		assert(a.balance > b.balance);
 	}
 }

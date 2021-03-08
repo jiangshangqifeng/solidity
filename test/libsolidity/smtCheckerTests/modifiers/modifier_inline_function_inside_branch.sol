@@ -12,7 +12,7 @@ contract C
 	}
 	function g() public pure returns (address) {
 		address a;
-		a = address(0);
+		a = address("lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a");
 		return a;
 	}
 }

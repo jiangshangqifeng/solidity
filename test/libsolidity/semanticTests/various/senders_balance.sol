@@ -18,5 +18,5 @@ contract D {
 // ====
 // compileViaYul: also
 // ----
-// constructor(), 27 wei ->
+// constructor(), 27 von ->
 // f() -> 27

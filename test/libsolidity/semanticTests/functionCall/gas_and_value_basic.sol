@@ -40,7 +40,7 @@ contract test {
 // ====
 // compileViaYul: also
 // ----
-// constructor(), 20 wei ->
+// constructor(), 20 von ->
 // sendAmount(uint256): 5 -> 5
 // outOfGas() -> FAILURE # call to helper should not succeed but amount should be transferred anyway #
 // checkState() -> false, 15

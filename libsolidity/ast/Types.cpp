@@ -465,8 +465,13 @@ string AddressType::canonicalName() const
 u256 AddressType::literalValue(Literal const* _literal) const
 {
 	solAssert(_literal, "");
-	solAssert(_literal->value().substr(0, 2) == "0x", "");
-	return u256(_literal->valueWithoutUnderscores());
+	string hrp = _literal->value().substr(0, 3);
+	solAssert((hrp == "lat" || hrp == "lax"), "");
+
+	bytes r = solidity::util::decodeAddress(hrp, _literal->valueWithoutUnderscores());	
+	solAssert(r.size() == 20, "decodeAddress failed");
+
+	return u256(solidity::util::toHex(r, solidity::util::HexPrefix::Add));
 }
 
 TypeResult AddressType::unaryOperatorResult(Token _operator) const
@@ -897,13 +902,13 @@ tuple<bool, rational> RationalNumberType::isValidLiteral(Literal const& _literal
 	switch (_literal.subDenomination())
 	{
 		case Literal::SubDenomination::None:
-		case Literal::SubDenomination::Wei:
+		case Literal::SubDenomination::Von:
 		case Literal::SubDenomination::Second:
 			break;
-		case Literal::SubDenomination::Gwei:
+		case Literal::SubDenomination::Gvon:
 			value *= bigint("1000000000");
 			break;
-		case Literal::SubDenomination::Ether:
+		case Literal::SubDenomination::Lat:
 			value *= bigint("1000000000000000000");
 			break;
 		case Literal::SubDenomination::Minute:
@@ -936,6 +941,8 @@ BoolResult RationalNumberType::isImplicitlyConvertibleTo(Type const& _convertTo)
 		if (isFractional())
 			return false;
 		IntegerType const& targetType = dynamic_cast<IntegerType const&>(_convertTo);
+		if(targetType.category() == Type::Category::Address)
+			return false;
 		return fitsIntegerType(m_value.numerator(), targetType);
 	}
 	case Category::FixedPoint:
@@ -3129,7 +3136,7 @@ BoolResult FunctionType::isImplicitlyConvertibleTo(Type const& _convertTo) const
 	if (m_stateMutability != StateMutability::Payable && convertTo.stateMutability() == StateMutability::Payable)
 		return false;
 
-	// payable should be convertible to non-payable, because you are free to pay 0 ether
+	// payable should be convertible to non-payable, because you are free to pay 0 lat
 	if (m_stateMutability == StateMutability::Payable && convertTo.stateMutability() == StateMutability::NonPayable)
 		return true;
 

@@ -1853,22 +1853,22 @@ void TypeChecker::typeCheckReceiveFunction(FunctionDefinition const& _function)
 	solAssert(_function.isReceive(), "");
 
 	if (_function.libraryFunction())
-		m_errorReporter.typeError(4549_error, _function.location(), "Libraries cannot have receive ether functions.");
+		m_errorReporter.typeError(4549_error, _function.location(), "Libraries cannot have receive lat functions.");
 
 	if (_function.stateMutability() != StateMutability::Payable)
 		m_errorReporter.typeError(
 			7793_error,
 			_function.location(),
-			"Receive ether function must be payable, but is \"" +
+			"Receive lat function must be payable, but is \"" +
 			stateMutabilityToString(_function.stateMutability()) +
 			"\"."
 		);
 	if (_function.visibility() != Visibility::External)
-		m_errorReporter.typeError(4095_error, _function.location(), "Receive ether function must be defined as \"external\".");
+		m_errorReporter.typeError(4095_error, _function.location(), "Receive lat function must be defined as \"external\".");
 	if (!_function.returnParameters().empty())
-		m_errorReporter.typeError(6899_error, _function.returnParameterList()->location(), "Receive ether function cannot return values.");
+		m_errorReporter.typeError(6899_error, _function.returnParameterList()->location(), "Receive lat function cannot return values.");
 	if (!_function.parameters().empty())
-		m_errorReporter.typeError(6857_error, _function.parameterList().location(), "Receive ether function cannot take parameters.");
+		m_errorReporter.typeError(6857_error, _function.parameterList().location(), "Receive lat function cannot take parameters.");
 }
 
 
@@ -3253,17 +3253,12 @@ void TypeChecker::endVisit(Literal const& _literal)
 		_literal.annotation().type = TypeProvider::payableAddress();
 
 		string msg;
-		if (_literal.valueWithoutUnderscores().length() != 42) // "0x" + 40 hex digits
-			// looksLikeAddress enforces that it is a hex literal starting with "0x"
+		if (_literal.valueWithoutUnderscores().length() != 42) // must 42 length
 			msg =
-				"This looks like an address but is not exactly 40 hex digits. It is " +
-				to_string(_literal.valueWithoutUnderscores().length() - 2) +
-				" hex digits.";
+				"This looks like an address but is not exactly bech32 fmt.";
 		else if (!_literal.passesAddressChecksum())
 		{
 			msg = "This looks like an address but has an invalid checksum.";
-			if (!_literal.getChecksummedAddress().empty())
-				msg += " Correct checksummed address: \"" + _literal.getChecksummedAddress() + "\".";
 		}
 
 		if (!msg.empty())

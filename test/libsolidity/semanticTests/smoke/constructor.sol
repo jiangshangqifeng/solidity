@@ -13,7 +13,7 @@ contract C {
 // ====
 // compileViaYul: also
 // ----
-// constructor(), 2 wei: 3 ->
+// constructor(), 2 von: 3 ->
 // state() -> 3
 // balance() -> 2
 // update(uint256): 4
