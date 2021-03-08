@@ -466,7 +466,7 @@ u256 AddressType::literalValue(Literal const* _literal) const
 {
 	solAssert(_literal, "");
 	string hrp = _literal->value().substr(0, 3);
-	solAssert((hrp == "lat" || hrp == "lax"), "");
+	solAssert((hrp == "lat"), "");
 
 	bytes r = solidity::util::decodeAddress(hrp, _literal->valueWithoutUnderscores());	
 	solAssert(r.size() == 20, "decodeAddress failed");
