@@ -183,7 +183,7 @@ bool convertbits(bytes& out, const bytes& in) {
         bits += frombits;
         while (bits >= tobits) {
             bits -= tobits;
-            out.push_back((acc >> bits) & maxv);
+            out.push_back((uint8_t)((acc >> bits) & maxv));
         }
     }
     if (pad) {

@@ -23,13 +23,15 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "bech32.h"
+#include <libsolutil/Bech32.h>
 
 #include <tuple>
 #include <vector>
 
 #include <assert.h>
 #include <stdint.h>
+
+using namespace solidity;
 
 namespace bech32
 {
@@ -111,7 +113,7 @@ uint32_t polymod(const bytes& values)
         // c'(x) = (c1*x^5 + c2*x^4 + c3*x^3 + c4*x^2 + c5*x + v_i) + c0*k(x)
 
         // First, determine the value of c0:
-        uint8_t c0 = c >> 25;
+        uint8_t c0 = (uint8_t)(c >> 25);
 
         // Then compute c1*x^5 + c2*x^4 + c3*x^3 + c4*x^2 + c5*x + v_i:
         c = ((c & 0x1ffffff) << 5) ^ v_i;
@@ -128,7 +130,7 @@ uint32_t polymod(const bytes& values)
 
 /** Convert to lower case. */
 unsigned char lc(unsigned char c) {
-    return (c >= 'A' && c <= 'Z') ? (c - 'A') + 'a' : c;
+    return (c >= 'A' && c <= 'Z') ? (unsigned char)((c - 'A') + 'a') : c;
 }
 
 /** Expand a HRP for use in checksum computation. */
@@ -137,8 +139,8 @@ bytes expand_hrp(const std::string& hrp) {
     ret.reserve(hrp.size() + 90);
     ret.resize(hrp.size() * 2 + 1);
     for (size_t i = 0; i < hrp.size(); ++i) {
-        unsigned char c = hrp[i];
-        ret[i] = c >> 5;
+        unsigned char c = (unsigned char)hrp[i];
+        ret[i] = (uint8_t)(c >> 5);
         ret[i + hrp.size() + 1] = c & 0x1f;
     }
     ret[hrp.size()] = 0;
@@ -192,7 +194,7 @@ std::string encode(const std::string& hrp, const bytes& values, Encoding encodin
 DecodeResult decode(const std::string& str) {
     bool lower = false, upper = false;
     for (size_t i = 0; i < str.size(); ++i) {
-        unsigned char c = str[i];
+        unsigned char c = (unsigned char)str[i];
         if (c >= 'a' && c <= 'z') lower = true;
         else if (c >= 'A' && c <= 'Z') upper = true;
         else if (c < 33 || c > 126) return {};
@@ -204,17 +206,17 @@ DecodeResult decode(const std::string& str) {
     }
     bytes values(str.size() - 1 - pos);
     for (size_t i = 0; i < str.size() - 1 - pos; ++i) {
-        unsigned char c = str[i + pos + 1];
+        unsigned char c = (unsigned char)str[i + pos + 1];
         int8_t rev = CHARSET_REV[c];
 
         if (rev == -1) {
             return {};
         }
-        values[i] = rev;
+        values[i] = (uint8_t)rev;
     }
     std::string hrp;
     for (size_t i = 0; i < pos; ++i) {
-        hrp += lc(str[i]);
+        hrp += (char)lc((unsigned char)str[i]);
     }
     Encoding result = verify_checksum(hrp, values);
     if (result == Encoding::INVALID) return {};

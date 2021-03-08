@@ -42,17 +42,17 @@ enum class Encoding {
 
 /** Encode a Bech32 or Bech32m string. If hrp contains uppercase characters, this will cause an
  *  assertion error. Encoding must be one of BECH32 or BECH32M. */
-std::string encode(const std::string& hrp, const bytes& values, Encoding encoding);
+std::string encode(const std::string& hrp, const std::vector<uint8_t>& values, Encoding encoding);
 
 /** A type for the result of decoding. */
 struct DecodeResult
 {
     Encoding encoding;         //!< What encoding was detected in the result; Encoding::INVALID if failed.
     std::string hrp;           //!< The human readable part
-    bytes data; //!< The payload (excluding checksum)
+    std::vector<uint8_t> data; //!< The payload (excluding checksum)
 
     DecodeResult() : encoding(Encoding::INVALID) {}
-    DecodeResult(Encoding enc, std::string&& h, bytes&& d) : encoding(enc), hrp(std::move(h)), data(std::move(d)) {}
+    DecodeResult(Encoding enc, std::string&& h, std::vector<uint8_t>&& d) : encoding(enc), hrp(std::move(h)), data(std::move(d)) {}
 };
 
 /** Decode a Bech32 or Bech32m string. */
