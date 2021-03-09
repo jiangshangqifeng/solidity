@@ -712,9 +712,9 @@ bool CommandLineInterface::parseLibraryOption(string const& _input)
 			}
 			bytes binAddr = bech32.second;			
 			h160 address(binAddr, h160::AlignRight);
-			if (binAddr.size() > 20 || address == h160())
+			if (binAddr.size() > 32 || address == h160())
 			{
-				serr() << "Invalid address for library \"" << libName << "\": " << addrString << endl;
+				serr() << "Invalid address for library \"" << libName << "\": " << addrString << ",binAddr.size()=" << binAddr.size() << ", binAddr=", toHex(binAddr) << endl;
 				return false;
 			}
 			m_libraries[libName] = address;

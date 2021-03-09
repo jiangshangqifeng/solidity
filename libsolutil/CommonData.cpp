@@ -164,7 +164,7 @@ bool solidity::util::isValidDecimal(string const& _string)
 /** Decode a Bech32 string. */
 pair<string, bytes> solidity::util::bech32decode(const string& str) {
     bech32::DecodeResult r = bech32::decode(str);
-	if (r.encoding != bech32::Encoding::INVALID) {
+	if (r..encoding == bech32::Encoding::BECH32) {
 		return make_pair(r.hrp, r.data);
 	}
 	return make_pair(string(), bytes());
