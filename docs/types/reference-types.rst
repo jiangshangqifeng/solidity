@@ -456,7 +456,7 @@ Array slices are useful to ABI-decode secondary data passed in function paramete
                 (bytes4(_payload[3]) >> 24);
             if (sig == bytes4(keccak256("setOwner(address)"))) {
                 address owner = abi.decode(_payload[4:], (address));
-                require(owner != address(0), "Address of owner cannot be zero.");
+                require(owner != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), "Address of owner cannot be zero.");
             }
             (bool status,) = client.delegatecall(_payload);
             require(status, "Forwarded call failed.");

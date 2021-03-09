@@ -1,6 +1,6 @@
 contract C {
     function foo() pure internal {
-        address(10).staticcall{value: 7, gas: 3}("");
+        address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqsp5zy0w').staticcall{value: 7, gas: 3}("");
     }
 }
 // ====

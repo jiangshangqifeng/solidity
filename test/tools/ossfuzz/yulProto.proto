@@ -37,7 +37,7 @@ message LowLevelCall {
   required Expression gas = 2;
   required Expression addr = 3;
   // Valid for call and callcode only
-  required Expression wei = 4;
+  required Expression von = 4;
   required Expression in = 5;
   required Expression insize = 6;
   required Expression out = 7;
@@ -50,7 +50,7 @@ message Create {
     CREATE2 = 1;
   }
   required Type createty = 1;
-  required Expression wei = 2;
+  required Expression von = 2;
   required Expression position = 3;
   required Expression size = 4;
   // Valid for create2 only

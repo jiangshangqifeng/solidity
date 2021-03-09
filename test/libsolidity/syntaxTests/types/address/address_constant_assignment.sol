@@ -1,9 +1,9 @@
 contract C {
-    address constant a = address(0);
-    address payable constant b = address(0);
+    address constant a = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
+    address payable constant b = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
     function f() public {
-        a = address(0);
-        b = address(0);
+        a = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
+        b = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
     }
 }
 // ----

@@ -1,6 +1,6 @@
 contract C {
   function f() public pure returns (C c) {
-    address a = address(2);
+    address a = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqz8stlfs');
     c = C(a);
   }
   fallback() external payable {

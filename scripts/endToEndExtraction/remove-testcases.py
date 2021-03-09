@@ -28,7 +28,7 @@ def parse_call(call):
             results = search.group(3)
             if results.find("#") != -1:
                 results = results[:results.find("#")]
-    if function.find("wei") >= 0:
+    if function.find("von") >= 0:
         function = function[:function.find(",")]
     return function.strip(), arguments.strip(), results.strip()
 

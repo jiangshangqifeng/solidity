@@ -4846,11 +4846,11 @@ BOOST_AUTO_TEST_CASE(bare_call_invalid_address)
 		contract C {
 			/// Calling into non-existent account is successful (creates the account)
 			function f() external returns (bool) {
-				(bool success,) = address(0x4242).call("");
+				(bool success,) = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqsjzklwdvs').call("");
 				return success;
 			}
 			function h() external returns (bool) {
-				(bool success,) = address(0x4242).delegatecall("");
+				(bool success,) = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqsjzklwdvs').delegatecall("");
 				return success;
 			}
 		}
@@ -4864,7 +4864,7 @@ BOOST_AUTO_TEST_CASE(bare_call_invalid_address)
 		char const* sourceCode = R"YY(
 			contract C {
 				function f() external returns (bool, bytes memory) {
-					return address(0x4242).staticcall("");
+					return address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqsjzklwdvs').staticcall("");
 				}
 			}
 		)YY";

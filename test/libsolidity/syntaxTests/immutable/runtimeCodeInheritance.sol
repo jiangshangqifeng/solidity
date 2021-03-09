@@ -1,5 +1,5 @@
 contract Base {
-    address public immutable user = address(0x0);
+    address public immutable user = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
 }
 
 contract Derived is Base {}

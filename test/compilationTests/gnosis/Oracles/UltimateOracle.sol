@@ -56,8 +56,8 @@ contract UltimateOracle is Oracle {
     )
     {
         // Validate inputs
-        require(   address(_forwardedOracle) != address(0)
-                && address(_collateralToken) != address(0)
+        require(   address(_forwardedOracle) != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a')
+                && address(_collateralToken) != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a')
                 && _spreadMultiplier >= 2
                 && _challengePeriod > 0
                 && _challengeAmount > 0

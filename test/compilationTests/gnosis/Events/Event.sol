@@ -36,7 +36,7 @@ abstract contract Event {
     constructor(Token _collateralToken, Oracle _oracle, uint8 outcomeCount)
     {
         // Validate input
-        require(address(_collateralToken) != address(0) && address(_oracle) != address(0) && outcomeCount >= 2);
+        require(address(_collateralToken) != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a') && address(_oracle) != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a') && outcomeCount >= 2);
         collateralToken = _collateralToken;
         oracle = _oracle;
         // Create an outcome token for each outcome

@@ -52,7 +52,7 @@ contract C {
 		y = uint16(uint8(-1));
 		assert(y == 255);
 		address a = address(uint8(0));
-		assert(a == address(0));
+		assert(a == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'));
 		D d = D(uint8(0));
 		assert(a == address(d));
 		bytes2 b1 = 0xcafe;
