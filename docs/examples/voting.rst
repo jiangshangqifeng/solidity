@@ -122,7 +122,7 @@ of votes.
             // In this case, the delegation will not be executed,
             // but in other situations, such loops might
             // cause a contract to get "stuck" completely.
-            while (voters[to].delegate != address(0)) {
+            while (voters[to].delegate != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a')) {
                 to = voters[to].delegate;
 
                 // We found a loop in the delegation, not allowed.

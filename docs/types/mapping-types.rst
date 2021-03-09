@@ -90,8 +90,8 @@ The example below uses ``_allowances`` to record the amount someone else is allo
         }
 
         function approve(address owner, address spender, uint256 amount) public returns (bool) {
-            require(owner != address(0), "ERC20: approve from the zero address");
-            require(spender != address(0), "ERC20: approve to the zero address");
+            require(owner != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), "ERC20: approve from the zero address");
+            require(spender != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), "ERC20: approve to the zero address");
 
             _allowances[owner][spender] = amount;
             emit Approval(owner, spender, amount);
@@ -99,8 +99,8 @@ The example below uses ``_allowances`` to record the amount someone else is allo
         }
 
         function _transfer(address sender, address recipient, uint256 amount) internal {
-            require(sender != address(0), "ERC20: transfer from the zero address");
-            require(recipient != address(0), "ERC20: transfer to the zero address");
+            require(sender != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), "ERC20: transfer from the zero address");
+            require(recipient != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'), "ERC20: transfer to the zero address");
 
             _balances[sender] -= amount;
             _balances[recipient] += amount;
