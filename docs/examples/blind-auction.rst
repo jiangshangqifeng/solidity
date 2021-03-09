@@ -320,7 +320,7 @@ invalid bids.
             if (value <= highestBid) {
                 return false;
             }
-            if (highestBidder != address(0)) {
+            if (highestBidder != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a')) {
                 // Refund the previously highest bidder.
                 pendingReturns[highestBidder] += highestBid;
             }
