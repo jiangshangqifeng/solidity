@@ -694,7 +694,7 @@ bool CommandLineInterface::parseLibraryOption(string const& _input)
 				serr() << "Note that there should not be any whitespace after the colon." << endl;
 				return false;
 			}
-			else if (addrString.length() != 40)
+			else if (addrString.length() != 42)
 			{
 				serr() << "Invalid length for address for library \"" << libName << "\": " << addrString.length() << " instead of 40 characters." << endl;
 				return false;
