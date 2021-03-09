@@ -357,11 +357,11 @@ rm -rf "$SOLTMPDIR"
 echo "Done."
 
 printTask "Testing library checksum..."
-echo '' | "$SOLC" - --link --libraries a:0x90f20564390eAe531E810af625A22f51385Cd222 >/dev/null
-! echo '' | "$SOLC" - --link --libraries a:0x80f20564390eAe531E810af625A22f51385Cd222 &>/dev/null
+echo '' | "$SOLC" - --link --libraries a:lat1jreq2epep6h9x85pptmztg302yu9e53z6e2gaj >/dev/null
+! echo '' | "$SOLC" - --link --libraries a:lat1sreq2epep6h9x85pptmztg302yu9e53zdm8sru &>/dev/null
 
 printTask "Testing long library names..."
-echo '' | "$SOLC" - --link --libraries aveeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeerylonglibraryname:0x90f20564390eAe531E810af625A22f51385Cd222 >/dev/null
+echo '' | "$SOLC" - --link --libraries aveeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeerylonglibraryname:lat1jreq2epep6h9x85pptmztg302yu9e53z6e2gaj >/dev/null
 
 printTask "Testing linking itself..."
 SOLTMPDIR=$(mktemp -d)
@@ -375,7 +375,7 @@ SOLTMPDIR=$(mktemp -d)
     # But not in library file.
     grep -q -v '[/_]' L.bin
     # Now link
-    "$SOLC" --link --libraries x.sol:L:0x90f20564390eAe531E810af625A22f51385Cd222 C.bin
+    "$SOLC" --link --libraries x.sol:L:lat1jreq2epep6h9x85pptmztg302yu9e53z6e2gaj C.bin
     # Now the placeholder and explanation should be gone.
     grep -q -v '[/_]' C.bin
 )
