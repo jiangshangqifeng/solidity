@@ -19,8 +19,6 @@ contract C {
 		assert(v == -(2**255) + 10);
 		int160 a = int160(address('lat1llllllllllllllllllllllllllllllllcytnah'));
 		assert(a == -1);
-		int160 b = int160(address(2**159 + 10));
-		assert(b == -(2**159) + 10);
 		D d;
 		int160 e = int160(address(d));
 		assert(e == 0);

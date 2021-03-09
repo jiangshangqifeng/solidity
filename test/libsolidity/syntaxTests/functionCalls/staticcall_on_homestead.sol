@@ -1,6 +1,6 @@
 contract C {
     function f() public {
-        (bool success, ) = address(10).staticcall{gas: 3}("");
+        (bool success, ) = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqsp5zy0w').staticcall{gas: 3}("");
         success;
     }
 }
