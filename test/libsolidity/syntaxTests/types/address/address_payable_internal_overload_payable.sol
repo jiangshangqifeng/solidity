@@ -2,7 +2,7 @@ contract C {
     function f(address payable) internal pure {}
     function f(address) internal pure {}
     function g() internal pure {
-        address payable a = address(0);
+        address payable a = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
         f(a);
     }
 }

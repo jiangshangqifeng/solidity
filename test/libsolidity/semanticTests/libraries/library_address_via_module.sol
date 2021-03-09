@@ -12,7 +12,7 @@ library L {
 }
 contract C {
     function addr() public view returns (bool) {
-        return address(M.L) == address(0);
+        return address(M.L) == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
     }
     function g(uint256 v) public view returns (uint256) {
         return M.L.f(v);

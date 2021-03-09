@@ -1,6 +1,6 @@
 contract C {
   function f() public view {
-    C c = address(2);
+    C c = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqz8stlfs');
   }
 }
 // ----

@@ -1,6 +1,6 @@
 contract test {
     function fun() public {
-        address(0).balance = 7;
+        address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a').balance = 7;
     }
 }
 // ----

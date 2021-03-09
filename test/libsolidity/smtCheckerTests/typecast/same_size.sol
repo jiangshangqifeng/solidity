@@ -44,7 +44,7 @@ contract C {
 		assert(uint32(b) == uint32(2**32 - 2));
 		address a = address(-1);
 		assert(uint160(a) == uint160(2**160 - 1));
-		address c = address(0);
+		address c = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
 		assert(uint160(c) == 0);
 		D d;
 		address e = address(d);
@@ -57,7 +57,7 @@ contract C {
 		// unsigned <- unsigned
 		uint8 x = uint8(bytes1(uint8(100)));
 		assert(x == 100);
-		address a = address(0);
+		address a = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
 		assert(a == address(uint160(0)));
 		D d;
 		assert(a == address(d));

@@ -50,10 +50,10 @@ BOOST_AUTO_TEST_CASE(environment_access)
 		"tx.origin",
 		"tx.gasprice",
 		"this",
-		"address(1).balance",
+		"address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqpfr7f80').balance",
 	};
 	if (solidity::test::CommonOptions::get().evmVersion().hasStaticCall())
-		view.emplace_back("address(0x4242).staticcall(\"\")");
+		view.emplace_back("address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqsjzklwdvs').staticcall(\"\")");
 
 	// ``block.blockhash`` and ``blockhash`` are tested separately below because their usage will
 	// produce warnings that can't be handled in a generic way.
@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE(address_staticcall)
 	string text = R"(
 		contract C {
 			function i() view public returns (bool) {
-				(bool success,) = address(0x4242).staticcall("");
+				(bool success,) = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqsjzklwdvs').staticcall("");
 				return success;
 			}
 		}

@@ -17,7 +17,7 @@ contract C {
         this.g();
         assert(lastCaller == address(this));
         assert(lastCaller == msg.sender);
-        assert(lastCaller == address(0));
+        assert(lastCaller == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'));
     }
 
     function g() log public {

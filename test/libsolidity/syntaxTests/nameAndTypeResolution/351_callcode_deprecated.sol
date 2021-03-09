@@ -1,6 +1,6 @@
 contract test {
     function f() pure public {
-        address(0x12).callcode;
+        address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjj3r8ur').callcode;
     }
 }
 // ----
