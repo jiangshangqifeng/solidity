@@ -696,7 +696,7 @@ bool CommandLineInterface::parseLibraryOption(string const& _input)
 			}
 			else if (addrString.length() != 42)
 			{
-				serr() << "Invalid length for address for library \"" << libName << "\": " << addrString.length() << " instead of 40 characters." << endl;
+				serr() << "Invalid length for address for library \"" << libName << "\": " << addrString.length() << " instead of 42 characters." << endl;
 				return false;
 			}
 			if (!passesAddressChecksum(addrString))
@@ -704,15 +704,11 @@ bool CommandLineInterface::parseLibraryOption(string const& _input)
 				serr() << "Invalid checksum on address for library \"" << libName << "\": " << addrString << endl;
 				return false;
 			}
-			
-			pair<string,bytes> bech32 = bech32decode(boost::erase_all_copy(addrString, "_"));
-			string hrp = bech32.first;
-			if (hrp != "lat") {
-				return false;
-			}
-			bytes binAddr = bech32.second;			
+
+			string addrStr = boost::erase_all_copy(addrString, "_");
+			bytes binAddr = decodeAddress("lat", addrStr);			
 			h160 address(binAddr, h160::AlignRight);
-			if (binAddr.size() > 32 || address == h160())
+			if (binAddr.size() > 20 || address == h160())
 			{
 				serr() << "Invalid address for library \"" << libName << "\": " << addrString << ",binAddr.size()=" << binAddr.size() << ", binAddr=" << toHex(binAddr) << endl;
 				return false;

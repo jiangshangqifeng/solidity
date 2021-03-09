@@ -154,6 +154,9 @@ function test_solc_behaviour()
     if [[ $exitCode -ne "$exit_code_expected" ]]
     then
         printError "Incorrect exit code. Expected $exit_code_expected but got $exitCode."
+        printError "stdout_path ${stdout_path}"
+        printError "stderr_path $(cat ${stderr_path})"
+        printError "stdout_expected ${stdout_expected}"
         exit 1
     fi
 
