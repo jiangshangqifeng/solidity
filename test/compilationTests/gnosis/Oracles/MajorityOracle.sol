@@ -22,7 +22,7 @@ contract MajorityOracle is Oracle {
         require(_oracles.length > 2);
         for (uint i = 0; i < _oracles.length; i++)
             // Oracle address cannot be null
-            require(address(_oracles[i]) != address(0));
+            require(address(_oracles[i]) != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'));
         oracles = _oracles;
     }
 

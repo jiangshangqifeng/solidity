@@ -41,7 +41,7 @@ contract StandardMarket is Market {
     constructor(address _creator, Event _eventContract, MarketMaker _marketMaker, uint24 _fee)
     {
         // Validate inputs
-        require(address(_eventContract) != address(0) && address(_marketMaker) != address(0) && _fee < FEE_RANGE);
+        require(address(_eventContract) != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a') && address(_marketMaker) != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a') && _fee < FEE_RANGE);
         creator = _creator;
         createdAtBlock = block.number;
         eventContract = _eventContract;
