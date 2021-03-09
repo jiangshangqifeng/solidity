@@ -714,7 +714,7 @@ bool CommandLineInterface::parseLibraryOption(string const& _input)
 			h160 address(binAddr, h160::AlignRight);
 			if (binAddr.size() > 32 || address == h160())
 			{
-				serr() << "Invalid address for library \"" << libName << "\": " << addrString << ",binAddr.size()=" << binAddr.size() << ", binAddr=", toHex(binAddr) << endl;
+				serr() << "Invalid address for library \"" << libName << "\": " << addrString << ",binAddr.size()=" << binAddr.size() << ", binAddr=" << toHex(binAddr) << endl;
 				return false;
 			}
 			m_libraries[libName] = address;
