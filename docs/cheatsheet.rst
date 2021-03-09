@@ -90,7 +90,7 @@ Global Variables
 - ``gasleft() returns (uint256)``: remaining gas
 - ``msg.data`` (``bytes``): complete calldata
 - ``msg.sender`` (``address payable``): sender of the message (current call)
-- ``msg.value`` (``uint``): number of wei sent with the message
+- ``msg.value`` (``uint``): number of von sent with the message
 - ``tx.gasprice`` (``uint``): gas price of the transaction
 - ``tx.origin`` (``address payable``): sender of the transaction (full call chain)
 - ``assert(bool condition)``: abort execution and revert state changes if condition is ``false`` (use for internal error)
@@ -113,10 +113,10 @@ Global Variables
 - ``this`` (current contract's type): the current contract, explicitly convertible to ``address`` or ``address payable``
 - ``super``: the contract one level higher in the inheritance hierarchy
 - ``selfdestruct(address payable recipient)``: destroy the current contract, sending its funds to the given address
-- ``<address>.balance`` (``uint256``): balance of the :ref:`address` in Wei
-- ``<address payable>.send(uint256 amount) returns (bool)``: send given amount of Wei to :ref:`address`,
+- ``<address>.balance`` (``uint256``): balance of the :ref:`address` in von
+- ``<address payable>.send(uint256 amount) returns (bool)``: send given amount of von to :ref:`address`,
   returns ``false`` on failure
-- ``<address payable>.transfer(uint256 amount)``: send given amount of Wei to :ref:`address`, throws on failure
+- ``<address payable>.transfer(uint256 amount)``: send given amount of von to :ref:`address`, throws on failure
 - ``type(C).name`` (``string``): the name of the contract
 - ``type(C).creationCode`` (``bytes memory``): creation bytecode of the given contract, see :ref:`Type Information<meta-type>`.
 - ``type(C).runtimeCode`` (``bytes memory``): runtime bytecode of the given contract, see :ref:`Type Information<meta-type>`.
@@ -172,7 +172,7 @@ Modifiers
 
 - ``pure`` for functions: Disallows modification or access of state.
 - ``view`` for functions: Disallows modification of state.
-- ``payable`` for functions: Allows them to receive Ether together with a call.
+- ``payable`` for functions: Allows them to receive lat together with a call.
 - ``constant`` for state variables: Disallows assignment (except initialisation), does not occupy storage slot.
 - ``immutable`` for state variables: Allows exactly one assignment at construction time and is constant afterwards. Is stored in code.
 - ``anonymous`` for events: Does not store event signature as topic.

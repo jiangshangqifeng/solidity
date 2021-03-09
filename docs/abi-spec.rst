@@ -500,7 +500,7 @@ JSON
 The JSON format for a contract's interface is given by an array of function and/or event descriptions.
 A function description is a JSON object with the fields:
 
-- ``type``: ``"function"``, ``"constructor"``, ``"receive"`` (the :ref:`"receive Ether" function <receive-ether-function>`) or ``"fallback"`` (the :ref:`"default" function <fallback-function>`);
+- ``type``: ``"function"``, ``"constructor"``, ``"receive"`` (the :ref:`"receive Lat" function <receive-lat-function>`) or ``"fallback"`` (the :ref:`"default" function <fallback-function>`);
 - ``name``: the name of the function;
 - ``inputs``: an array of objects, each of which contains:
 
@@ -511,12 +511,12 @@ A function description is a JSON object with the fields:
 - ``outputs``: an array of objects similar to ``inputs``.
 - ``stateMutability``: a string with one of the following values: ``pure`` (:ref:`specified to not read
   blockchain state <pure-functions>`), ``view`` (:ref:`specified to not modify the blockchain
-  state <view-functions>`), ``nonpayable`` (function does not accept Ether - the default) and ``payable`` (function accepts Ether).
+  state <view-functions>`), ``nonpayable`` (function does not accept lat - the default) and ``payable`` (function accepts lat).
 
 Constructor and fallback function never have ``name`` or ``outputs``. Fallback function doesn't have ``inputs`` either.
 
 .. note::
-    Sending non-zero Ether to non-payable function will revert the transaction.
+    Sending non-zero lat to non-payable function will revert the transaction.
 
 .. note::
     The state mutability ``nonpayable`` is reflected in Solidity by not specifying

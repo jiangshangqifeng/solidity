@@ -67,7 +67,7 @@ if they are marked ``virtual``. For details, please see
 
         // It is important to also provide the
         // `payable` keyword here, otherwise the function will
-        // automatically reject all Ether sent to it.
+        // automatically reject all lat sent to it.
         function register() public payable costs(price) {
             registeredAddresses[msg.sender] = true;
         }
