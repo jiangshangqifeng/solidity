@@ -1,4 +1,4 @@
-address constant e = 0x1212121212121212121212121000002134593163;
+address constant e = 'lat1zgfpyysjzgfpyysjzgfpqqqqyy69jvtr6eus56';
 
 contract C {
   function f() public returns (address z) {
@@ -6,4 +6,4 @@ contract C {
   }
 }
 // ----
-// f() -> 0x1212121212121212121212121000002134593163
+// f() -> lat1zgfpyysjzgfpyysjzgfpqqqqyy69jvtr6eus56
