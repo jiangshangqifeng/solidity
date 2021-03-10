@@ -17,4 +17,6 @@ contract C
 // ====
 // SMTSolvers: z3
 // ----
-// Warning 6328: (191-211): CHC: Assertion violation happens here.\nCounterexample:\na = []\nb = false\n\n\nTransaction trace:\nconstructor()\nState: a = []\nf(false)
+// Warning 6328: (167-187): CHC: Assertion violation might happen here.
+// Warning 6328: (191-211): CHC: Assertion violation might happen here.
+// Warning 4661: (191-211): BMC: Assertion violation happens here.

@@ -59,3 +59,5 @@ contract C {
 		assert(origin == tx.origin);
 	}
 }
+// ----
+// Warning 6328: (755-794): CHC: Assertion violation might happen here.

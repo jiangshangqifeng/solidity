@@ -10,4 +10,5 @@ contract Simple {
 // ====
 // SMTSolvers: z3
 // ----
+// Warning 1218: (116-119): CHC: Error trying to invoke SMT solver.
 // Warning 4984: (116-119): CHC: Overflow (resulting value larger than 2**256 - 1) might happen here.

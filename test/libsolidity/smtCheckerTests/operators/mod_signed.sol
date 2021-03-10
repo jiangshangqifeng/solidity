@@ -10,4 +10,6 @@ contract C {
 	}
 }
 // ----
+// Warning 1218: (163-180): CHC: Error trying to invoke SMT solver.
 // Warning 6328: (163-180): CHC: Assertion violation might happen here.
+// Warning 7812: (163-180): BMC: Assertion violation might happen here.
