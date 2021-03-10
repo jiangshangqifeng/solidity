@@ -12,4 +12,5 @@ contract C {
 	}
 }
 // ----
-// Warning 6328: (167-188): CHC: Assertion violation happens here.\nCounterexample:\na = [[17, 12, 12, 12, 12], [15, 15], [15, 15], [15, 15], [15, 15], [15, 15], [15, 15], [15, 15], [15, 15], [15, 15], [15, 15], [15, 15], [15, 15], [15, 15], [15, 15], [15, 15]]\n\n\n\nTransaction trace:\nconstructor()\nState: a = []\nf()
+// Warning 6328: (167-188): CHC: Assertion violation might happen here.
+// Warning 4661: (167-188): BMC: Assertion violation happens here.

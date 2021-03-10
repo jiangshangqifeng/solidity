@@ -521,7 +521,7 @@
                               null
                             ],
                             "tryCall": false,
-                            "type": "address payable",
+                            "type": "address",
                             "type_conversion": true
                           },
                           "children":
@@ -532,8 +532,8 @@
                                 "argumentTypes":
                                 [
                                   {
-                                    "typeIdentifier": "t_rational_0_by_1",
-                                    "typeString": "int_const 0"
+                                    "typeIdentifier": "t_address_payable",
+                                    "typeString": "address payable"
                                   }
                                 ],
                                 "isConstant": false,
@@ -561,51 +561,51 @@
                             {
                               "attributes":
                               {
-                                "hexvalue": "30",
+                                "hexvalue": "6c6174317171717171717171717171717171717171717171717171717171717171717171353432753661",
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
                                 "lValueRequested": false,
-                                "token": "number",
-                                "type": "int_const 0",
-                                "value": "0"
+                                "token": "string",
+                                "type": "address payable",
+                                "value": "lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a"
                               },
                               "id": 33,
                               "name": "Literal",
-                              "src": "247:1:1"
+                              "src": "247:44:1"
                             }
                           ],
                           "id": 34,
                           "name": "FunctionCall",
-                          "src": "239:10:1"
+                          "src": "239:53:1"
                         }
                       ],
                       "id": 35,
                       "name": "Assignment",
-                      "src": "232:17:1"
+                      "src": "232:60:1"
                     }
                   ],
                   "id": 36,
                   "name": "ExpressionStatement",
-                  "src": "232:17:1"
+                  "src": "232:60:1"
                 }
               ],
               "id": 37,
               "name": "Block",
-              "src": "134:122:1"
+              "src": "134:165:1"
             }
           ],
           "id": 38,
           "name": "FunctionDefinition",
-          "src": "67:189:1"
+          "src": "67:232:1"
         }
       ],
       "id": 39,
       "name": "ContractDefinition",
-      "src": "0:258:1"
+      "src": "0:301:1"
     }
   ],
   "id": 40,
   "name": "SourceUnit",
-  "src": "0:259:1"
+  "src": "0:302:1"
 }

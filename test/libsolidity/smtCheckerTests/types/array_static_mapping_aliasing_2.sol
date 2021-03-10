@@ -27,4 +27,6 @@ contract C
 	}
 }
 // ----
-// Warning 6328: (830-850): CHC: Assertion violation happens here.\nCounterexample:\n\nx = 0\n\n\nTransaction trace:\nconstructor()\ng(0)
+// Warning 6328: (830-850): CHC: Assertion violation might happen here.
+// Warning 4661: (830-850): BMC: Assertion violation happens here.
+// Warning 4661: (830-850): BMC: Assertion violation happens here.

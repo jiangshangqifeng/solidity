@@ -55,7 +55,7 @@
           {
             "id": 37,
             "nodeType": "Block",
-            "src": "134:122:1",
+            "src": "134:165:1",
             "statements":
             [
               {
@@ -251,13 +251,13 @@
                     "arguments":
                     [
                       {
-                        "hexValue": "30",
+                        "hexValue": "6c6174317171717171717171717171717171717171717171717171717171717171717171353432753661",
                         "id": 33,
-                        "kind": "number",
+                        "kind": "string",
                         "nodeType": "Literal",
-                        "src": "247:1:1",
+                        "src": "247:44:1",
                         "typeDescriptions": {},
-                        "value": "0"
+                        "value": "lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a"
                       }
                     ],
                     "expression":
@@ -278,16 +278,16 @@
                     "id": 34,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "239:10:1",
+                    "src": "239:53:1",
                     "tryCall": false,
                     "typeDescriptions": {}
                   },
-                  "src": "232:17:1",
+                  "src": "232:60:1",
                   "typeDescriptions": {}
                 },
                 "id": 36,
                 "nodeType": "ExpressionStatement",
-                "src": "232:17:1"
+                "src": "232:60:1"
               }
             ]
           },
@@ -357,14 +357,14 @@
             ],
             "src": "114:19:1"
           },
-          "src": "67:189:1",
+          "src": "67:232:1",
           "stateMutability": "nonpayable",
           "virtual": false,
           "visibility": "public"
         }
       ],
-      "src": "0:258:1"
+      "src": "0:301:1"
     }
   ],
-  "src": "0:259:1"
+  "src": "0:302:1"
 }

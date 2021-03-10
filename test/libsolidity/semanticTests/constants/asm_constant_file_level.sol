@@ -1,9 +1,11 @@
-address constant e = 'lat1zgfpyysjzgfpyysjzgfpqqqqyy69jvtr6eus56';
+address constant e = address('lat1zgfpyysjzgfpyysjzgfpqqqqyy69jvtr6eus56');
 
 contract C {
   function f() public returns (address z) {
     assembly { z := e }
   }
 }
+// ====
+// compileViaYul: also
 // ----
-// f() -> lat1zgfpyysjzgfpyysjzgfpqqqqyy69jvtr6eus56
+// f() -> 0x1212121212121212121212121000002134593163

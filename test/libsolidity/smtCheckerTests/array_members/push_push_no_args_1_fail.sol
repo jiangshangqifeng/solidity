@@ -8,5 +8,7 @@ contract C {
 	}
 }
 // ----
-// Warning 6328: (113-139): CHC: Assertion violation happens here.\nCounterexample:\narray2d = [[0]]\n\n\n\nTransaction trace:\nconstructor()\nState: array2d = []\nl()
-// Warning 6328: (143-189): CHC: Assertion violation happens here.\nCounterexample:\narray2d = [[0]]\n\n\n\nTransaction trace:\nconstructor()\nState: array2d = []\nl()
+// Warning 6328: (113-139): CHC: Assertion violation might happen here.
+// Warning 6328: (143-189): CHC: Assertion violation might happen here.
+// Warning 4661: (113-139): BMC: Assertion violation happens here.
+// Warning 4661: (143-189): BMC: Assertion violation happens here.

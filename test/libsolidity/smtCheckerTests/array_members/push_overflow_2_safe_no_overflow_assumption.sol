@@ -13,3 +13,5 @@ contract C {
 }
 // ----
 // Warning 4984: (174-177): CHC: Overflow (resulting value larger than 2**256 - 1) might happen here.
+// Warning 6328: (196-214): CHC: Assertion violation might happen here.
+// Warning 4661: (196-214): BMC: Assertion violation happens here.

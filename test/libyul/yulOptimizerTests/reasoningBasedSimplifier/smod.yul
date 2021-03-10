@@ -43,8 +43,14 @@
 //     }
 //     if eq(x, sub(0, 7))
 //     {
-//         if eq(y, 5) { if 1 { sstore(0, 7) } }
-//         if eq(y, sub(0, 5)) { if 1 { sstore(0, 7) } }
+//         if eq(y, 5)
+//         {
+//             if eq(result, sub(0, 2)) { sstore(0, 7) }
+//         }
+//         if eq(y, sub(0, 5))
+//         {
+//             if eq(result, sub(0, 2)) { sstore(0, 7) }
+//         }
 //     }
 //     if eq(x, sub(0, 5))
 //     {
