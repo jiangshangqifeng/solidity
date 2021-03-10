@@ -288,9 +288,9 @@ BOOST_AUTO_TEST_CASE(storage_array_dyn)
 			address[] addr;
 			event E(address[] a);
 			function f() public {
-				addr.push(0x0000000000000000000000000000000000000001);
-				addr.push(0x0000000000000000000000000000000000000002);
-				addr.push(0x0000000000000000000000000000000000000003);
+				addr.push('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqpfr7f80');
+				addr.push('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqz8stlfs');
+				addr.push('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr6xl25z');
 				emit E(addr);
 			}
 		}
