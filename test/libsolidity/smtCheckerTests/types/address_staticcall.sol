@@ -19,4 +19,5 @@ contract C
 // EVMVersion: >spuriousDragon
 // ----
 // Warning 2072: (224-240): Unused local variable.
-// Warning 6328: (266-281): CHC: Assertion violation happens here.\nCounterexample:\nx = 0\na = 0\ndata = [10, 10]\n\n\nTransaction trace:\nconstructor()\nState: x = 0\nf(0, [10, 10])
+// Warning 6328: (266-281): CHC: Assertion violation might happen here.
+// Warning 4661: (266-281): BMC: Assertion violation happens here.

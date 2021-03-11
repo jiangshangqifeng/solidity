@@ -14,5 +14,7 @@ contract C {
 // ====
 // SMTIgnoreCex: yes
 // ----
-// Warning 3944: (217-232): CHC: Underflow (resulting value less than 0) happens here.
-// Warning 6328: (205-239): CHC: Assertion violation happens here.
+// Warning 3944: (217-232): CHC: Underflow (resulting value less than 0) might happen here.
+// Warning 6328: (205-239): CHC: Assertion violation might happen here.
+// Warning 4144: (217-232): BMC: Underflow (resulting value less than 0) happens here.
+// Warning 4661: (205-239): BMC: Assertion violation happens here.

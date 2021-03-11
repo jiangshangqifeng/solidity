@@ -17,4 +17,6 @@ contract C {
 	}
 }
 // ----
-// Warning 6328: (200-214): CHC: Assertion violation happens here.\nCounterexample:\nx = 10, d = 0\n\n\n\nTransaction trace:\nconstructor()\nState: x = 0, d = 0\nf()\nState: x = 1, d = 0\nf()\nState: x = 2, d = 0\ng()
+// Warning 1218: (200-214): CHC: Error trying to invoke SMT solver.
+// Warning 6328: (200-214): CHC: Assertion violation might happen here.
+// Warning 4661: (200-214): BMC: Assertion violation happens here.

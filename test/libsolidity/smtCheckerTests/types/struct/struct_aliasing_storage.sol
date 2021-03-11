@@ -26,4 +26,5 @@ contract C {
 	}
 }
 // ----
-// Warning 6328: (402-438): CHC: Assertion violation happens here.\nCounterexample:\ns1 = {x: 0, a: []}, s2 = {x: 0, a: []}\nb = false\n\n\nTransaction trace:\nconstructor()\nState: s1 = {x: 0, a: []}, s2 = {x: 0, a: []}\nf(false)
+// Warning 6328: (402-438): CHC: Assertion violation might happen here.
+// Warning 4661: (402-438): BMC: Assertion violation happens here.

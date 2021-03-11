@@ -517,11 +517,11 @@ BOOST_AUTO_TEST_CASE(comments_mixed_in_sequence)
 	BOOST_CHECK_EQUAL(scanner.currentCommentLiteral(), "documentation comment ");
 }
 
-BOOST_AUTO_TEST_CASE(ether_subdenominations)
+BOOST_AUTO_TEST_CASE(lat_subdenominations)
 {
-	Scanner scanner(CharStream("von gvon szabo finney lat", ""));
+	Scanner scanner(CharStream("von gvon lat", ""));
 	BOOST_CHECK_EQUAL(scanner.currentToken(), Token::SubVon);
-	BOOST_CHECK_EQUAL(scanner.next(), Token::Identifier);
+	BOOST_CHECK_EQUAL(scanner.next(), Token::SubGvon);
 	BOOST_CHECK_EQUAL(scanner.next(), Token::SubLat);
 }
 

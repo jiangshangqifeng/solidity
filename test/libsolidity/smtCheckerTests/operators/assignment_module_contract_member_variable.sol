@@ -27,5 +27,7 @@ contract A {
 	}
 }
 // ----
-// Warning 6328: (AASource:191-210): CHC: Assertion violation happens here.\nCounterexample:\nx = (- 1), y = (- 2)\n\n\n\nTransaction trace:\nconstructor()\nState: x = 0, y = 0\na()\nState: x = (- 2), y = (- 2)\na()
-// Warning 6328: (AASource:402-418): CHC: Assertion violation happens here.\nCounterexample:\nx = 8, y = (- 2)\n\n\n\nTransaction trace:\nconstructor()\nState: x = 0, y = 0\na()
+// Warning 1218: (AASource:191-210): CHC: Error trying to invoke SMT solver.
+// Warning 6328: (AASource:191-210): CHC: Assertion violation might happen here.
+// Warning 6328: (AASource:402-418): CHC: Assertion violation happens here.
+// Warning 4661: (AASource:191-210): BMC: Assertion violation happens here.

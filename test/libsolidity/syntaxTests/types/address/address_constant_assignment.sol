@@ -1,11 +1,11 @@
 contract C {
-    address constant a = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
-    address payable constant b = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
+    address constant a = 'lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a';
+    address payable constant b = 'lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a';
     function f() public {
-        a = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
-        b = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
+        a = 'lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a';
+        b = 'lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a';
     }
 }
 // ----
-// TypeError 6520: (129-130): Cannot assign to a constant variable.
-// TypeError 6520: (153-154): Cannot assign to a constant variable.
+// TypeError 6520: (197-198): Cannot assign to a constant variable.
+// TypeError 6520: (255-256): Cannot assign to a constant variable.

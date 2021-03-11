@@ -62,27 +62,63 @@ contract C {
 // ====
 // SMTIgnoreCex: yes
 // ----
-// Warning 6328: (545-576): CHC: Assertion violation happens here.
-// Warning 6328: (580-610): CHC: Assertion violation happens here.
-// Warning 6328: (614-645): CHC: Assertion violation happens here.
-// Warning 6328: (649-681): CHC: Assertion violation happens here.
-// Warning 6328: (685-715): CHC: Assertion violation happens here.
-// Warning 6328: (719-752): CHC: Assertion violation happens here.
-// Warning 6328: (756-795): CHC: Assertion violation happens here.
-// Warning 6328: (799-827): CHC: Assertion violation happens here.
-// Warning 6328: (831-853): CHC: Assertion violation happens here.
-// Warning 6328: (857-883): CHC: Assertion violation happens here.
-// Warning 6328: (887-916): CHC: Assertion violation happens here.
-// Warning 6328: (920-947): CHC: Assertion violation happens here.
-// Warning 6328: (986-1017): CHC: Assertion violation happens here.
-// Warning 6328: (1021-1051): CHC: Assertion violation happens here.
-// Warning 6328: (1055-1086): CHC: Assertion violation happens here.
-// Warning 6328: (1090-1122): CHC: Assertion violation happens here.
-// Warning 6328: (1126-1156): CHC: Assertion violation happens here.
-// Warning 6328: (1160-1193): CHC: Assertion violation happens here.
-// Warning 6328: (1197-1236): CHC: Assertion violation happens here.
-// Warning 6328: (1240-1268): CHC: Assertion violation happens here.
-// Warning 6328: (1272-1294): CHC: Assertion violation happens here.
-// Warning 6328: (1298-1324): CHC: Assertion violation happens here.
-// Warning 6328: (1328-1357): CHC: Assertion violation happens here.
-// Warning 6328: (1361-1388): CHC: Assertion violation happens here.
+// Warning 6328: (545-576): CHC: Assertion violation might happen here.
+// Warning 6328: (580-610): CHC: Assertion violation might happen here.
+// Warning 6328: (614-645): CHC: Assertion violation might happen here.
+// Warning 6328: (649-681): CHC: Assertion violation might happen here.
+// Warning 6328: (685-715): CHC: Assertion violation might happen here.
+// Warning 6328: (719-752): CHC: Assertion violation might happen here.
+// Warning 6328: (756-795): CHC: Assertion violation might happen here.
+// Warning 6328: (799-827): CHC: Assertion violation might happen here.
+// Warning 6328: (831-853): CHC: Assertion violation might happen here.
+// Warning 6328: (857-883): CHC: Assertion violation might happen here.
+// Warning 6328: (887-916): CHC: Assertion violation might happen here.
+// Warning 6328: (920-947): CHC: Assertion violation might happen here.
+// Warning 6328: (986-1017): CHC: Assertion violation might happen here.
+// Warning 6328: (1021-1051): CHC: Assertion violation might happen here.
+// Warning 6328: (1055-1086): CHC: Assertion violation might happen here.
+// Warning 6328: (1090-1122): CHC: Assertion violation might happen here.
+// Warning 6328: (1126-1156): CHC: Assertion violation might happen here.
+// Warning 6328: (1160-1193): CHC: Assertion violation might happen here.
+// Warning 6328: (1197-1236): CHC: Assertion violation might happen here.
+// Warning 6328: (1240-1268): CHC: Assertion violation might happen here.
+// Warning 6328: (1272-1294): CHC: Assertion violation might happen here.
+// Warning 6328: (1298-1324): CHC: Assertion violation might happen here.
+// Warning 6328: (1328-1357): CHC: Assertion violation might happen here.
+// Warning 6328: (1361-1388): CHC: Assertion violation might happen here.
+// Warning 4661: (986-1017): BMC: Assertion violation happens here.
+// Warning 4661: (1021-1051): BMC: Assertion violation happens here.
+// Warning 4661: (1055-1086): BMC: Assertion violation happens here.
+// Warning 4661: (1090-1122): BMC: Assertion violation happens here.
+// Warning 4661: (1126-1156): BMC: Assertion violation happens here.
+// Warning 4661: (1160-1193): BMC: Assertion violation happens here.
+// Warning 4661: (1197-1236): BMC: Assertion violation happens here.
+// Warning 4661: (1240-1268): BMC: Assertion violation happens here.
+// Warning 4661: (1272-1294): BMC: Assertion violation happens here.
+// Warning 4661: (1298-1324): BMC: Assertion violation happens here.
+// Warning 4661: (1328-1357): BMC: Assertion violation happens here.
+// Warning 4661: (1361-1388): BMC: Assertion violation happens here.
+// Warning 4661: (545-576): BMC: Assertion violation happens here.
+// Warning 4661: (580-610): BMC: Assertion violation happens here.
+// Warning 4661: (614-645): BMC: Assertion violation happens here.
+// Warning 4661: (649-681): BMC: Assertion violation happens here.
+// Warning 4661: (685-715): BMC: Assertion violation happens here.
+// Warning 4661: (719-752): BMC: Assertion violation happens here.
+// Warning 4661: (756-795): BMC: Assertion violation happens here.
+// Warning 4661: (799-827): BMC: Assertion violation happens here.
+// Warning 4661: (831-853): BMC: Assertion violation happens here.
+// Warning 4661: (857-883): BMC: Assertion violation happens here.
+// Warning 4661: (887-916): BMC: Assertion violation happens here.
+// Warning 4661: (920-947): BMC: Assertion violation happens here.
+// Warning 4661: (986-1017): BMC: Assertion violation happens here.
+// Warning 4661: (1021-1051): BMC: Assertion violation happens here.
+// Warning 4661: (1055-1086): BMC: Assertion violation happens here.
+// Warning 4661: (1090-1122): BMC: Assertion violation happens here.
+// Warning 4661: (1126-1156): BMC: Assertion violation happens here.
+// Warning 4661: (1160-1193): BMC: Assertion violation happens here.
+// Warning 4661: (1197-1236): BMC: Assertion violation happens here.
+// Warning 4661: (1240-1268): BMC: Assertion violation happens here.
+// Warning 4661: (1272-1294): BMC: Assertion violation happens here.
+// Warning 4661: (1298-1324): BMC: Assertion violation happens here.
+// Warning 4661: (1328-1357): BMC: Assertion violation happens here.
+// Warning 4661: (1361-1388): BMC: Assertion violation happens here.

@@ -15,4 +15,5 @@ contract C {
 	}
 }
 // ----
-// Warning 6328: (225-245): CHC: Assertion violation happens here.\nCounterexample:\n\ns1 = {x: 2, a: []}\ns2 = {x: 3, a: [6, 6, 6, 6, 6, 6, 6]}\n\n\nTransaction trace:\nconstructor()\nf({x: 0, a: []}, {x: 3, a: [6, 6, 6, 6, 6, 6, 6]})
+// Warning 6328: (225-245): CHC: Assertion violation might happen here.
+// Warning 4661: (225-245): BMC: Assertion violation happens here.

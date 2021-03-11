@@ -35,80 +35,21 @@ BOOST_AUTO_TEST_SUITE(Checksum)
 
 BOOST_AUTO_TEST_CASE(calculate)
 {
-	BOOST_CHECK(passesAddressChecksum("0x5aaeb6053f3e94c9b9a09f33669435e7ef1beaed"));
-	BOOST_CHECK(passesAddressChecksum("0x0123456789abcdefABCDEF0123456789abcdefAB"));
+	BOOST_CHECK(passesAddressChecksum("lat1t2htvpfl862vnwdqnuekd9p4ulh3h6hdsp5yua"));
+	BOOST_CHECK(passesAddressChecksum("lat1qy352euf40x7l27dauqjx3t83x4ummat8uyg9w"));
 	// too short
-	BOOST_CHECK(!passesAddressChecksum("0x5aaeb6053f3e94c9b9a09f33669435e7ef1beae"));
-	BOOST_CHECK(!passesAddressChecksum("5aaeb6053f3e94c9b9a09f33669435e7ef1beae"));
+	BOOST_CHECK(!passesAddressChecksum("lat1qk4wkczn7055exu6p8env6el0r04wfzhcuy"));
+	BOOST_CHECK(!passesAddressChecksum("lat1qk4wkcznexu6p8env62rtel0r04wfzhcuy"));
 	// too long
-	BOOST_CHECK(!passesAddressChecksum("0x5aaeb6053f3e94c9b9a09f33669435e7ef1beaed1"));
-	BOOST_CHECK(!passesAddressChecksum("5aaeb6053f3e94c9b9a09f33669435e7ef1beaed1"));
-	// non-hex character
-	BOOST_CHECK(!passesAddressChecksum("0x5aaeb6053f3e94c9b9a09f33669435e7ef1beaeK"));
-
-	// the official test suite from EIP-55
-	vector<string> cases {
-		// all upper case
-		"0x52908400098527886E0F7030069857D2E4169EE7",
-		"0x8617E340B3D01FA5F11F306F4090FD50E238070D",
-		// all lower case
-		"0xde709f2102306220921060314715629080e2fb77",
-		"0x27b1fdb04752bbc536007a920d24acb045561c26",
-		// regular
-		"0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed",
-		"0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359",
-		"0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB",
-		"0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb"
-	};
-
-	for (size_t i = 0; i < cases.size(); i++)
-		BOOST_REQUIRE_MESSAGE(passesAddressChecksum(cases[i]), cases[i]);
+	BOOST_CHECK(!passesAddressChecksum("lat14t4kq5lna9xfhxsf7akjsdhvmxjs670mcmatk3wa9ql8"));
 }
 
 BOOST_AUTO_TEST_CASE(regular)
 {
-	BOOST_CHECK(passesAddressChecksum("0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed"));
-	BOOST_CHECK(passesAddressChecksum("0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359"));
-	BOOST_CHECK(passesAddressChecksum("0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB"));
-	BOOST_CHECK(passesAddressChecksum("0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb"));
-}
-
-BOOST_AUTO_TEST_CASE(regular_negative)
-{
-	BOOST_CHECK(!passesAddressChecksum("0x6aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed"));
-	BOOST_CHECK(!passesAddressChecksum("0xeB6916095ca1df60bB79Ce92cE3Ea74c37c5d359"));
-	BOOST_CHECK(!passesAddressChecksum("0xebF03B407c01E7cD3CBea99509d93f8DDDC8C6FB"));
-	BOOST_CHECK(!passesAddressChecksum("0xE1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb"));
-}
-
-BOOST_AUTO_TEST_CASE(regular_invalid_length)
-{
-	BOOST_CHECK(passesAddressChecksum("0x9426cbfc57389778d313268E7F85F1CDc2fdad60"));
-	BOOST_CHECK(!passesAddressChecksum("0x9426cbfc57389778d313268E7F85F1CDc2fdad6"));
-	BOOST_CHECK(passesAddressChecksum("0x08A61851FFa4637dE289D630Ae8c5dFb0ff9171F"));
-	BOOST_CHECK(!passesAddressChecksum("0x8A61851FFa4637dE289D630Ae8c5dFb0ff9171F"));
-	BOOST_CHECK(passesAddressChecksum("0x00c40cC30cb4675673c9ee382de805c19734986A"));
-	BOOST_CHECK(!passesAddressChecksum("0xc40cC30cb4675673c9ee382de805c19734986A"));
-	BOOST_CHECK(passesAddressChecksum("0xC40CC30cb4675673C9ee382dE805c19734986a00"));
-	BOOST_CHECK(!passesAddressChecksum("0xC40CC30cb4675673C9ee382dE805c19734986a"));
-}
-
-BOOST_AUTO_TEST_CASE(homocaps_valid)
-{
-	BOOST_CHECK(passesAddressChecksum("0x52908400098527886E0F7030069857D2E4169EE7"));
-	BOOST_CHECK(passesAddressChecksum("0x8617E340B3D01FA5F11F306F4090FD50E238070D"));
-	BOOST_CHECK(passesAddressChecksum("0xde709f2102306220921060314715629080e2fb77"));
-	BOOST_CHECK(passesAddressChecksum("0x27b1fdb04752bbc536007a920d24acb045561c26"));
-}
-
-BOOST_AUTO_TEST_CASE(homocaps_invalid)
-{
-	string upper = "0x00AA0000000012400000000DDEEFF000000000BB";
-	BOOST_CHECK(passesAddressChecksum(upper));
-	BOOST_CHECK(!passesAddressChecksum(upper));
-	string lower = "0x11aa000000000000000d00cc00000000000000bb";
-	BOOST_CHECK(passesAddressChecksum(lower));
-	BOOST_CHECK(!passesAddressChecksum(lower));
+	BOOST_CHECK(passesAddressChecksum("lat1t2htvpfl862vnwdqnuekd9p4ulh3h6hdsp5yua"));
+	BOOST_CHECK(passesAddressChecksum("lat1ld53vz2u580kpwmee6fvu048fsmut56ec7zrug"));
+	BOOST_CHECK(passesAddressChecksum("lat1m0crksruq8nu60974x2snkfl3hwu33hm2urhnd"));
+	BOOST_CHECK(passesAddressChecksum("lat16y3q5r8503aeheazu6agnapfwch8hxkmd5t6ze"));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

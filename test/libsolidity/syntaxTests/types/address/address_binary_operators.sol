@@ -9,7 +9,7 @@ contract C {
     }
 }
 // ----
-// TypeError 2271: (85-108): Operator + not compatible with types address payable and address payable. Arithmetic operations on addresses are not supported. Convert to integer first before using them.
-// TypeError 2271: (122-145): Operator - not compatible with types address payable and address payable. Arithmetic operations on addresses are not supported. Convert to integer first before using them.
-// TypeError 2271: (159-182): Operator * not compatible with types address payable and address payable. Arithmetic operations on addresses are not supported. Convert to integer first before using them.
-// TypeError 2271: (196-219): Operator / not compatible with types address payable and address payable. Arithmetic operations on addresses are not supported. Convert to integer first before using them.
+// TypeError 2271: (85-194): Operator + not compatible with types address and address. Arithmetic operations on addresses are not supported. Convert to integer first before using them.
+// TypeError 2271: (208-317): Operator - not compatible with types address and address. Arithmetic operations on addresses are not supported. Convert to integer first before using them.
+// TypeError 2271: (331-440): Operator * not compatible with types address and address. Arithmetic operations on addresses are not supported. Convert to integer first before using them.
+// TypeError 2271: (454-563): Operator / not compatible with types address and address. Arithmetic operations on addresses are not supported. Convert to integer first before using them.
