@@ -43,12 +43,8 @@ namespace solidity::test
 using rational = boost::rational<bigint>;
 
 // The lat and gvon denominations; here for ease of use where needed within code.
-static const u256 von = 1;
-static const u256 shannon = u256("1000000000");
-static const u256 gvon = shannon;
-static const u256 szabo = shannon * 1000;
-static const u256 finney = szabo * 1000;
-static const u256 lat = finney * 1000;
+static const u256 gvon = u256(1) << 9;
+static const u256 lat = u256(1) << 18;
 
 class ExecutionFramework
 {
