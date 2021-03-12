@@ -1,6 +1,5 @@
-address constant e = 'lat1zgfpyysjzgfpyysjzgfpqqqqyy69jvtr6eus56';
-
 contract C {
+address constant e = 'lat1zgfpyysjzgfpyysjzgfpqqqqyy69jvtr6eus56';
   function f() pure public returns (address z) {
     assembly { z := e }
   }
