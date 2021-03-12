@@ -9,3 +9,4 @@ contract C
 }
 // ----
 // Warning 4984: (115-120): CHC: Overflow (resulting value larger than 2**256 - 1) happens here.
+// Warning 6838: (115-125): BMC: Condition is always true.

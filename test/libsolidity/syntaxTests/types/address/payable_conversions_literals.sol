@@ -4,9 +4,9 @@ contract C {
         address payable a = payable(0);
 
         // address literals have type address
-        address payable b = payable(0x00000000219ab540356cBB839Cbe05303d7705Fa);
+        address payable b = payable('lat1qqqqqqppn265qdtvhwpee0s9xq7hwp06c43w0a');
 
-        address payable c = payable(address(2));
+        address payable c = payable(address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqz8stlfs'));
 
         a; b; c;
     }

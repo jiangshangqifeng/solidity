@@ -17,7 +17,7 @@ contract C {
 // compileViaYul: also
 // EVMVersion: >=byzantium
 // ----
-// constructor(), 20 wei
+// constructor(), 20 von
 // f(uint256): 20 -> 1370859564726510389319704988634906228201275401179
 // x() -> 1
 // f(uint256): 20 -> FAILURE

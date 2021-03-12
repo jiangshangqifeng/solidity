@@ -10,4 +10,3 @@ contract C {
 	}
 }
 // ----
-// Warning 6838: (161-171): BMC: Condition is always true.

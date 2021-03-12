@@ -401,8 +401,8 @@
                         "src": "247:44:1",
                         "typeDescriptions":
                         {
-                          "typeIdentifier": "t_address_payable",
-                          "typeString": "address payable"
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
                         },
                         "value": "lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a"
                       }
@@ -412,8 +412,8 @@
                       "argumentTypes":
                       [
                         {
-                          "typeIdentifier": "t_address_payable",
-                          "typeString": "address payable"
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
                         }
                       ],
                       "id": 32,

@@ -22,15 +22,7 @@ contract C {
 }
 // ----
 // Warning 6328: (284-314): CHC: Assertion violation happens here.
-// Warning 1218: (379-409): CHC: Error trying to invoke SMT solver.
-// Warning 6328: (379-409): CHC: Assertion violation might happen here.
-// Warning 1218: (563-593): CHC: Error trying to invoke SMT solver.
-// Warning 6328: (563-593): CHC: Assertion violation might happen here.
-// Warning 1218: (659-689): CHC: Error trying to invoke SMT solver.
-// Warning 6328: (659-689): CHC: Assertion violation might happen here.
-// Warning 1218: (778-808): CHC: Error trying to invoke SMT solver.
-// Warning 6328: (778-808): CHC: Assertion violation might happen here.
-// Warning 4661: (379-409): BMC: Assertion violation happens here.
-// Warning 4661: (563-593): BMC: Assertion violation happens here.
-// Warning 4661: (659-689): BMC: Assertion violation happens here.
-// Warning 4661: (778-808): BMC: Assertion violation happens here.
+// Warning 6328: (379-409): CHC: Assertion violation happens here.
+// Warning 6328: (563-593): CHC: Assertion violation happens here.
+// Warning 6328: (659-689): CHC: Assertion violation happens here.
+// Warning 6328: (778-808): CHC: Assertion violation happens here.

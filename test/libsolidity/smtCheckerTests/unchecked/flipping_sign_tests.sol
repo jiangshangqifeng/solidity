@@ -9,4 +9,4 @@ contract test {
     }
 }
 // ----
-// Warning 6328: (143-158): CHC: Assertion violation happens here.\nCounterexample:\n\n = false\n\nTransaction trace:\ntest.constructor()\ntest.f()
+// Warning 6328: (143-158): CHC: Assertion violation happens here.

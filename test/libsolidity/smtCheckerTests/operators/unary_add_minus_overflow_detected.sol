@@ -21,6 +21,7 @@ contract C {
     */
 }
 // ----
+// Warning 1218: (87-90): CHC: Error trying to invoke SMT solver.
 // Warning 4984: (87-90): CHC: Overflow (resulting value larger than 255) might happen here.
 // Warning 3944: (127-130): CHC: Underflow (resulting value less than 0) happens here.
 // Warning 2661: (87-90): BMC: Overflow (resulting value larger than 255) happens here.

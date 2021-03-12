@@ -7,4 +7,4 @@ contract C {
     }
 }
 // ----
-// TypeError 4487: (218-219): No unique declaration found after argument-dependent lookup.
+// TypeError 4487: (227-228): No unique declaration found after argument-dependent lookup.

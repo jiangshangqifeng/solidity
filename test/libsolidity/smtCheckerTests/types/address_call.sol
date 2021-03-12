@@ -19,10 +19,12 @@ contract C
 // EVMVersion: >spuriousDragon
 // ----
 // Warning 2072: (224-240): Unused local variable.
+// Warning 4588: (244-256): Assertion checker does not yet implement this type of function call.
 // Warning 6328: (260-275): CHC: Assertion violation might happen here.
 // Warning 6328: (279-293): CHC: Assertion violation might happen here.
 // Warning 6328: (297-316): CHC: Assertion violation might happen here.
 // Warning 6328: (320-344): CHC: Assertion violation might happen here.
+// Warning 4588: (244-256): Assertion checker does not yet implement this type of function call.
 // Warning 4661: (260-275): BMC: Assertion violation happens here.
 // Warning 4661: (279-293): BMC: Assertion violation happens here.
 // Warning 4661: (297-316): BMC: Assertion violation happens here.

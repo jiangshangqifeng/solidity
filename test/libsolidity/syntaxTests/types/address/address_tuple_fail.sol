@@ -5,5 +5,4 @@ contract C {
     }
 }
 // ----
-// TypeError 9574: (91-194): Type address is not implicitly convertible to expected type address payable.
 // TypeError 7407: (212-217): Type tuple(address,address payable) is not implicitly convertible to expected type tuple(address payable,address).

@@ -14,4 +14,3 @@ contract C
 }
 // ----
 // Warning 4984: (120-125): CHC: Overflow (resulting value larger than 255) happens here.
-// Warning 4984: (163-168): CHC: Overflow (resulting value larger than 255) happens here.

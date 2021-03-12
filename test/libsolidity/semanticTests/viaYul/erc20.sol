@@ -102,4 +102,4 @@ contract ERC20 {
 // decreaseAllowance(address,uint256): 2, 0 -> true
 // decreaseAllowance(address,uint256): 2, 1 -> FAILURE, hex"4e487b71", 0x11
 // transfer(address,uint256): 2, 14 -> true
-// transfer(address,uint256): 2, 2 -> FAILURE
+// transfer(address,uint256): 2, 2 -> FAILURE, hex"4e487b71", 0x11

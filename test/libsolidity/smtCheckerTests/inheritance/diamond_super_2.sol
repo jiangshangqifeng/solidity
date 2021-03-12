@@ -29,5 +29,5 @@ contract D is B, C {
 	}
 }
 // ----
-// Warning 6328: (475-490): CHC: Assertion violation happens here.\nCounterexample:\n\nr = 22\n\nTransaction trace:\nD.constructor()\nD.f()\n    C.f() -- internal call\n        B.f() -- internal call\n            A.f() -- internal call
-// Warning 6328: (509-524): CHC: Assertion violation happens here.\nCounterexample:\n\nr = 22\n\nTransaction trace:\nD.constructor()\nD.f()\n    C.f() -- internal call\n        B.f() -- internal call\n            A.f() -- internal call
+// Warning 6328: (475-490): CHC: Assertion violation happens here.
+// Warning 6328: (509-524): CHC: Assertion violation happens here.

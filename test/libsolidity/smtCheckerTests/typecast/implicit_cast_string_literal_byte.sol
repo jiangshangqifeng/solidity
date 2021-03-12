@@ -13,5 +13,5 @@ contract C {
 	function g(bytes1 b) internal pure {}
 }
 // ----
-// Warning 6328: (182-203): CHC: Assertion violation happens here.
-// Warning 4661: (182-203): BMC: Assertion violation happens here.
+// Warning 6328: (186-207): CHC: Assertion violation might happen here.
+// Warning 4661: (186-207): BMC: Assertion violation happens here.

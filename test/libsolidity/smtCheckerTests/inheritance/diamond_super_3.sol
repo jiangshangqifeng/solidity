@@ -32,4 +32,4 @@ contract E is C,D {
 	}
 }
 // ----
-// Warning 6328: (412-427): CHC: Assertion violation happens here.\nCounterexample:\nx = 111\n\nTransaction trace:\nE.constructor()\nState: x = 0\nE.f()\n    C.f() -- internal call\n        B.f() -- internal call\n            A.f() -- internal call
+// Warning 6328: (412-427): CHC: Assertion violation happens here.

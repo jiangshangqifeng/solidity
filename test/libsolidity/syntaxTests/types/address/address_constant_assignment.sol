@@ -7,5 +7,5 @@ contract C {
     }
 }
 // ----
-// TypeError 6520: (197-198): Cannot assign to a constant variable.
-// TypeError 6520: (255-256): Cannot assign to a constant variable.
+// TypeError 6520: (215-216): Cannot assign to a constant variable.
+// TypeError 6520: (282-283): Cannot assign to a constant variable.

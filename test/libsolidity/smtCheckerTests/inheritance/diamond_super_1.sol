@@ -28,4 +28,4 @@ contract D is B, C {
 	}
 }
 // ----
-// Warning 6328: (469-484): CHC: Assertion violation happens here.\nCounterexample:\n\nr = 15\n\nTransaction trace:\nD.constructor()\nD.f()\n    C.f() -- internal call\n        B.f() -- internal call\n            A.f() -- internal call
+// Warning 6328: (469-484): CHC: Assertion violation happens here.

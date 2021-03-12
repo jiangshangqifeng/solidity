@@ -20,6 +20,8 @@ contract C {
 // SMTIgnoreCex: yes
 // ----
 // Warning 7737: (203-238): Inline assembly may cause SMTChecker to produce spurious warnings (false positives).
-// Warning 6328: (241-262): CHC: Assertion violation happens here.
-// Warning 6328: (281-302): CHC: Assertion violation happens here.
+// Warning 6328: (241-262): CHC: Assertion violation might happen here.
+// Warning 6328: (281-302): CHC: Assertion violation might happen here.
 // Warning 7737: (203-238): Inline assembly may cause SMTChecker to produce spurious warnings (false positives).
+// Warning 4661: (241-262): BMC: Assertion violation happens here.
+// Warning 4661: (281-302): BMC: Assertion violation happens here.

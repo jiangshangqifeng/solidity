@@ -173,8 +173,8 @@ void checkCallGraphExpectations(
 
 ostream& operator<<(ostream& _out, EdgeNames const& _edgeNames)
 {
-	for (auto const& edge: _edgeNames | to<vector>() | actions::sort(std::less()))
-		_out << "    " << get<0>(edge) << " -> " << get<1>(edge) << endl;
+	for (auto&& [from, to]: _edgeNames)
+		_out << "    " << from << " -> " << to << endl;
 	return _out;
 }
 
