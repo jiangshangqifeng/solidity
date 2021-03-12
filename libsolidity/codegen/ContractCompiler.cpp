@@ -139,9 +139,9 @@ void ContractCompiler::initializeContext(
 
 void ContractCompiler::appendCallValueCheck()
 {
-	// Throw if function is not payable but call contained ether.
+	// Throw if function is not payable but call contained lat.
 	m_context << Instruction::CALLVALUE;
-	m_context.appendConditionalRevert(false, "Ether sent to non-payable function");
+	m_context.appendConditionalRevert(false, "Lat sent to non-payable function");
 }
 
 void ContractCompiler::appendInitAndConstructorCode(ContractDefinition const& _contract)
@@ -415,7 +415,7 @@ void ContractCompiler::appendFunctionSelector(ContractDefinition const& _contrac
 	solAssert(!_contract.isLibrary() || !fallback, "Libraries can't have fallback functions");
 
 	FunctionDefinition const* etherReceiver = _contract.receiveFunction();
-	solAssert(!_contract.isLibrary() || !etherReceiver, "Libraries can't have ether receiver functions");
+	solAssert(!_contract.isLibrary() || !etherReceiver, "Libraries can't have lat receiver functions");
 
 	bool needToAddCallvalueCheck = true;
 	if (!hasPayableFunctions(_contract) && !interfaceFunctions.empty() && !_contract.isLibrary())
@@ -425,11 +425,11 @@ void ContractCompiler::appendFunctionSelector(ContractDefinition const& _contrac
 	}
 
 	evmasm::AssemblyItem notFoundOrReceiveEther = m_context.newTag();
-	// If there is neither a fallback nor a receive ether function, we only need one label to jump to, which
+	// If there is neither a fallback nor a receive lat function, we only need one label to jump to, which
 	// always reverts.
 	evmasm::AssemblyItem notFound = (!fallback && !etherReceiver) ? notFoundOrReceiveEther : m_context.newTag();
 
-	// directly jump to fallback or ether receiver if the data is too short to contain a function selector
+	// directly jump to fallback or lat receiver if the data is too short to contain a function selector
 	// also guards against short data
 	m_context << u256(4) << Instruction::CALLDATASIZE << Instruction::LT;
 	m_context.appendConditionalJumpTo(notFoundOrReceiveEther);

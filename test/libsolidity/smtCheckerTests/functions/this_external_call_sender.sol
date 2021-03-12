@@ -17,7 +17,7 @@ contract C {
         this.g();
         assert(lastCaller == address(this));
         assert(lastCaller == msg.sender);
-        assert(lastCaller == address(0));
+        assert(lastCaller == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'));
     }
 
     function g() log public {
@@ -27,4 +27,4 @@ contract C {
 // SMTIgnoreCex: yes
 // ----
 // Warning 6328: (347-379): CHC: Assertion violation happens here.
-// Warning 6328: (389-421): CHC: Assertion violation happens here.
+// Warning 6328: (389-464): CHC: Assertion violation happens here.

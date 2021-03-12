@@ -219,7 +219,7 @@ Literals and Suffixes
 
 * Trailing dots that are not followed by a number are now disallowed.
 
-* Combining hex numbers with unit denominations (e.g. ``0x1e wei``) is now
+* Combining hex numbers with unit denominations (e.g. ``0x1e von``) is now
   disallowed.
 
 * The prefix ``0X`` for hex numbers is disallowed, only ``0x`` is possible.
@@ -423,7 +423,7 @@ Old version:
 
         // No need for an explicit data location for 'arr'
         function g(uint[] arr, bytes8 x, OtherContract otherContract) public {
-            otherContract.transfer(1 ether);
+            otherContract.transfer(1 lat);
 
             // Since uint32 (4 bytes) is smaller than bytes8 (8 bytes),
             // the first 4 bytes of x will be lost. This might lead to
@@ -486,7 +486,7 @@ New version:
             // 'otherContract.transfer' is not provided.
             // Since the code of 'OtherContract' is known and has the fallback
             // function, address(otherContract) has type 'address payable'.
-            address(otherContract).transfer(1 ether);
+            address(otherContract).transfer(1 lat);
 
             // 'unknownContract.transfer' is not provided.
             // 'address(unknownContract).transfer' is not provided
@@ -498,7 +498,7 @@ New version:
             // To increase clarity, we suggest the use of a library for
             // the conversion (provided after the contract in this example).
             address payable addr = unknownContract.make_payable();
-            require(addr.send(1 ether));
+            require(addr.send(1 lat));
 
             // Since uint32 (4 bytes) is smaller than bytes8 (8 bytes),
             // the conversion is not allowed.

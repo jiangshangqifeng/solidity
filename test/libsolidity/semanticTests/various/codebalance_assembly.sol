@@ -22,7 +22,7 @@ contract C {
 // EVMVersion: >=constantinople
 // compileViaYul: also
 // ----
-// constructor(), 23 wei ->
+// constructor(), 23 von ->
 // f() -> 0
 // g() -> 1
 // h() -> 23

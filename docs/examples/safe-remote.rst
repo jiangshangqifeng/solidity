@@ -79,7 +79,7 @@ you can use state machine-like constructs inside a contract.
             require((2 * value) == msg.value, "Value has to be even.");
         }
 
-        /// Abort the purchase and reclaim the ether.
+        /// Abort the purchase and reclaim the lat.
         /// Can only be called by the seller before
         /// the contract is locked.
         function abort()
@@ -97,8 +97,8 @@ you can use state machine-like constructs inside a contract.
         }
 
         /// Confirm the purchase as buyer.
-        /// Transaction has to include `2 * value` ether.
-        /// The ether will be locked until confirmReceived
+        /// Transaction has to include `2 * value` lat.
+        /// The lat will be locked until confirmReceived
         /// is called.
         function confirmPurchase()
             public
@@ -112,7 +112,7 @@ you can use state machine-like constructs inside a contract.
         }
 
         /// Confirm that you (the buyer) received the item.
-        /// This will release the locked ether.
+        /// This will release the locked lat.
         function confirmReceived()
             public
             onlyBuyer

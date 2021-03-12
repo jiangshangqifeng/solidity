@@ -61,7 +61,7 @@ New: 'new';
 /**
  * Unit denomination for numbers.
  */
-NumberUnit: 'wei' | 'gwei' | 'ether' | 'seconds' | 'minutes' | 'hours' | 'days' | 'weeks' | 'years';
+NumberUnit: 'von' | 'gvon' | 'lat' | 'seconds' | 'minutes' | 'hours' | 'days' | 'weeks' | 'years';
 Override: 'override';
 Payable: 'payable';
 Private: 'private';

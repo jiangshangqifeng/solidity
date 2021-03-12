@@ -35,3 +35,11 @@ contract C
 // ----
 // Warning 6328: (397-417): CHC: Assertion violation happens here.
 // Warning 6328: (463-481): CHC: Assertion violation happens here.
+// Warning 6328: (709-734): CHC: Assertion violation happens here.
+// Warning 6328: (738-758): CHC: Assertion violation happens here.
+// Warning 4661: (397-417): BMC: Assertion violation happens here.
+// Warning 4661: (463-481): BMC: Assertion violation happens here.
+// Warning 4661: (397-417): BMC: Assertion violation happens here.
+// Warning 4661: (463-481): BMC: Assertion violation happens here.
+// Warning 4661: (397-417): BMC: Assertion violation happens here.
+// Warning 4661: (463-481): BMC: Assertion violation happens here.

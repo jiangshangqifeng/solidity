@@ -78,7 +78,7 @@ contract FixedFeeRegistrar is Registrar {
 
 	function reserve(string memory _name) public payable {
 		Record storage rec = m_record(_name);
-		if (rec.owner == 0x0000000000000000000000000000000000000000 && msg.value >= c_fee) {
+		if (rec.owner == 'lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a' && msg.value >= c_fee) {
 			rec.owner = msg.sender;
 			emit Changed(_name);
 		}
@@ -122,7 +122,7 @@ contract FixedFeeRegistrar is Registrar {
 	function m_record(string memory _name) view internal returns (Record storage o_record) {
 		return m_recordData[uint(keccak256(bytes(_name))) / 8];
 	}
-	uint constant c_fee = 69 ether;
+	uint constant c_fee = 69 lat;
 }
 )DELIMITER";
 
@@ -175,7 +175,7 @@ BOOST_AUTO_TEST_CASE(double_reserve)
 	BOOST_REQUIRE(callContractFunctionWithValue("reserve(string)", m_fee, encodeDyn(name)) == encodeArgs());
 	BOOST_CHECK(callContractFunction("owner(string)", encodeDyn(name)) == encodeArgs(account(0)));
 
-	sendEther(account(1), 100 * ether);
+	sendEther(account(1), 100 * lat);
 	m_sender = account(1);
 	BOOST_REQUIRE(callContractFunctionWithValue("reserve(string)", m_fee, encodeDyn(name)) == encodeArgs());
 	BOOST_CHECK(callContractFunction("owner(string)", encodeDyn(name)) == encodeArgs(account(0)));
@@ -192,7 +192,7 @@ BOOST_AUTO_TEST_CASE(properties)
 	{
 		addr++;
 		m_sender = account(0);
-		sendEther(account(count), 100 * ether);
+		sendEther(account(count), 100 * lat);
 		m_sender = account(count);
 		h160 owner = m_sender;
 		// setting by sender works
@@ -207,7 +207,7 @@ BOOST_AUTO_TEST_CASE(properties)
 		count++;
 		// but not by someone else
 		m_sender = account(0);
-		sendEther(account(count), 100 * ether);
+		sendEther(account(count), 100 * lat);
 		m_sender = account(count);
 		BOOST_CHECK(callContractFunction("owner(string)", encodeDyn(name)) == encodeArgs(owner));
 		BOOST_CHECK(callContractFunction("setAddr(string,address)", u256(0x40), addr + 1, u256(name.length()), name) == encodeArgs());

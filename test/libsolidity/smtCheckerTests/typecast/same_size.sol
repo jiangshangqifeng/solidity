@@ -17,10 +17,8 @@ contract C {
 		assert(t == 200);
 		int256 v = int256(uint256(bytes32(uint256(2**255 + 10))));
 		assert(v == -(2**255) + 10);
-		int160 a = int160(uint160(address(type(uint160).max)));
+		int160 a = int160(address('lat1llllllllllllllllllllllllllllllllcytnah'));
 		assert(a == -1);
-		int160 b = int160(uint160(address(uint160(uint(2**159 + 10)))));
-		assert(b == -(2**159) + 10);
 		D d;
 		int160 e = int160(uint160(address(d)));
 		assert(e == 0);
@@ -42,9 +40,9 @@ contract C {
 		assert(w == 2**256 - 2);
 		bytes4 b = bytes4(uint32(type(uint256).max - 1));
 		assert(uint32(b) == uint32(2**32 - 2));
-		address a = address(type(uint160).max);
+		address a = address('lat1llllllllllllllllllllllllllllllllcytnah');
 		assert(uint160(a) == uint160(2**160 - 1));
-		address c = address(0);
+		address c = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
 		assert(uint160(c) == 0);
 		D d;
 		address e = address(d);
@@ -57,8 +55,7 @@ contract C {
 		// unsigned <- unsigned
 		uint8 x = uint8(bytes1(uint8(100)));
 		assert(x == 100);
-		address a = address(0);
-		assert(a == address(uint160(0)));
+		address a = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
 		D d;
 		assert(a == address(d));
 	}

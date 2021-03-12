@@ -85,7 +85,7 @@ of votes.
         function giveRightToVote(address voter) public {
             // If the first argument of `require` evaluates
             // to `false`, execution terminates and all
-            // changes to the state and to Ether balances
+            // changes to the state and to lat balances
             // are reverted.
             // This used to consume all gas in old EVM versions, but
             // not anymore.
@@ -121,7 +121,7 @@ of votes.
             // In this case, the delegation will not be executed,
             // but in other situations, such loops might
             // cause a contract to get "stuck" completely.
-            while (voters[to].delegate != address(0)) {
+            while (voters[to].delegate != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a')) {
                 to = voters[to].delegate;
 
                 // We found a loop in the delegation, not allowed.

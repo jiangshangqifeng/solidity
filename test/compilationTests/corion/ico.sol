@@ -162,7 +162,7 @@ contract ico is safeMath {
         interest_s memory _idb;
         address _addr = beneficiary;
         uint256 _to = (block.number - startBlock) / interestBlockDelay;
-        if ( _addr == address(0x00) ) { _addr = msg.sender; }
+        if ( _addr == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a') ) { _addr = msg.sender; }
 
         require( block.number > icoDelay );
         require( ! aborted );
@@ -257,7 +257,7 @@ contract ico is safeMath {
             @premiumContractAddr    Address of the corion premium token contract
         */
         require( msg.sender == owner );
-        require( tokenAddr == address(0x00) && premiumAddr == address(0x00) );
+        require( tokenAddr == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a') && premiumAddr == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a') );
         tokenAddr = tokenContractAddr;
         premiumAddr = premiumContractAddr;
     }
@@ -281,14 +281,14 @@ contract ico is safeMath {
             If they call the contract without any function then this process will be taken place.
         */
         require( isICO() );
-        require( buy(payable(msg.sender), address(0x00)) );
+        require( buy(payable(msg.sender), address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a')) );
     }
 
     function buy(address payable beneficiaryAddress, address affilateAddress) public payable returns (bool success) {
         /*
             Buying a token
 
-            If there is not at least 0.2 ether balance on the beneficiaryAddress then the amount of the ether which was intended for the purchase will be reduced by 0.2 and that will be sent to the address of the beneficiary.
+            If there is not at least 0.2 lat balance on the beneficiaryAddress then the amount of the lat which was intended for the purchase will be reduced by 0.2 and that will be sent to the address of the beneficiary.
             From the remaining amount calculate the reward with the help of the getIcoReward function.
             Only that affiliate address is valid which has some token on it’s account.
             If there is a valid affiliate address then calculate and credit the reward as well in the following way:
@@ -300,14 +300,14 @@ contract ico is safeMath {
             @affilateAddress        The address of the person who offered who will get the referral reward. It can not be equal with the beneficiaryAddress.
         */
         require( isICO() );
-        if ( beneficiaryAddress == address(0x00)) { beneficiaryAddress = payable(msg.sender); }
+        if ( beneficiaryAddress == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a')) { beneficiaryAddress = payable(msg.sender); }
         if ( beneficiaryAddress == affilateAddress ) {
-            affilateAddress = address(0x00);
+            affilateAddress = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
         }
         uint256 _value = msg.value;
-        if ( beneficiaryAddress.balance < 0.2 ether ) {
-            require( beneficiaryAddress.send(0.2 ether) );
-            _value = safeSub(_value, 0.2 ether);
+        if ( beneficiaryAddress.balance < 0.2 lat ) {
+            require( beneficiaryAddress.send(0.2 lat) );
+            _value = safeSub(_value, 0.2 lat);
         }
         uint256 _reward = getIcoReward(_value);
         require( _reward > 0 );
@@ -317,7 +317,7 @@ contract ico is safeMath {
         totalMint = safeAdd(totalMint, _reward);
         require( foundationAddress.send(_value * 10 / 100) );
         uint256 extra;
-        if ( affilateAddress != address(0x00) && ( brought[affilateAddress].eth > 0 || interestDB[affilateAddress][0].amount > 0 ) ) {
+        if ( affilateAddress != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a') && ( brought[affilateAddress].eth > 0 || interestDB[affilateAddress][0].amount > 0 ) ) {
             affiliate[affilateAddress].weight = safeAdd(affiliate[affilateAddress].weight, _reward);
             extra = affiliate[affilateAddress].weight;
             uint256 rate;
@@ -359,12 +359,12 @@ contract ico is safeMath {
         /*
             Expected token volume at token purchase
 
-            @value The amount of ether for the purchase
+            @value The amount of lat for the purchase
             @reward Amount of the token
                 x = (value * 1e6 * USD_ETC_exchange rate / 1e4 / 1e18) * bonus percentage
                 2.700000 token = (1e18 * 1e6 * 22500 / 1e4 / 1e18) * 1.20
         */
-        reward = (value * 1e6 * icoExchangeRate / icoExchangeRateM / 1 ether) * (ICObonus() + 100) / 100;
+        reward = (value * 1e6 * icoExchangeRate / icoExchangeRateM / 1 lat) * (ICObonus() + 100) / 100;
         if ( reward < 5e6) { return 0; }
     }
 

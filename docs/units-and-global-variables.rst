@@ -2,18 +2,18 @@
 Units and Globally Available Variables
 **************************************
 
-.. index:: wei, finney, szabo, gwei, ether
+.. index:: von, finney, szabo, gvon, lat
 
-Ether Units
+lat Units
 ===========
 
-A literal number can take a suffix of ``wei``, ``gwei`` or ``ether`` to specify a subdenomination of Ether, where Ether numbers without a postfix are assumed to be Wei.
+A literal number can take a suffix of ``von``, ``gvon`` or ``lat`` to specify a subdenomination of lat, where lat numbers without a postfix are assumed to be von.
 
 ::
 
-    assert(1 wei == 1);
-    assert(1 gwei == 1e9);
-    assert(1 ether == 1e18);
+    assert(1 von == 1);
+    assert(1 gvon == 1e9);
+    assert(1 lat == 1e18);
 
 The only effect of the subdenomination suffix is a multiplication by a power of ten.
 
@@ -79,7 +79,7 @@ Block and Transaction Properties
 - ``msg.data`` (``bytes calldata``): complete calldata
 - ``msg.sender`` (``address``): sender of the message (current call)
 - ``msg.sig`` (``bytes4``): first four bytes of the calldata (i.e. function identifier)
-- ``msg.value`` (``uint``): number of wei sent with the message
+- ``msg.value`` (``uint``): number of von sent with the message
 - ``tx.gasprice`` (``uint``): gas price of the transaction
 - ``tx.origin`` (``address``): sender of the transaction (full call chain)
 
@@ -210,7 +210,7 @@ Mathematical and Cryptographic Functions
 
 .. note::
 
-    When running ``sha256``, ``ripemd160`` or ``ecrecover`` on a *private blockchain*, you might encounter Out-of-Gas. This is because these functions are implemented as "precompiled contracts" and only really exist after they receive the first message (although their contract code is hardcoded). Messages to non-existing contracts are more expensive and thus the execution might run into an Out-of-Gas error. A workaround for this problem is to first send Wei (1 for example) to each of the contracts before you use them in your actual contracts. This is not an issue on the main or test net.
+    When running ``sha256``, ``ripemd160`` or ``ecrecover`` on a *private blockchain*, you might encounter Out-of-Gas. This is because these functions are implemented as "precompiled contracts" and only really exist after they receive the first message (although their contract code is hardcoded). Messages to non-existing contracts are more expensive and thus the execution might run into an Out-of-Gas error. A workaround for this problem is to first send von (1 for example) to each of the contracts before you use them in your actual contracts. This is not an issue on the main or test net.
 
 .. index:: balance, codehash, send, transfer, call, callcode, delegatecall, staticcall
 
@@ -220,7 +220,7 @@ Members of Address Types
 ------------------------
 
 ``<address>.balance`` (``uint256``)
-    balance of the :ref:`address` in Wei
+    balance of the :ref:`address` in von
 
 ``<address>.code`` (``bytes memory``)
     code at the :ref:`address` (can be empty)
@@ -229,10 +229,10 @@ Members of Address Types
     the codehash of the :ref:`address`
 
 ``<address payable>.transfer(uint256 amount)``
-    send given amount of Wei to :ref:`address`, reverts on failure, forwards 2300 gas stipend, not adjustable
+    send given amount of von to :ref:`address`, reverts on failure, forwards 2300 gas stipend, not adjustable
 
 ``<address payable>.send(uint256 amount) returns (bool)``
-    send given amount of Wei to :ref:`address`, returns ``false`` on failure, forwards 2300 gas stipend, not adjustable
+    send given amount of von to :ref:`address`, returns ``false`` on failure, forwards 2300 gas stipend, not adjustable
 
 ``<address>.call(bytes memory) returns (bool, bytes memory)``
     issue low-level ``CALL`` with the given payload, returns success condition and return data, forwards all available gas, adjustable
@@ -252,7 +252,7 @@ For more information, see the section on :ref:`address`.
 .. warning::
     There are some dangers in using ``send``: The transfer fails if the call stack depth is at 1024
     (this can always be forced by the caller) and it also fails if the recipient runs out of gas. So in order
-    to make safe Ether transfers, always check the return value of ``send``, use ``transfer`` or even better:
+    to make safe lat transfers, always check the return value of ``send``, use ``transfer`` or even better:
     Use a pattern where the recipient withdraws the money.
 
 .. note::

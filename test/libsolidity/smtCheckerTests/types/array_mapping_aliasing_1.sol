@@ -24,4 +24,6 @@ contract C
 	}
 }
 // ----
-// Warning 6328: (421-452): CHC: Assertion violation happens here.\nCounterexample:\n\nx = 38\n\nTransaction trace:\nC.constructor()\nC.g(38)\n    C.f(map) -- internal call
+// Warning 6328: (421-452): CHC: Assertion violation happens here.
+// Warning 4661: (421-452): BMC: Assertion violation happens here.
+// Warning 4661: (421-452): BMC: Assertion violation happens here.

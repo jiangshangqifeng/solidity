@@ -10,6 +10,9 @@ contract C {
 	}
 }
 // ----
-// Warning 6328: (122-148): CHC: Assertion violation happens here.\nCounterexample:\narray2d = [[[0]]]\n\nTransaction trace:\nC.constructor()\nState: array2d = []\nC.l()
-// Warning 6328: (202-218): CHC: Assertion violation happens here.\nCounterexample:\narray2d = [[[0]]]\n\nTransaction trace:\nC.constructor()\nState: array2d = []\nC.l()
-// Warning 6328: (222-278): CHC: Assertion violation happens here.\nCounterexample:\narray2d = [[[0]]]\n\nTransaction trace:\nC.constructor()\nState: array2d = []\nC.l()
+// Warning 6328: (122-148): CHC: Assertion violation happens here.
+// Warning 6328: (202-218): CHC: Assertion violation happens here.
+// Warning 6328: (222-278): CHC: Assertion violation happens here.
+// Warning 4661: (122-148): BMC: Assertion violation happens here.
+// Warning 4661: (202-218): BMC: Assertion violation happens here.
+// Warning 4661: (222-278): BMC: Assertion violation happens here.

@@ -1,8 +1,8 @@
 contract C {
     function f() pure public {
-        address x = 0xA0bFc97E48458494Ccd857e1A85DC91F7F0046E;
+        address x = address('lat1pg9le9lys3vyjnxdslp4pwuj8mlqprwguzs9m');
         x;
     }
 }
 // ----
-// SyntaxError 9429: (64-105): This looks like an address but is not exactly 40 hex digits. It is 39 hex digits. If this is not used as an address, please prepend '00'. For more information please see https://docs.soliditylang.org/en/develop/types.html#address-literals
+// TypeError 9640: (64-116): Explicit type conversion not allowed from "literal_string "lat1pg9le9lys3vyjnxdslp4pwuj8mlqprwguzs9m"" to "address".

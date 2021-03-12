@@ -22,9 +22,9 @@ Silent Changes of the Semantics
 Changes to the Syntax
 =====================
 
-* In external function and contract creation calls, Ether and gas is now specified using a new syntax:
-  ``x.f{gas: 10000, value: 2 ether}(arg1, arg2)``.
-  The old syntax -- ``x.f.gas(10000).value(2 ether)(arg1, arg2)`` -- will cause an error.
+* In external function and contract creation calls, lat and gas is now specified using a new syntax:
+  ``x.f{gas: 10000, value: 2 lat}(arg1, arg2)``.
+  The old syntax -- ``x.f.gas(10000).value(2 lat)(arg1, arg2)`` -- will cause an error.
 
 * The global variable ``now`` is deprecated, ``block.timestamp`` should be used instead.
   The single identifier ``now`` is too generic for a global variable and could give the impression
@@ -34,7 +34,7 @@ Changes to the Syntax
 * NatSpec comments on variables are only allowed for public state variables and not
   for local or internal variables.
 
-* The token ``gwei`` is a keyword now (used to specify, e.g. ``2 gwei`` as a number)
+* The token ``gvon`` is a keyword now (used to specify, e.g. ``2 gvon`` as a number)
   and cannot be used as an identifier.
 
 * String literals now can only contain printable ASCII characters and this also includes a variety of
@@ -100,7 +100,7 @@ Expressions
 
 * The ``finney`` and ``szabo`` denominations are removed.
   They are rarely used and do not make the actual amount readily visible. Instead, explicit
-  values like ``1e20`` or the very common ``gwei`` can be used.
+  values like ``1e20`` or the very common ``gvon`` can be used.
 
 Declarations
 ------------

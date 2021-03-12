@@ -80,9 +80,9 @@ contract Campaign {
     )
     {
         // Validate input
-        require(   address(_eventContract) != address(0)
-                && address(_marketFactory) != address(0)
-                && address(_marketMaker) != address(0)
+        require(   address(_eventContract) != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a')
+                && address(_marketFactory) != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a')
+                && address(_marketMaker) != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a')
                 && _fee < FEE_RANGE
                 && _funding > 0
                 && block.timestamp < _deadline);

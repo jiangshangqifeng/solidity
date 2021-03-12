@@ -75,10 +75,10 @@ all function arguments have to be copied to memory.
     A function call from one contract to another does not create its own transaction,
     it is a message call as part of the overall transaction.
 
-When calling functions of other contracts, you can specify the amount of Wei or
+When calling functions of other contracts, you can specify the amount of von or
 gas sent with the call with the special options ``{value: 10, gas: 10000}``.
 Note that it is discouraged to specify gas values explicitly, since the gas costs
-of opcodes can change in the future. Any Wei you send to the contract is added
+of opcodes can change in the future. Any von you send to the contract is added
 to the total balance of that contract:
 
 ::
@@ -209,13 +209,13 @@ is compiled so recursive creation-dependencies are not possible.
         }
 
         function createAndEndowD(uint arg, uint amount) public payable {
-            // Send ether along with the creation
+            // Send lat along with the creation
             D newD = new D{value: amount}(arg);
             newD.x();
         }
     }
 
-As seen in the example, it is possible to send Ether while creating
+As seen in the example, it is possible to send lat while creating
 an instance of ``D`` using the ``value`` option, but it is not possible
 to limit the amount of gas.
 If the creation fails (due to out-of-stack, not enough balance or other problems),
@@ -696,12 +696,12 @@ The following example shows how to use an error string together with ``revert`` 
 
     contract VendingMachine {
         function buy(uint amount) public payable {
-            if (amount > msg.value / 2 ether)
-                revert("Not enough Ether provided.");
+            if (amount > msg.value / 2 lat)
+                revert("Not enough lat provided.");
             // Alternative way to do it:
             require(
-                amount <= msg.value / 2 ether,
-                "Not enough Ether provided."
+                amount <= msg.value / 2 lat,
+                "Not enough lat provided."
             );
             // Perform the purchase.
         }
@@ -716,7 +716,7 @@ If you provide the reason string directly, then the two syntax options are equiv
     ``condition`` is true.
 
 The provided string is :ref:`abi-encoded <ABI>` as if it were a call to a function ``Error(string)``.
-In the above example, ``revert("Not enough Ether provided.");`` returns the following hexadecimal as error return data:
+In the above example, ``revert("Not enough lat provided.");`` returns the following hexadecimal as error return data:
 
 .. code::
 

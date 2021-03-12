@@ -20,5 +20,6 @@ contract C {
 // ====
 // SMTIgnoreCex: yes
 // ----
-// Warning 2529: (133-142): CHC: Empty array "pop" happens here.
-// Warning 6328: (189-213): CHC: Assertion violation happens here.
+// Warning 2529: (133-142): CHC: Empty array "pop" might happen here.
+// Warning 6328: (189-213): CHC: Assertion violation might happen here.
+// Warning 4661: (189-213): BMC: Assertion violation happens here.

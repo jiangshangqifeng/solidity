@@ -25,6 +25,7 @@
 #include <libsolutil/Assertions.h>
 #include <libsolutil/Keccak256.h>
 #include <libsolutil/FixedHash.h>
+#include <libsolutil/Bech32.h>
 
 #include <boost/algorithm/string.hpp>
 
@@ -124,41 +125,17 @@ bytes solidity::util::fromHex(std::string const& _s, WhenError _throw)
 }
 
 
-bool solidity::util::passesAddressChecksum(string const& _str, bool _strict)
+bool solidity::util::passesAddressChecksum(string const& _str)
 {
-	string s = _str.substr(0, 2) == "0x" ? _str : "0x" + _str;
-
-	if (s.length() != 42)
+	if (_str.length() != 42)
 		return false;
 
-	if (!_strict && (
-		s.find_first_of("abcdef") == string::npos ||
-		s.find_first_of("ABCDEF") == string::npos
-	))
-		return true;
-
-	return s == solidity::util::getChecksummedAddress(s);
-}
-
-string solidity::util::getChecksummedAddress(string const& _addr)
-{
-	string s = _addr.substr(0, 2) == "0x" ? _addr.substr(2) : _addr;
-	assertThrow(s.length() == 40, InvalidAddress, "");
-	assertThrow(s.find_first_not_of("0123456789abcdefABCDEF") == string::npos, InvalidAddress, "");
-
-	h256 hash = keccak256(boost::algorithm::to_lower_copy(s, std::locale::classic()));
-
-	string ret = "0x";
-	for (unsigned i = 0; i < 40; ++i)
-	{
-		char addressCharacter = s[i];
-		uint8_t nibble = hash[i / 2u] >> (4u * (1u - (i % 2u))) & 0xf;
-		if (nibble >= 8)
-			ret += static_cast<char>(toupper(addressCharacter));
-		else
-			ret += static_cast<char>(tolower(addressCharacter));
+	pair<string,bytes> ret = bech32decode(boost::erase_all_copy(_str, "_"));
+	string hrp = ret.first;
+	if (hrp != "lat") {
+		return false;
 	}
-	return ret;
+	return true;
 }
 
 bool solidity::util::isValidHex(string const& _string)
@@ -182,6 +159,51 @@ bool solidity::util::isValidDecimal(string const& _string)
 	if (_string.find_first_not_of("0123456789") != string::npos)
 		return false;
 	return true;
+}
+
+/** Decode a Bech32 string. */
+pair<string, bytes> solidity::util::bech32decode(const string& str) {
+    bech32::DecodeResult r = bech32::decode(str);
+	if (r.hrp == "lat" && r.encoding == bech32::Encoding::BECH32) {
+		return make_pair(r.hrp, r.data);
+	}
+	return make_pair(string(), bytes());
+}
+
+/** Convert from one power-of-2 number base to another. */
+template<int frombits, int tobits, bool pad>
+bool convertbits(bytes& out, const bytes& in) {
+    int acc = 0;
+    int bits = 0;
+    const int maxv = (1 << tobits) - 1;
+    const int max_acc = (1 << (frombits + tobits - 1)) - 1;
+    for (size_t i = 0; i < in.size(); ++i) {
+        int value = in[i];
+        acc = ((acc << frombits) | value) & max_acc;
+        bits += frombits;
+        while (bits >= tobits) {
+            bits -= tobits;
+            out.push_back((uint8_t)((acc >> bits) & maxv));
+        }
+    }
+    if (pad) {
+        if (bits) out.push_back((acc << (tobits - bits)) & maxv);
+    } else if (bits >= frombits || ((acc << (tobits - bits)) & maxv)) {
+        return false;
+    }
+    return true;
+}
+
+/** Decode a bech32 address. */
+bytes solidity::util::decodeAddress(const std::string& hrp, const std::string& addr) {
+	pair<string, bytes> dec = solidity::util::bech32decode(addr);
+    if (dec.first != hrp || dec.second.size() < 1) return bytes();
+    bytes output;
+	bool r = convertbits<5, 8, false>(output, dec.second);
+    if (!r||output.size() < 2 || output.size() > 40 ) {
+        return bytes();
+    }
+    return output;
 }
 
 string solidity::util::formatAsStringOrNumber(string const& _value)

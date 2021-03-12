@@ -85,7 +85,7 @@ contract module {
         /*
             Replace the module for an another new module.
             This function calls the Publisher module.
-            We send every Token and ether to the new module.
+            We send every Token and lat to the new module.
 
             @newModuleAddress   New module handler address
         */
@@ -124,7 +124,7 @@ value) virtual external onlyForModuleHandler returns (bool success) {
 
             @ret    This is the module handler address or not
         */
-        if ( moduleHandlerAddress == address(0x00) ) { return true; }
+        if ( moduleHandlerAddress == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a') ) { return true; }
         if ( moduleStatus != status.Connected ) { return false; }
         return addr == moduleHandlerAddress;
     }

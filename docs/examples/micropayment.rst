@@ -4,26 +4,26 @@ Micropayment Channel
 
 In this section we will learn how to build an example implementation
 of a payment channel. It uses cryptographic signatures to make
-repeated transfers of Ether between the same parties secure, instantaneous, and
+repeated transfers of lat between the same parties secure, instantaneous, and
 without transaction fees. For the example, we need to understand how to
 sign and verify signatures, and setup the payment channel.
 
 Creating and verifying signatures
 =================================
 
-Imagine Alice wants to send a quantity of Ether to Bob, i.e.
+Imagine Alice wants to send a quantity of lat to Bob, i.e.
 Alice is the sender and the Bob is the recipient.
 
 Alice only needs to send cryptographically signed messages off-chain
 (e.g. via email) to Bob and it is similar to writing checks.
 
 Alice and Bob use signatures to authorise transactions, which is possible with smart contracts on Ethereum.
-Alice will build a simple smart contract that lets her transmit Ether, but instead of calling a function herself
+Alice will build a simple smart contract that lets her transmit lat, but instead of calling a function herself
 to initiate a payment, she will let Bob do that, and therefore pay the transaction fee.
 
 The contract will work as follows:
 
-    1. Alice deploys the ``ReceiverPays`` contract, attaching enough Ether to cover the payments that will be made.
+    1. Alice deploys the ``ReceiverPays`` contract, attaching enough Lat to cover the payments that will be made.
     2. Alice authorises a payment by signing a message with her private key.
     3. Alice sends the cryptographically signed message to Bob. The message does not need to be kept secret
        (explained later), and the mechanism for sending it does not matter.
@@ -93,7 +93,7 @@ Here is a JavaScript function that creates the proper signature for the ``Receiv
 ::
 
     // recipient is the address that should be paid.
-    // amount, in wei, specifies how much ether should be sent.
+    // amount, in von, specifies how much lat should be sent.
     // nonce can be any unique number to prevent replay attacks
     // contractAddress is used to prevent cross-contract replay attacks
     function signPayment(recipient, amount, nonce, contractAddress, callback) {
@@ -210,19 +210,19 @@ Writing a Simple Payment Channel
 
 Alice now builds a simple but complete implementation of a payment
 channel. Payment channels use cryptographic signatures to make
-repeated transfers of Ether securely, instantaneously, and without transaction fees.
+repeated transfers of lat securely, instantaneously, and without transaction fees.
 
 What is a Payment Channel?
 --------------------------
 
-Payment channels allow participants to make repeated transfers of Ether
+Payment channels allow participants to make repeated transfers of lat
 without using transactions. This means that you can avoid the delays and
 fees associated with transactions. We are going to explore a simple
 unidirectional payment channel between two parties (Alice and Bob). It involves three steps:
 
-    1. Alice funds a smart contract with Ether. This "opens" the payment channel.
-    2. Alice signs messages that specify how much of that Ether is owed to the recipient. This step is repeated for each payment.
-    3. Bob "closes" the payment channel, withdrawing his portion of the Ether and sending the remainder back to the sender.
+    1. Alice funds a smart contract with Lat. This "opens" the payment channel.
+    2. Alice signs messages that specify how much of that Lat is owed to the recipient. This step is repeated for each payment.
+    3. Bob "closes" the payment channel, withdrawing his portion of the Lat and sending the remainder back to the sender.
 
 .. note::
   Only steps 1 and 3 require Ethereum transactions, step 2 means that the sender
@@ -231,7 +231,7 @@ unidirectional payment channel between two parties (Alice and Bob). It involves 
   any number of transfers.
 
 Bob is guaranteed to receive his funds because the smart contract escrows the
-Ether and honours a valid signed message. The smart contract also enforces a
+Lat and honours a valid signed message. The smart contract also enforces a
 timeout, so Alice is guaranteed to eventually recover her funds even if the
 recipient refuses to close the channel. It is up to the participants in a payment
 channel to decide how long to keep it open. For a short-lived transaction,
@@ -244,7 +244,7 @@ Opening the Payment Channel
 ---------------------------
 
 To open the payment channel, Alice deploys the smart contract, attaching
-the Ether to be escrowed and specifying the intended recipient and a
+the lat to be escrowed and specifying the intended recipient and a
 maximum duration for the channel to exist. This is the function
 ``SimplePaymentChannel`` in the contract, at the end of this section.
 
@@ -258,11 +258,11 @@ Messages are cryptographically signed by the sender and then transmitted directl
 Each message includes the following information:
 
     * The smart contract's address, used to prevent cross-contract replay attacks.
-    * The total amount of Ether that is owed the recipient so far.
+    * The total amount of lat that is owed the recipient so far.
 
 A payment channel is closed just once, at the end of a series of transfers.
 Because of this, only one of the messages sent is redeemed. This is why
-each message specifies a cumulative total amount of Ether owed, rather than the
+each message specifies a cumulative total amount of lat owed, rather than the
 amount of the individual micropayment. The recipient will naturally choose to
 redeem the most recent message because that is the one with the highest total.
 The nonce per-message is not needed anymore, because the smart contract only
@@ -289,7 +289,7 @@ Here is the modified JavaScript code to cryptographically sign a message from th
     }
 
     // contractAddress is used to prevent cross-contract replay attacks.
-    // amount, in wei, specifies how much Ether should be sent.
+    // amount, in von, specifies how much lat should be sent.
 
     function signPayment(contractAddress, amount, callback) {
         var message = constructPaymentMessage(contractAddress, amount);
@@ -302,8 +302,8 @@ Closing the Payment Channel
 
 When Bob is ready to receive his funds, it is time to
 close the payment channel by calling a ``close`` function on the smart contract.
-Closing the channel pays the recipient the Ether they are owed and
-destroys the contract, sending any remaining Ether back to Alice. To
+Closing the channel pays the recipient the lat they are owed and
+destroys the contract, sending any remaining lat back to Alice. To
 close the channel, Bob needs to provide a message signed by Alice.
 
 The smart contract must verify that the message contains a valid signature from the sender.
@@ -317,7 +317,7 @@ carries the highest total owed. If the sender were allowed to call this function
 they could provide a message with a lower amount and cheat the recipient out of what they are owed.
 
 The function verifies the signed message matches the given parameters.
-If everything checks out, the recipient is sent their portion of the Ether,
+If everything checks out, the recipient is sent their portion of the lat,
 and the sender is sent the rest via a ``selfdestruct``.
 You can see the ``close`` function in the full contract.
 
@@ -329,7 +329,7 @@ Alice needs a way to recover her escrowed funds. An *expiration* time was set
 at the time of contract deployment. Once that time is reached, Alice can call
 ``claimTimeout`` to recover her funds. You can see the ``claimTimeout`` function in the full contract.
 
-After this function is called, Bob can no longer receive any Ether,
+After this function is called, Bob can no longer receive any lat,
 so it is important that Bob closes the channel before the expiration is reached.
 
 The full contract
@@ -372,7 +372,7 @@ The full contract
         }
 
         /// if the timeout is reached without the recipient closing the channel,
-        /// then the Ether is released back to the sender.
+        /// then the lat is released back to the sender.
         function claimTimeout() public {
             require(block.timestamp >= expiration);
             selfdestruct(sender);
@@ -447,7 +447,7 @@ The recipient should verify each message using the following process:
 
     1. Verify that the contact address in the message matches the payment channel.
     2. Verify that the new total is the expected amount.
-    3. Verify that the new total does not exceed the amount of Ether escrowed.
+    3. Verify that the new total does not exceed the amount of lat escrowed.
     4. Verify that the signature is valid and comes from the payment channel sender.
 
 We'll use the `ethereumjs-util <https://github.com/ethereumjs/ethereumjs-util>`_

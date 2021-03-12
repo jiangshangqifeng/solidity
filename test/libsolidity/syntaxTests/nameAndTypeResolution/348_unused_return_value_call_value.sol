@@ -1,7 +1,10 @@
 contract test {
     function f() public {
-        address(0x12).call{value: 2}("abc");
+        address("lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjj3r8ur").call.value(2)("abc");
+        address("lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjj3r8ur").call{value: 2}("abc");
     }
 }
 // ----
-// Warning 9302: (50-85): Return value of low-level calls not used.
+// TypeError 1621: (50-114): Using ".value(...)" is deprecated. Use "{value: ...}" instead.
+// Warning 9302: (50-124): Return value of low-level calls not used.
+// Warning 9302: (134-209): Return value of low-level calls not used.

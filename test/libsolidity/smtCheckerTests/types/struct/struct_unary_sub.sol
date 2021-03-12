@@ -19,3 +19,4 @@ contract C {
 // SMTIgnoreCex: yes
 // ----
 // Warning 6328: (240-260): CHC: Assertion violation happens here.
+// Warning 4661: (240-260): BMC: Assertion violation happens here.

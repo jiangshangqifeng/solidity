@@ -19,5 +19,7 @@ contract C
 	}
 }
 // ----
-// Warning 6328: (259-287): CHC: Assertion violation happens here.\nCounterexample:\ns = [1, 2, 3]\n\nTransaction trace:\nC.constructor()\nState: s = []\nC.f()
-// Warning 6328: (348-368): CHC: Assertion violation happens here.\nCounterexample:\ns = [1, 2, 3]\n\nTransaction trace:\nC.constructor()\nState: s = []\nC.f()
+// Warning 6328: (259-287): CHC: Assertion violation happens here.
+// Warning 6328: (348-368): CHC: Assertion violation happens here.
+// Warning 4661: (259-287): BMC: Assertion violation happens here.
+// Warning 4661: (348-368): BMC: Assertion violation happens here.

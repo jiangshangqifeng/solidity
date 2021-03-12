@@ -16,3 +16,6 @@ contract C {
 		//assert(y == x);
 	}
 }
+// ----
+// Warning 4984: (220-223): CHC: Overflow (resulting value larger than 2**256 - 1) might happen here.
+// Warning 4984: (227-230): CHC: Overflow (resulting value larger than 2**256 - 1) might happen here.

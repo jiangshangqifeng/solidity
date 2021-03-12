@@ -1,5 +1,5 @@
 contract Base {
-    address public immutable user = address(0x0);
+    address public immutable user = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
 }
 
 contract Derived is Base {}
@@ -10,4 +10,4 @@ contract Test {
     }
 }
 // ----
-// TypeError 9274: (185-210): "runtimeCode" is not available for contracts containing immutable variables.
+// TypeError 9274: (226-251): "runtimeCode" is not available for contracts containing immutable variables.

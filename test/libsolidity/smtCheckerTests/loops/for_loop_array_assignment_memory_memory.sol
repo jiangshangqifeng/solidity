@@ -21,3 +21,10 @@ contract LoopFor2 {
 // SMTIgnoreCex: yes
 // ----
 // Warning 2072: (156-171): Unused local variable.
+// Warning 1218: (252-257): CHC: Error trying to invoke SMT solver.
+// Warning 4984: (252-257): CHC: Overflow (resulting value larger than 2**256 - 1) might happen here.
+// Warning 1218: (232-238): CHC: Error trying to invoke SMT solver.
+// Warning 4984: (232-238): CHC: Overflow (resulting value larger than 2**256 - 1) might happen here.
+// Warning 6328: (373-392): CHC: Assertion violation happens here.
+// Warning 6328: (396-415): CHC: Assertion violation might happen here.
+// Warning 4661: (396-415): BMC: Assertion violation happens here.

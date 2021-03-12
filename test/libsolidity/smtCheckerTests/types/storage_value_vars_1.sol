@@ -7,16 +7,16 @@ contract C
     function f(uint x) public {
         if (x == 0)
         {
-            a = 0x0000000000000000000000000000000000000100;
+            a = 'lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqgqhtfnsy';
             b = true;
         }
         else
         {
-            a = 0x0000000000000000000000000000000000000200;
+            a = 'lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqsqjqvzwx';
             b = false;
         }
-        assert(a > 0x0000000000000000000000000000000000000000 && b);
+        assert(a > 'lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a' && b);
     }
 }
 // ----
-// Warning 6328: (362-421): CHC: Assertion violation happens here.\nCounterexample:\na = 512, b = false, c = 0\nx = 1\n\nTransaction trace:\nC.constructor()\nState: a = 0, b = false, c = 0\nC.f(1)
+// Warning 6328: (366-427): CHC: Assertion violation happens here.

@@ -329,8 +329,8 @@ Every account has a persistent key-value store mapping 256-bit words to 256-bit
 words called **storage**.
 
 Furthermore, every account has a **balance** in
-Ether (in "Wei" to be exact, ``1 ether`` is ``10**18 wei``) which can be modified by sending transactions that
-include Ether.
+lat (in "von" to be exact, ``1 lat`` is ``10**18 von``) which can be modified by sending transactions that
+include lat.
 
 .. index:: ! transaction
 
@@ -339,7 +339,7 @@ Transactions
 
 A transaction is a message that is sent from one account to another
 account (which might be the same or empty, see below).
-It can include binary data (which is called "payload") and Ether.
+It can include binary data (which is called "payload") and lat.
 
 If the target account contains code, that code is executed and
 the payload is provided as input data.
@@ -443,10 +443,10 @@ assembly documentation.
 Message Calls
 =============
 
-Contracts can call other contracts or send Ether to non-contract
+Contracts can call other contracts or send lat to non-contract
 accounts by the means of message calls. Message calls are similar
 to transactions, in that they have a source, a target, data payload,
-Ether, gas and return data. In fact, every transaction consists of
+lat, gas and return data. In fact, every transaction consists of
 a top-level message call which in turn can create further message calls.
 
 A contract can decide how much of its remaining **gas** should be sent
@@ -519,11 +519,11 @@ Deactivate and Self-destruct
 ============================
 
 The only way to remove code from the blockchain is when a contract at that
-address performs the ``selfdestruct`` operation. The remaining Ether stored
+address performs the ``selfdestruct`` operation. The remaining lat stored
 at that address is sent to a designated target and then the storage and code
 is removed from the state. Removing the contract in theory sounds like a good
-idea, but it is potentially dangerous, as if someone sends Ether to removed
-contracts, the Ether is forever lost.
+idea, but it is potentially dangerous, as if someone sends lat to removed
+contracts, the lat is forever lost.
 
 .. warning::
     Even if a contract is removed by ``selfdestruct``, it is still part of the
@@ -536,4 +536,4 @@ contracts, the Ether is forever lost.
 
 If you want to deactivate your contracts, you should instead **disable** them
 by changing some internal state which causes all functions to revert. This
-makes it impossible to use the contract, as it returns Ether immediately.
+makes it impossible to use the contract, as it returns lat immediately.

@@ -710,23 +710,24 @@ bool CommandLineInterface::parseLibraryOption(string const& _input)
 				serr() << "Note that the address must be prefixed with \"0x\"." << endl;
 				return false;
 			}
-
-			if (addrString.length() != 40)
+			
+			if (addrString.length() != 42)
 			{
-				serr() << "Invalid length for address for library \"" << libName << "\": " << addrString.length() << " instead of 40 characters." << endl;
+				serr() << "Invalid length for address for library \"" << libName << "\": " << addrString.length() << " instead of 42 characters." << endl;
 				return false;
 			}
-			if (!passesAddressChecksum(addrString, false))
+			if (!passesAddressChecksum(addrString))
 			{
 				serr() << "Invalid checksum on address for library \"" << libName << "\": " << addrString << endl;
-				serr() << "The correct checksum is " << getChecksummedAddress(addrString) << endl;
 				return false;
 			}
-			bytes binAddr = fromHex(addrString);
+
+			string addrStr = boost::erase_all_copy(addrString, "_");
+			bytes binAddr = decodeAddress("lat", addrStr);			
 			h160 address(binAddr, h160::AlignRight);
 			if (binAddr.size() > 20 || address == h160())
 			{
-				serr() << "Invalid address for library \"" << libName << "\": " << addrString << endl;
+				serr() << "Invalid address for library \"" << libName << "\": " << addrString << ",binAddr.size()=" << binAddr.size() << ", binAddr=" << toHex(binAddr) << endl;
 				return false;
 			}
 			m_libraries[libName] = address;

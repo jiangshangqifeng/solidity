@@ -812,27 +812,20 @@ bool Literal::looksLikeAddress() const
 	if (subDenomination() != SubDenomination::None)
 		return false;
 
-	if (!isHexNumber())
-		return false;
+	pair<string, bytes> ret = solidity::util::bech32decode(valueWithoutUnderscores());
 
-	return abs(int(valueWithoutUnderscores().length()) - 42) <= 1;
+	string hrp = ret.first;
+	
+	if (hrp.empty() || hrp != "lat") {
+        return false;
+    }
+
+	return true;
 }
 
 bool Literal::passesAddressChecksum() const
 {
-	solAssert(isHexNumber(), "Expected hex number");
-	return util::passesAddressChecksum(valueWithoutUnderscores(), true);
-}
-
-string Literal::getChecksummedAddress() const
-{
-	solAssert(isHexNumber(), "Expected hex number");
-	/// Pad literal to be a proper hex address.
-	string address = valueWithoutUnderscores().substr(2);
-	if (address.length() > 40)
-		return string();
-	address.insert(address.begin(), 40 - address.size(), '0');
-	return util::getChecksummedAddress(address);
+	return solidity::util::passesAddressChecksum(valueWithoutUnderscores());
 }
 
 TryCatchClause const* TryStatement::successClause() const

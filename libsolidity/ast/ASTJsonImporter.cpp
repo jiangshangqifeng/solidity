@@ -1047,12 +1047,12 @@ Literal::SubDenomination ASTJsonImporter::subdenomination(Json::Value const& _no
 
 	string const subDenStr = subDen.asString();
 
-	if (subDenStr == "wei")
-		return Literal::SubDenomination::Wei;
-	else if (subDenStr == "gwei")
-		return Literal::SubDenomination::Gwei;
-	else if (subDenStr == "ether")
-		return Literal::SubDenomination::Ether;
+	if (subDenStr == "von")
+		return Literal::SubDenomination::Von;
+	else if (subDenStr == "gvon")
+		return Literal::SubDenomination::Gvon;
+	else if (subDenStr == "lat")
+		return Literal::SubDenomination::Lat;
 	else if (subDenStr == "seconds")
 		return Literal::SubDenomination::Second;
 	else if (subDenStr == "minutes")

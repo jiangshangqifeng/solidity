@@ -50,7 +50,7 @@ contract MultiSigWallet {
     }
 
     modifier transactionExists(uint transactionId) {
-        if (transactions[transactionId].destination == address(0))
+        if (transactions[transactionId].destination == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'))
             revert();
         _;
     }
@@ -74,7 +74,7 @@ contract MultiSigWallet {
     }
 
     modifier notNull(address _address) {
-        if (_address == address(0))
+        if (_address == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'))
             revert();
         _;
     }
@@ -88,7 +88,7 @@ contract MultiSigWallet {
         _;
     }
 
-    /// @dev Receive function allows to deposit ether.
+    /// @dev Receive function allows to deposit lat.
     receive()
         external
         payable
@@ -107,7 +107,7 @@ contract MultiSigWallet {
         validRequirement(_owners.length, _required)
     {
         for (uint i=0; i<_owners.length; i++) {
-            if (isOwner[_owners[i]] || _owners[i] == address(0))
+            if (isOwner[_owners[i]] || _owners[i] == address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'))
                 revert();
             isOwner[_owners[i]] = true;
         }
@@ -181,7 +181,7 @@ contract MultiSigWallet {
 
     /// @dev Allows an owner to submit and confirm a transaction.
     /// @param destination Transaction target address.
-    /// @param value Transaction ether value.
+    /// @param value Transaction lat value.
     /// @param data Transaction data payload.
     /// @return transactionId Returns transaction ID.
     function submitTransaction(address destination, uint value, bytes memory data)
@@ -256,7 +256,7 @@ contract MultiSigWallet {
      */
     /// @dev Adds a new transaction to the transaction mapping, if transaction does not exist yet.
     /// @param destination Transaction target address.
-    /// @param value Transaction ether value.
+    /// @param value Transaction lat value.
     /// @param data Transaction data payload.
     /// @return transactionId Returns transaction ID.
     function addTransaction(address destination, uint value, bytes memory data)

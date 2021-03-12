@@ -13,6 +13,6 @@ contract C {
 // ====
 // compileViaYul: also
 // ----
-// (), 1 ether
+// (), 1 lat
 // call() -> 1, 2, 2, 2
 // bal() -> 1000000000000000000

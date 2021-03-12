@@ -1,5 +1,5 @@
 contract A {
-    address public immutable user = address(0x0);
+    address public immutable user = address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a');
 }
 
 contract Test {
@@ -8,4 +8,4 @@ contract Test {
     }
 }
 // ----
-// TypeError 9274: (153-172): "runtimeCode" is not available for contracts containing immutable variables.
+// TypeError 9274: (194-213): "runtimeCode" is not available for contracts containing immutable variables.

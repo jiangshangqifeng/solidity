@@ -4,7 +4,7 @@ contract State {
 	uint x;
 	C c;
 	function f() public returns (uint) {
-		c.setOwner(address(0));
+		c.setOwner(address(uint160(0)));
 		return c.g();
 	}
 }
@@ -36,5 +36,5 @@ contract C {
 // ====
 // SMTIgnoreCex: yes
 // ----
-// Warning 6328: (381-395): CHC: Assertion violation happens here.
-// Warning 6328: (399-425): CHC: Assertion violation happens here.
+// Warning 6328: (390-404): CHC: Assertion violation happens here.
+// Warning 6328: (408-434): CHC: Assertion violation happens here.

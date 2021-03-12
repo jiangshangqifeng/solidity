@@ -43,9 +43,9 @@ namespace solidity::test
 {
 using rational = boost::rational<bigint>;
 
-// The ether and gwei denominations; here for ease of use where needed within code.
-static const u256 gwei = u256(1) << 9;
-static const u256 ether = u256(1) << 18;
+// The lat and gvon denominations; here for ease of use where needed within code.
+static const u256 gvon = u256(1) << 9;
+static const u256 lat = u256(1) << 18;
 
 class ExecutionFramework
 {
@@ -289,7 +289,7 @@ protected:
 	bool m_transactionSuccessful = true;
 	util::h160 m_sender = account(0);
 	util::h160 m_contractAddress;
-	u256 const m_gasPrice = 10 * gwei;
+	u256 const m_gasPrice = 10 * gvon;
 	u256 const m_gas = 100000000;
 	bytes m_output;
 	u256 m_gasUsed;

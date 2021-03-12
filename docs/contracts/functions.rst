@@ -36,7 +36,7 @@ that call them, similar to internal library functions.
 .. note::
     Functions defined outside a contract are still always executed
     in the context of a contract. They still have access to the variable ``this``,
-    can call other contracts, send them Ether and destroy the contract that called them,
+    can call other contracts, send them lat and destroy the contract that called them,
     among other things. The main difference to functions defined inside a contract
     is that free functions do not have direct access to storage variables and functions
     not in their scope.
@@ -173,7 +173,7 @@ The following statements are considered modifying the state:
 #. :ref:`Emitting events <events>`.
 #. :ref:`Creating other contracts <creating-contracts>`.
 #. Using ``selfdestruct``.
-#. Sending Ether via calls.
+#. Sending lat via calls.
 #. Calling any function not marked ``view`` or ``pure``.
 #. Using low-level calls.
 #. Using inline assembly that contains certain opcodes.
@@ -264,11 +264,11 @@ This behaviour is also in line with the ``STATICCALL`` opcode.
   not do state-changing operations, but it cannot check that the contract that will be called
   at runtime is actually of that type.
 
-.. index:: ! receive ether function, function;receive ! receive
+.. index:: ! receive lat function, function;receive ! receive
 
-.. _receive-ether-function:
+.. _receive-lat-function:
 
-Receive Ether Function
+Receive lat Function
 ======================
 
 A contract can have at most one ``receive`` function, declared using
@@ -280,11 +280,11 @@ It can be virtual, can override and can have modifiers.
 
 The receive function is executed on a
 call to the contract with empty calldata. This is the function that is executed
-on plain Ether transfers (e.g. via ``.send()`` or ``.transfer()``). If no such
+on plain lat transfers (e.g. via ``.send()`` or ``.transfer()``). If no such
 function exists, but a payable :ref:`fallback function <fallback-function>`
-exists, the fallback function will be called on a plain Ether transfer. If
-neither a receive Ether nor a payable fallback function is present, the
-contract cannot receive Ether through regular transactions and throws an
+exists, the fallback function will be called on a plain lat transfer. If
+neither a receive lat nor a payable fallback function is present, the
+contract cannot receive lat through regular transactions and throws an
 exception.
 
 In the worst case, the ``receive`` function can only rely on 2300 gas being
@@ -295,29 +295,29 @@ will consume more gas than the 2300 gas stipend:
 - Writing to storage
 - Creating a contract
 - Calling an external function which consumes a large amount of gas
-- Sending Ether
+- Sending lat
 
 .. warning::
-    Contracts that receive Ether directly (without a function call, i.e. using ``send`` or ``transfer``)
-    but do not define a receive Ether function or a payable fallback function
-    throw an exception, sending back the Ether (this was different
-    before Solidity v0.4.0). So if you want your contract to receive Ether,
-    you have to implement a receive Ether function (using payable fallback functions for receiving Ether is
+    Contracts that receive lat directly (without a function call, i.e. using ``send`` or ``transfer``)
+    but do not define a receive lat function or a payable fallback function
+    throw an exception, sending back the lat (this was different
+    before Solidity v0.4.0). So if you want your contract to receive lat,
+    you have to implement a receive lat function (using payable fallback functions for receiving lat is
     not recommended, since it would not fail on interface confusions).
 
 
 .. warning::
-    A contract without a receive Ether function can receive Ether as a
+    A contract without a receive lat function can receive lat as a
     recipient of a *coinbase transaction* (aka *miner block reward*)
     or as a destination of a ``selfdestruct``.
 
-    A contract cannot react to such Ether transfers and thus also
+    A contract cannot react to such lat transfers and thus also
     cannot reject them. This is a design choice of the EVM and
     Solidity cannot work around it.
 
     It also means that ``address(this).balance`` can be higher
     than the sum of some manual accounting implemented in a
-    contract (i.e. having a counter updated in the receive Ether function).
+    contract (i.e. having a counter updated in the receive lat function).
 
 Below you can see an example of a Sink contract that uses function ``receive``.
 
@@ -326,7 +326,7 @@ Below you can see an example of a Sink contract that uses function ``receive``.
     // SPDX-License-Identifier: GPL-3.0
     pragma solidity >=0.6.0 <0.9.0;
 
-    // This contract keeps all Ether sent to it with no way
+    // This contract keeps all lat sent to it with no way
     // to get it back.
     contract Sink {
         event Received(address, uint);
@@ -350,8 +350,8 @@ and can have modifiers.
 
 The fallback function is executed on a call to the contract if none of the other
 functions match the given function signature, or if no data was supplied at
-all and there is no :ref:`receive Ether function <receive-ether-function>`.
-The fallback function always receives data, but in order to also receive Ether
+all and there is no :ref:`receive lat function <receive-lat-function>`.
+The fallback function always receives data, but in order to also receive lat
 it must be marked ``payable``.
 
 If the version with parameters is used, ``_input`` will contain the full data sent to the contract
@@ -360,7 +360,7 @@ ABI-encoded. Instead it will be returned without modifications (not even padding
 
 In the worst case, if a payable fallback function is also used in
 place of a receive function, it can only rely on 2300 gas being
-available (see :ref:`receive Ether function <receive-ether-function>`
+available (see :ref:`receive lat function <receive-lat-function>`
 for a brief description of the implications of this).
 
 Like any function, the fallback function can execute complex
@@ -368,10 +368,10 @@ operations as long as there is enough gas passed on to it.
 
 .. warning::
     A ``payable`` fallback function is also executed for
-    plain Ether transfers, if no :ref:`receive Ether function <receive-ether-function>`
-    is present. It is recommended to always define a receive Ether
+    plain lat transfers, if no :ref:`receive lat function <receive-lat-function>`
+    is present. It is recommended to always define a receive lat
     function as well, if you define a payable fallback function
-    to distinguish Ether transfers from interface confusions.
+    to distinguish lat transfers from interface confusions.
 
 .. note::
     If you want to decode the input data, you can check the first four bytes
@@ -391,7 +391,7 @@ operations as long as there is enough gas passed on to it.
     contract Test {
         // This function is called for all messages sent to
         // this contract (there is no other function).
-        // Sending Ether to this contract will cause an exception,
+        // Sending lat to this contract will cause an exception,
         // because the fallback function does not have the `payable`
         // modifier.
         fallback() external { x = 1; }
@@ -400,13 +400,13 @@ operations as long as there is enough gas passed on to it.
 
     contract TestPayable {
         // This function is called for all messages sent to
-        // this contract, except plain Ether transfers
+        // this contract, except plain lat transfers
         // (there is no other function except the receive function).
         // Any call with non-empty calldata to this contract will execute
-        // the fallback function (even if Ether is sent along with the call).
+        // the fallback function (even if lat is sent along with the call).
         fallback() external payable { x = 1; y = msg.value; }
 
-        // This function is called for plain Ether transfers, i.e.
+        // This function is called for plain lat transfers, i.e.
         // for every call with empty calldata.
         receive() external payable { x = 2; y = msg.value; }
         uint x;
@@ -424,9 +424,9 @@ operations as long as there is enough gas passed on to it.
             // It has to be converted to the ``address payable`` type to even allow calling ``send`` on it.
             address payable testPayable = payable(address(test));
 
-            // If someone sends Ether to that contract,
+            // If someone sends Lat to that contract,
             // the transfer will fail, i.e. this returns false here.
-            return testPayable.send(2 ether);
+            return testPayable.send(2 lat);
         }
 
         function callTestPayable(TestPayable test) public returns (bool) {
@@ -437,12 +437,12 @@ operations as long as there is enough gas passed on to it.
             require(success);
             // results in test.x becoming == 1 and test.y becoming 1.
 
-            // If someone sends Ether to that contract, the receive function in TestPayable will be called.
+            // If someone sends Lat to that contract, the receive function in TestPayable will be called.
             // Since that function writes to storage, it takes more gas than is available with a
             // simple ``send`` or ``transfer``. Because of that, we have to use a low-level call.
-            (success,) = address(test).call{value: 2 ether}("");
+            (success,) = address(test).call{value: 2 Lat}("");
             require(success);
-            // results in test.x becoming == 2 and test.y becoming 2 ether.
+            // results in test.x becoming == 2 and test.y becoming 2 Lat.
 
             return true;
         }

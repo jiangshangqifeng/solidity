@@ -1,7 +1,7 @@
 contract test {
     function f() pure public {
-        address(0x12).callcode;
+        address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjj3r8ur').callcode;
     }
 }
 // ----
-// TypeError 2256: (55-77): "callcode" has been deprecated in favour of "delegatecall".
+// TypeError 2256: (55-117): "callcode" has been deprecated in favour of "delegatecall".

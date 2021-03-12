@@ -4,6 +4,8 @@ set(sources
 	Assertions.h
 	Common.cpp
 	Common.h
+	Bech32.h
+	Bech32.cpp
 	CommonData.cpp
 	CommonData.h
 	CommonIO.cpp

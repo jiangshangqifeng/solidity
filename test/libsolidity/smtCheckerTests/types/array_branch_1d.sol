@@ -11,4 +11,5 @@ contract C
 	}
 }
 // ----
-// Warning 6328: (176-192): CHC: Assertion violation happens here.\nCounterexample:\n\nb = false\nc = [0, 8]\n\nTransaction trace:\nC.constructor()\nC.f(false, [38, 8])
+// Warning 2018: (47-148): Function state mutability can be restricted to pure
+// Warning 6328: (128-144): CHC: Assertion violation happens here.

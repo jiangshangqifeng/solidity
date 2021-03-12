@@ -51,7 +51,7 @@ Re-Entrancy
 ===========
 
 Any interaction from a contract (A) with another contract (B) and any transfer
-of Ether hands over control to that contract (B). This makes it possible for B
+of lat hands over control to that contract (B). This makes it possible for B
 to call back into A before this interaction is completed. To give an example,
 the following code contains a bug (it is just a snippet and not a
 complete contract):
@@ -63,7 +63,7 @@ complete contract):
 
     // THIS CONTRACT CONTAINS A BUG - DO NOT USE
     contract Fund {
-        /// @dev Mapping of ether shares of the contract.
+        /// @dev Mapping of lat shares of the contract.
         mapping(address => uint) shares;
         /// Withdraw your share.
         function withdraw() public {
@@ -73,10 +73,10 @@ complete contract):
     }
 
 The problem is not too serious here because of the limited gas as part
-of ``send``, but it still exposes a weakness: Ether transfer can always
+of ``send``, but it still exposes a weakness: lat transfer can always
 include code execution, so the recipient could be a contract that calls
 back into ``withdraw``. This would let it get multiple refunds and
-basically retrieve all the Ether in the contract. In particular, the
+basically retrieve all the lat in the contract. In particular, the
 following contract will allow an attacker to refund multiple times
 as it uses ``call`` which forwards all remaining gas by default:
 
@@ -87,7 +87,7 @@ as it uses ``call`` which forwards all remaining gas by default:
 
     // THIS CONTRACT CONTAINS A BUG - DO NOT USE
     contract Fund {
-        /// @dev Mapping of ether shares of the contract.
+        /// @dev Mapping of lat shares of the contract.
         mapping(address => uint) shares;
         /// Withdraw your share.
         function withdraw() public {
@@ -106,7 +106,7 @@ outlined further below:
     pragma solidity >=0.6.0 <0.9.0;
 
     contract Fund {
-        /// @dev Mapping of ether shares of the contract.
+        /// @dev Mapping of lat shares of the contract.
         mapping(address => uint) shares;
         /// Withdraw your share.
         function withdraw() public {
@@ -116,7 +116,7 @@ outlined further below:
         }
     }
 
-Note that re-entrancy is not only an effect of Ether transfer but of any
+Note that re-entrancy is not only an effect of lat transfer but of any
 function call on another contract. Furthermore, you also have to take
 multi-contract situations into account. A called contract could modify the
 state of another contract you depend on.
@@ -131,23 +131,23 @@ contract to be stalled at a certain point. This may not apply to ``view`` functi
 to read data from the blockchain. Still, such functions may be called by other contracts as part of on-chain operations
 and stall those. Please be explicit about such cases in the documentation of your contracts.
 
-Sending and Receiving Ether
+Sending and Receiving lat
 ===========================
 
-- Neither contracts nor "external accounts" are currently able to prevent that someone sends them Ether.
+- Neither contracts nor "external accounts" are currently able to prevent that someone sends them lat.
   Contracts can react on and reject a regular transfer, but there are ways
-  to move Ether without creating a message call. One way is to simply "mine to"
+  to move lat without creating a message call. One way is to simply "mine to"
   the contract address and the second way is using ``selfdestruct(x)``.
 
-- If a contract receives Ether (without a function being called),
-  either the :ref:`receive Ether <receive-ether-function>`
+- If a contract receives lat (without a function being called),
+  either the :ref:`receive lat <receive-lat-function>`
   or the :ref:`fallback <fallback-function>` function is executed.
-  If it does not have a receive nor a fallback function, the Ether will be
+  If it does not have a receive nor a fallback function, the lat will be
   rejected (by throwing an exception). During the execution of one of these
   functions, the contract can only rely on the "gas stipend" it is passed (2300
   gas) being available to it at that time. This stipend is not enough to modify
   storage (do not take this for granted though, the stipend might change with
-  future hard forks). To be sure that your contract can receive Ether in that
+  future hard forks). To be sure that your contract can receive lat in that
   way, check the gas requirements of the receive and fallback functions
   (for example in the "details" section in Remix).
 
@@ -159,19 +159,19 @@ Sending and Receiving Ether
   into the sending contract or other state changes you might not have thought of.
   So it allows for great flexibility for honest users but also for malicious actors.
 
-- Use the most precise units to represent the wei amount as possible, as you lose
+- Use the most precise units to represent the von amount as possible, as you lose
   any that is rounded due to a lack of precision.
 
-- If you want to send Ether using ``address.transfer``, there are certain details to be aware of:
+- If you want to send lat using ``address.transfer``, there are certain details to be aware of:
 
   1. If the recipient is a contract, it causes its receive or fallback function
      to be executed which can, in turn, call back the sending contract.
-  2. Sending Ether can fail due to the call depth going above 1024. Since the
+  2. Sending lat can fail due to the call depth going above 1024. Since the
      caller is in total control of the call depth, they can force the
      transfer to fail; take this possibility into account or use ``send`` and
      make sure to always check its return value. Better yet, write your
-     contract using a pattern where the recipient can withdraw Ether instead.
-  3. Sending Ether can also fail because the execution of the recipient
+     contract using a pattern where the recipient can withdraw lat instead.
+  3. Sending lat can also fail because the execution of the recipient
      contract requires more than the allotted amount of gas (explicitly by
      using :ref:`require <assert-and-require>`, :ref:`assert <assert-and-require>`,
      :ref:`revert <assert-and-require>` or because the
@@ -216,7 +216,7 @@ Never use tx.origin for authorization. Let's say you have a wallet contract like
         }
     }
 
-Now someone tricks you into sending Ether to the address of this attack wallet:
+Now someone tricks you into sending lat to the address of this attack wallet:
 
 ::
 
@@ -355,12 +355,12 @@ code.
 Always use the latest version of the compiler to be notified about all recently
 introduced warnings.
 
-Restrict the Amount of Ether
+Restrict the Amount of lat
 ============================
 
-Restrict the amount of Ether (or other tokens) that can be stored in a smart
+Restrict the amount of lat (or other tokens) that can be stored in a smart
 contract. If your source code, the compiler or the platform has a bug, these
-funds may be lost. If you want to limit your loss, limit the amount of Ether.
+funds may be lost. If you want to limit your loss, limit the amount of lat.
 
 Keep it Small and Modular
 =========================
@@ -375,7 +375,7 @@ Use the Checks-Effects-Interactions Pattern
 ===========================================
 
 Most functions will first perform some checks (who called the function,
-are the arguments in range, did they send enough Ether, does the person
+are the arguments in range, did they send enough lat, does the person
 have tokens, etc.). These checks should be done first.
 
 As the second step, if all checks passed, effects to the state variables
@@ -397,7 +397,7 @@ it might be a good idea, especially for new code, to include some kind
 of fail-safe mechanism:
 
 You can add a function in your smart contract that performs some
-self-checks like "Has any Ether leaked?",
+self-checks like "Has any lat leaked?",
 "Is the sum of the tokens equal to the balance of the contract?" or similar things.
 Keep in mind that you cannot use too much gas for that, so help through off-chain
 computations might be needed there.

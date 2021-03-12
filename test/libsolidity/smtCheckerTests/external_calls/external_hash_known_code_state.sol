@@ -30,10 +30,10 @@ contract C {
 	function inv() public view {
 		// This is safe but external calls do not yet support the state
 		// of the called contract.
-		assert(owner == address(0) || y != z);
+		assert(owner == address(uint160(0)) || y != z);
 	}
 }
 // ====
 // SMTIgnoreCex: yes
 // ----
-// Warning 6328: (528-565): CHC: Assertion violation happens here.
+// Warning 6328: (528-574): CHC: Assertion violation happens here.

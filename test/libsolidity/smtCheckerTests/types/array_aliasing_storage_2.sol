@@ -20,4 +20,6 @@ contract C
 	}
 }
 // ----
-// Warning 6328: (436-453): CHC: Assertion violation happens here.\nCounterexample:\n\nx = 0\ny = 0\n\nTransaction trace:\nC.constructor()\nState: array2d = []\nC.g(0, 0, c)\n    C.f([], [], c) -- internal call
+// Warning 6328: (436-453): CHC: Assertion violation might happen here.
+// Warning 4661: (436-453): BMC: Assertion violation happens here.
+// Warning 4661: (436-453): BMC: Assertion violation happens here.

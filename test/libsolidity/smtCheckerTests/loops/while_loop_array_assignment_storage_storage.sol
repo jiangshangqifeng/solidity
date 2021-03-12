@@ -20,5 +20,9 @@ contract LoopFor2 {
 	}
 }
 // ----
-// Warning 6328: (338-357): CHC: Assertion violation happens here.\nCounterexample:\nb = [], c = []\nn = 1\n\nTransaction trace:\nLoopFor2.constructor()\nState: b = [], c = []\nLoopFor2.testUnboundedForLoop(1)
-// Warning 6328: (361-380): CHC: Assertion violation happens here.\nCounterexample:\nb = [], c = []\nn = 1\n\nTransaction trace:\nLoopFor2.constructor()\nState: b = [], c = []\nLoopFor2.testUnboundedForLoop(1)
+// Warning 4984: (229-234): CHC: Overflow (resulting value larger than 2**256 - 1) might happen here.
+// Warning 4984: (255-258): CHC: Overflow (resulting value larger than 2**256 - 1) might happen here.
+// Warning 6328: (338-357): CHC: Assertion violation might happen here.
+// Warning 6328: (361-380): CHC: Assertion violation might happen here.
+// Warning 4661: (338-357): BMC: Assertion violation happens here.
+// Warning 4661: (361-380): BMC: Assertion violation happens here.

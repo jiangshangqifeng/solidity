@@ -35,7 +35,7 @@ contract FutarchyOracleFactory {
     /// @param _eventFactory Event factory contract
     constructor(EventFactory _eventFactory)
     {
-        require(address(_eventFactory) != address(0));
+        require(address(_eventFactory) != address('lat1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq542u6a'));
         eventFactory = _eventFactory;
     }
 
