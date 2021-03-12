@@ -7,4 +7,4 @@ contract C {
 // ====
 // EVMVersion: <byzantium
 // ----
-// TypeError 5052: (66-100): "staticcall" is not supported by the VM version.
+// TypeError 5052: (66-142): "staticcall" is not supported by the VM version.
