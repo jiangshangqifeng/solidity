@@ -403,13 +403,13 @@ Note:
 12 | \t\t\t\t\t\tassert(x > 0);
    | \t\t\t\t\t\t^^^^^^^^^^^^^
 Note: Counterexample:
-  a = 0
+  a = 4386
   x = 0
 
 Note: Callstack:
 Note:
 
 ","message":"BMC: Assertion violation happens here.","secondarySourceLocations":[{"message":"Counterexample:
-  a = 0
+  a = 4386
   x = 0
 "},{"message":"Callstack:"},{"message":""}],"severity":"warning","sourceLocation":{"end":289,"file":"A","start":276},"type":"Warning"}],"sources":{"A":{"id":0}}}

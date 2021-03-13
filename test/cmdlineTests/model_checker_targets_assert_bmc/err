@@ -4,7 +4,7 @@ Warning: BMC: Assertion violation happens here.
 12 | 		assert(x > 0);
    | 		^^^^^^^^^^^^^
 Note: Counterexample:
-  a = 0
+  a = 8855
   x = 0
 
 Note: Callstack:

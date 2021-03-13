@@ -81,7 +81,7 @@ Details are given in the following example.
     // instance of `owned` (as for virtual inheritance in C++).
     contract Named is Owned, Destructible {
         constructor(bytes32 name) {
-            Config config = Config(0xD5f9D8D94886E70b06E474c3fB14Fd43E2f23970);
+            Config config = Config('lat16hua3k2gsmnskphywnplk98ag030ywtsp3z5nj');
             NameReg(config.lookup(1)).register(name);
         }
 
@@ -95,7 +95,7 @@ Details are given in the following example.
         // if you want this function to be overridden again.
         function destroy() public virtual override {
             if (msg.sender == owner) {
-                Config config = Config(0xD5f9D8D94886E70b06E474c3fB14Fd43E2f23970);
+                Config config = Config('lat16hua3k2gsmnskphywnplk98ag030ywtsp3z5nj');
                 NameReg(config.lookup(1)).unregister();
                 // It is still possible to call a specific
                 // overridden function.

@@ -702,15 +702,6 @@ bool CommandLineInterface::parseLibraryOption(string const& _input)
 				return false;
 			}
 
-			if (addrString.substr(0, 2) == "0x")
-				addrString = addrString.substr(2);
-			else
-			{
-				serr() << "The address " << addrString << " is not prefixed with \"0x\"." << endl;
-				serr() << "Note that the address must be prefixed with \"0x\"." << endl;
-				return false;
-			}
-			
 			if (addrString.length() != 42)
 			{
 				serr() << "Invalid length for address for library \"" << libName << "\": " << addrString.length() << " instead of 42 characters." << endl;
