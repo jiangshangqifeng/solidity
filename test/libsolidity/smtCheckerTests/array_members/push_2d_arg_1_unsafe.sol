@@ -12,5 +12,3 @@ contract C {
 // ====
 // SMTIgnoreCex: yes
 // ----
-// Warning 3944: (162-177): CHC: Underflow (resulting value less than 0) happens here.
-// Warning 6328: (150-184): CHC: Assertion violation happens here.

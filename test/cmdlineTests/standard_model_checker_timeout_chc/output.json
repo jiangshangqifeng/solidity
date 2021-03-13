@@ -1,4 +1,10 @@
-{"errors":[{"component":"general","errorCode":"6328","formattedMessage":"Warning: CHC: Assertion violation might happen here.
+{"errors":[{"component":"general","errorCode":"1218","formattedMessage":"Warning: CHC: Error trying to invoke SMT solver.
+ --> A:6:85:
+  |
+6 | require(k > 0); require(x % k == 0); require(y % k == 0); uint r = mulmod(x, y, k); assert(r % k == 0);}}
+  |                                                                                     ^^^^^^^^^^^^^^^^^^
+
+","message":"CHC: Error trying to invoke SMT solver.","severity":"warning","sourceLocation":{"end":258,"file":"A","start":240},"type":"Warning"},{"component":"general","errorCode":"6328","formattedMessage":"Warning: CHC: Assertion violation might happen here.
  --> A:6:85:
   |
 6 | require(k > 0); require(x % k == 0); require(y % k == 0); uint r = mulmod(x, y, k); assert(r % k == 0);}}

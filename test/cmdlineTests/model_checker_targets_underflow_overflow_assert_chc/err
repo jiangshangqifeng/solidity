@@ -1,43 +1,16 @@
-Warning: CHC: Underflow (resulting value less than 0) happens here.
-Counterexample:
-arr = []
-a = 0
-x = 0
-
-Transaction trace:
-test.constructor()
-State: arr = []
-test.f(0, 0)
+Warning: CHC: Underflow (resulting value less than 0) might happen here.
  --> model_checker_targets_underflow_overflow_assert_chc/input.sol:8:3:
   |
 8 | 		--x;
   | 		^^^
 
-Warning: CHC: Overflow (resulting value larger than 2**256 - 1) happens here.
-Counterexample:
-arr = []
-a = 0
-x = 1
-
-Transaction trace:
-test.constructor()
-State: arr = []
-test.f(0, 2)
+Warning: CHC: Overflow (resulting value larger than 2**256 - 1) might happen here.
  --> model_checker_targets_underflow_overflow_assert_chc/input.sol:9:3:
   |
 9 | 		x + type(uint).max;
   | 		^^^^^^^^^^^^^^^^^^
 
-Warning: CHC: Assertion violation happens here.
-Counterexample:
-arr = []
-a = 0
-x = 0
-
-Transaction trace:
-test.constructor()
-State: arr = []
-test.f(0, 1)
+Warning: CHC: Assertion violation might happen here.
   --> model_checker_targets_underflow_overflow_assert_chc/input.sol:12:3:
    |
 12 | 		assert(x > 0);
