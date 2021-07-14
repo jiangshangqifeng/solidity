@@ -6,12 +6,12 @@ contract C
 		if (true) {
 		} else {
 			address a = g();
-			assert(a == address(0));
+			assert(a == address("atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdruy9j"));
 		}
 	}
 	function g() public pure returns (address) {
 		address x;
-		x = address(0);
+		x = address("atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdruy9j");
 		return x;
 	}
 }

@@ -9,7 +9,7 @@ contract State {
 contract C {
 	address owner;
 	function setOwner() public {
-		owner = address(0);
+		owner = address(uint160(0));
 	}
 }
 // ----

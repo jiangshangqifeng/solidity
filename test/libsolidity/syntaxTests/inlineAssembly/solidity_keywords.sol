@@ -55,9 +55,9 @@ contract C {
   let view := 1
   let virtual := 1
   let while := 1
-  let wei := 1
-  let gwei := 1
-  let ether := 1
+  let von := 1
+  let gvon := 1
+  let atp := 1
   let seconds := 1
   let minutes := 1
   let hours := 1
@@ -110,4 +110,4 @@ contract C {
   }
 }
 // ----
-// Warning 5740: (955-2168): Unreachable code.
+// Warning 5740: (955-2166): Unreachable code.

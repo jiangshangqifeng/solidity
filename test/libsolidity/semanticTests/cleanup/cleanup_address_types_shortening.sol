@@ -9,7 +9,7 @@ contract C {
         assembly {
             r := z
         }
-        require(z == 0x1122334455667788990011223344556677889900);
+        require(z == 'atp1zy3rx3z4vemc3xgqzy3rx3z4vemc3xgqz4musy');
     }
 
     function g() public pure returns (address payable r) {
@@ -22,7 +22,7 @@ contract C {
         assembly {
             r := z
         }
-        require(z == 0x1122334455667788990011223344556677889900);
+        require(z == 'atp1zy3rx3z4vemc3xgqzy3rx3z4vemc3xgqz4musy');
     }
 }
 

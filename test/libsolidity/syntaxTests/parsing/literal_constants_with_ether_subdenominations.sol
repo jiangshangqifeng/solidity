@@ -1,9 +1,9 @@
 contract C {
     function f() public
     {
-         a = 1 wei;
-         b = 2 ether;
-         c = 3 gwei;
+         a = 1 von;
+         b = 4 atp;
+         c = 5 gvon;
     }
     uint256 a;
     uint256 b;

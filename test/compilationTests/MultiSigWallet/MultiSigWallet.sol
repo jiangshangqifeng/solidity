@@ -88,7 +88,7 @@ contract MultiSigWallet {
         _;
     }
 
-    /// @dev Receive function allows to deposit ether.
+    /// @dev Receive function allows to deposit atp.
     receive()
         external
         payable
@@ -181,7 +181,7 @@ contract MultiSigWallet {
 
     /// @dev Allows an owner to submit and confirm a transaction.
     /// @param destination Transaction target address.
-    /// @param value Transaction ether value.
+    /// @param value Transaction atp value.
     /// @param data Transaction data payload.
     /// @return transactionId Returns transaction ID.
     function submitTransaction(address destination, uint value, bytes memory data)
@@ -256,7 +256,7 @@ contract MultiSigWallet {
      */
     /// @dev Adds a new transaction to the transaction mapping, if transaction does not exist yet.
     /// @param destination Transaction target address.
-    /// @param value Transaction ether value.
+    /// @param value Transaction atp value.
     /// @param data Transaction data payload.
     /// @return transactionId Returns transaction ID.
     function addTransaction(address destination, uint value, bytes memory data)

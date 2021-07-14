@@ -31,11 +31,11 @@ contract C {
 // EVMVersion: >homestead
 // compileViaYul: also
 // ----
-// f(uint256), 2000 ether: 0 -> true
-// f(uint256), 2000 ether: 100 -> false
-// g(uint256), 2000 ether: 0 -> true
-// g(uint256), 2000 ether: 100 -> false
-// h(uint256), 2000 ether: 0 -> true
-// h(uint256), 2000 ether: 100 -> false
-// i(uint256), 2000 ether: 0 -> true
-// i(uint256), 2000 ether: 100 -> false
+// f(uint256), 2000 atp: 0 -> true
+// f(uint256), 2000 atp: 100 -> false
+// g(uint256), 2000 atp: 0 -> true
+// g(uint256), 2000 atp: 100 -> false
+// h(uint256), 2000 atp: 0 -> true
+// h(uint256), 2000 atp: 100 -> false
+// i(uint256), 2000 atp: 0 -> true
+// i(uint256), 2000 atp: 100 -> false

@@ -1,5 +1,5 @@
 contract C {
-	uint constant x = 1 ether + 1 gwei + 1 wei;
+	uint constant x = 1 atp + 1 gvon + 1 von;
 
 	function f() public view returns(uint) { return x; }
 }

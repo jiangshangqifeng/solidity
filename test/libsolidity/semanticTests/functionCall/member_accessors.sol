@@ -7,7 +7,7 @@ contract test {
         data = 8;
         name = "Celina";
         a_hash = keccak256("\x7b");
-        an_address = address(0x1337);
+        an_address = address('atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqyehm9yfmm');
         super_secret_data = 42;
     }
     uint256 super_secret_data;

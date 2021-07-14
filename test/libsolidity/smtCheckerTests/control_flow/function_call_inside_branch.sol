@@ -5,12 +5,12 @@ contract C
 	function f() public pure {
 		if (true) {
 			address a = g();
-			assert(a == address(0));
+			assert(a == address("atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdruy9j"));
 		}
 	}
 	function g() public pure returns (address) {
 		address a;
-		a = address(0);
+		a = address("atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdruy9j");
 		return a;
 	}
 }

@@ -92,7 +92,7 @@ abstract contract tokenRecipient {
 
 contract Token is TokenInterface {
     // Protects users by preventing the execution of method calls that
-    // inadvertently also transferred ether
+    // inadvertently also transferred atp
     modifier noEther() {if (msg.value > 0) revert(); _; }
 
     function balanceOf(address _owner) public override view returns (uint256 balance) {

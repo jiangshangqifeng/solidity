@@ -4,10 +4,11 @@ contract C {
 		return (2, 3);
 	}
 	function f() public {
-		(address(1).call(""));
+		(address(uint160(1)).call(""));
 		(uint x, uint y) = ((g()));
 		assert(x == 2);
 		assert(y == 3);
 	}
 }
 // ----
+// Warning 5084: (150-160): Type conversion is not yet fully supported and might yield false positives.

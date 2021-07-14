@@ -5,5 +5,5 @@ contract C {
 // compileViaYul: also
 // compileToEwasm: also
 // ----
-// (), 1 ether
-// (), 1 ether: 1 -> FAILURE
+// (), 1 atp
+// (), 1 atp: 1 -> FAILURE

@@ -20,5 +20,5 @@ contract test {
 // ====
 // compileViaYul: also
 // ----
-// constructor(), 20 wei ->
+// constructor(), 20 von ->
 // sendAmount(uint256): 5 -> 8
