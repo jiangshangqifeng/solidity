@@ -3,7 +3,7 @@ contract Other {
 	C c;
 	function h(bool b) public {
 		if (b)
-			c.setOwner(address(uint160(0)));
+			c.setOwner(address(0));
 	}
 }
 contract C {
@@ -13,4 +13,3 @@ contract C {
 	}
 }
 // ----
-// Warning 5084: (115-125): Type conversion is not yet fully supported and might yield false positives.

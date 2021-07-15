@@ -3,7 +3,7 @@ pragma experimental SMTChecker;
 contract Other {
 	C c;
 	function h() public {
-		c.setOwner(address(uint160(0)));
+		c.setOwner(address(0));
 	}
 }
 

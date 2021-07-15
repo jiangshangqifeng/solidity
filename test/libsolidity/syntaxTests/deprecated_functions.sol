@@ -4,7 +4,7 @@ contract test {
 		x;
 	}
 	function g() public {
-		suicide('atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqps4g3cq');
+		suicide(0x0000000000000000000000000000000000000001);
 	}
 }
 // ----

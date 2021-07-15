@@ -816,16 +816,21 @@ bool Literal::looksLikeAddress() const
 {
 	if (subDenomination() != SubDenomination::None)
 		return false;
-
-	pair<string, bytes> ret = solidity::util::bech32decode(valueWithoutUnderscores());
-
-	string hrp = ret.first;
 	
-	if (hrp.empty() || (hrp != "atp" && hrp != "atx")) {
-        return false;
-    }
+	if (!isHexNumber())
+	{
+		pair<string, bytes> ret = solidity::util::bech32decode(valueWithoutUnderscores());
+		string hrp = ret.first;		
+		if (hrp.empty() || (hrp != "atp" && hrp != "atx")) {
+	        return false;
+	    }
 
-	return true;
+		return true;
+	}
+
+	return abs(int(valueWithoutUnderscores().length()) - 42) <= 1;
+	
+
 }
 
 bool Literal::passesAddressChecksum() const

@@ -1,3 +1,3 @@
 contract C {
-    address constant x = 'atp1zgfpyysjzgfpyysjzgfpyysjzgfpyysjwedumk';
+    address constant x = 0x1212121212121212121212121212121212121212;
 }

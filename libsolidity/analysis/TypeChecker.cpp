@@ -3255,7 +3255,9 @@ void TypeChecker::endVisit(Literal const& _literal)
 		string msg;
 		if (_literal.valueWithoutUnderscores().length() != 42) // must 42 length
 			msg =
-				"This looks like an address but is not exactly bech32 fmt.";
+				"This looks like an address but is not exactly 40 hex digits. It is " +
+				to_string(_literal.valueWithoutUnderscores().length() - 2) +
+				" hex digits.";
 		else if (!_literal.passesAddressChecksum())
 		{
 			msg = "This looks like an address but has an invalid checksum.";

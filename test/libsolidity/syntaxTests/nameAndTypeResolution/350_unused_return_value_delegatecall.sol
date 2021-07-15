@@ -1,7 +1,7 @@
 contract test {
     function f() public {
-        address("atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjt84lrv").delegatecall("abc");
+        address(0x12).delegatecall("abc");
     }
 }
 // ----
-// Warning 9302: (50-123): Return value of low-level calls not used.
+// Warning 9302: (50-83): Return value of low-level calls not used.

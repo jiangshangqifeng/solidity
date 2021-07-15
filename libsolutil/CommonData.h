@@ -472,14 +472,19 @@ void iterateReplacingWindow(std::vector<T>& _vector, F const& _f)
 }
 
 /// @returns true iff @a _str passess the bech32 address checksum test.
-bool passesAddressChecksum(std::string const& _str);
-
+/// @param _strict if false, hex strings with only uppercase or only lowercase letters
+/// are considered valid.
+bool passesAddressChecksum(std::string const& _str, bool _strict);
 
 /** Decode a Bech32 string. Returns (hrp, data). Empty hrp means failure. */
 std::pair<std::string, bytes> bech32decode(const std::string& str);
 
 /** Decode a bech32 address. return witprog. */
 bytes decodeAddress(const std::string& hrp, const std::string& addr);
+
+/// @returns the checksummed version of an eip55 address
+/// @param hex strings that look like an eip55 address
+std::string getEIP55ChecksummedAddress(std::string const& _addr);
 
 bool isValidHex(std::string const& _string);
 bool isValidDecimal(std::string const& _string);

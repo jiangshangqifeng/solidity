@@ -30,7 +30,7 @@ contract C {
 	function inv() public view {
 		// This is safe but external calls do not yet support the state
 		// of the called contract.
-		assert(owner == address(uint160(0)) || y != z);
+		assert(owner == address(0) || y != z);
 	}
 }
 // ----

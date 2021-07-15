@@ -5,17 +5,17 @@ contract C
 	function f() public pure {
 		if (true) {
 			address a = g();
-			assert(a == address("atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdruy9j"));
+			assert(a == address(0));
 		}
 		else
 		{
 			address b = g();
-			assert(b == address("atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdruy9j"));
+			assert(b == address(0));
 		}
 	}
 	function g() public pure returns (address) {
 		address a;
-		a = address("atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdruy9j");
+		a = address(0);
 		return a;
 	}
 }

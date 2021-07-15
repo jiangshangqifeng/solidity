@@ -1,6 +1,6 @@
 contract test {
     function fun() public {
-        uint256 x = address("atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdruy9j").balance;
+        uint256 x = address(0).balance;
     }
 }
 // ----

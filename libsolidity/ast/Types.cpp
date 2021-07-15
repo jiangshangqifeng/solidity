@@ -465,13 +465,22 @@ string AddressType::canonicalName() const
 u256 AddressType::literalValue(Literal const* _literal) const
 {
 	solAssert(_literal, "");
-	string hrp = _literal->value().substr(0, 3);
-	solAssert((hrp == "atp" || hrp == "atx"), "");
+	string prefix = _literal->value().substr(0, 3);	
+	bool isBech32 = false;
+	if (prefix == "atp" || prefix == "atx")
+	{
+	    isBech32 =  true;
+	}
+	solAssert(isBech32 || prefix.substr(0, 2) == "0x", "");
 
-	bytes r = solidity::util::decodeAddress(hrp, _literal->valueWithoutUnderscores());	
-	solAssert(r.size() == 20, "decodeAddress failed");
+	if(isBech32)
+	{
+		bytes r = solidity::util::decodeAddress(hrp, _literal->valueWithoutUnderscores());	
+		solAssert(r.size() == 20, "decodeAddress failed");
+		return u256(solidity::util::toHex(r, solidity::util::HexPrefix::Add));
+	}
+	return u256(_literal->valueWithoutUnderscores());
 
-	return u256(solidity::util::toHex(r, solidity::util::HexPrefix::Add));
 }
 
 TypeResult AddressType::unaryOperatorResult(Token _operator) const
@@ -941,8 +950,6 @@ BoolResult RationalNumberType::isImplicitlyConvertibleTo(Type const& _convertTo)
 		if (isFractional())
 			return false;
 		IntegerType const& targetType = dynamic_cast<IntegerType const&>(_convertTo);
-		if(targetType.category() == Type::Category::Address)
-			return false;
 		return fitsIntegerType(m_value.numerator(), targetType);
 	}
 	case Category::FixedPoint:

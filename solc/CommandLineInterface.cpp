@@ -686,31 +686,43 @@ bool CommandLineInterface::parseLibraryOption(string const& _input)
 
 			string addrString(lib.begin() + static_cast<ptrdiff_t>(colon) + 1, lib.end());
 			boost::trim(addrString);
+			bool isEIP55 = false;
 			if (addrString.substr(0, 2) == "0x")
+			{
 				addrString = addrString.substr(2);
+				isEIP55 = true;
+			}
 			if (addrString.empty())
 			{
 				serr() << "Empty address provided for library \"" << libName << "\":" << endl;
 				serr() << "Note that there should not be any whitespace after the colon." << endl;
 				return false;
 			}
-			else if (addrString.length() != 40)
+			else if (addrString.length() != 40 && addrString.length() != 42)
 			{
 				serr() << "Invalid length for address for library \"" << libName << "\": " << addrString.length() << " instead of 40 characters." << endl;
 				return false;
 			}
-			if (!passesAddressChecksum(addrString))
+			if (!passesAddressChecksum(addrString, false))
 			{
 				serr() << "Invalid checksum on address for library \"" << libName << "\": " << addrString << endl;
 				return false;
 			}
-			
-			pair<string,bytes> bech32 = bech32decode(boost::erase_all_copy(addrString, "_"));
-			string hrp = bech32.first;
-			if (hrp != "atp" && hrp != "atx") {
-				return false;
+
+			bytes binAddr;
+			if (isEIP55)
+			{
+				binAddr = fromHex(addrString);
 			}
-			bytes binAddr = bech32.second;			
+			else 
+			{
+				pair<string,bytes> bech32 = bech32decode(boost::erase_all_copy(addrString, "_"));
+				string hrp = bech32.first;
+				if (hrp != "atp" && hrp != "atx") {
+					return false;
+				}
+				binAddr = bech32.second;	
+			}		
 			h160 address(binAddr, h160::AlignRight);
 			if (binAddr.size() > 20 || address == h160())
 			{

@@ -1,6 +1,6 @@
 contract test {
     function f() public {
-        address("atp1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjt84lrv").call("abc");
+        address(0x12).call("abc");
     }
 }
 // ----

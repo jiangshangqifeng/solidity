@@ -4,7 +4,7 @@ contract State {
 	uint x;
 	C c;
 	function f() public returns (uint) {
-		c.setOwner(address(uint160(0)));
+		c.setOwner(address(0));
 		return c.g();
 	}
 }
