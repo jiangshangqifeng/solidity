@@ -475,7 +475,7 @@ u256 AddressType::literalValue(Literal const* _literal) const
 
 	if(isBech32)
 	{
-		bytes r = solidity::util::decodeAddress(hrp, _literal->valueWithoutUnderscores());	
+		bytes r = solidity::util::decodeAddress(prefix, _literal->valueWithoutUnderscores());
 		solAssert(r.size() == 20, "decodeAddress failed");
 		return u256(solidity::util::toHex(r, solidity::util::HexPrefix::Add));
 	}

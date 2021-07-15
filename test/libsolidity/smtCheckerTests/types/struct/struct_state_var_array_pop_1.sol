@@ -22,4 +22,4 @@ contract C {
 }
 // ----
 // Warning 2529: (121-130): CHC: Empty array "pop" happens here.\nCounterexample:\ns = {x: 0, a: []}\n_x = 0\n\n\nTransaction trace:\nconstructor()\nState: s = {x: 0, a: []}\nf(0)
-// Warning 6328: (230-254): CHC: Assertion violation happens here.\nCounterexample:\ns = {x: 7720, a: [7720, 0]}\n_x = 7720\n\n\nTransaction trace:\nconstructor()\nState: s = {x: 0, a: []}\nf(7720)
+// Warning 6328: (230-254): CHC: Assertion violation happens here.\nCounterexample:\ns = {x: 8856, a: [8856, 0]}\n_x = 8856\n\n\nTransaction trace:\nconstructor()\nState: s = {x: 0, a: []}\nf(8856)

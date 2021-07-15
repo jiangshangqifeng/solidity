@@ -835,7 +835,7 @@ bool Literal::looksLikeAddress() const
 
 bool Literal::passesAddressChecksum() const
 {
-	return solidity::util::passesAddressChecksum(valueWithoutUnderscores());
+	return solidity::util::passesAddressChecksum(valueWithoutUnderscores(), true);
 }
 
 /** Convert from one power-of-2 number base to another. */

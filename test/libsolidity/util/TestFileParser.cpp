@@ -490,8 +490,8 @@ void TestFileParser::Scanner::scanNextToken()
 	auto detectKeyword = [](std::string const& _literal = "") -> std::pair<Token, std::string> {
 		if (_literal == "true") return {Token::Boolean, "true"};
 		if (_literal == "false") return {Token::Boolean, "false"};
-		if (_literal == "atp") return {Token::Ether, ""};
-		if (_literal == "von") return {Token::Wei, ""};
+		if (_literal == "atp") return {Token::Atp, ""};
+		if (_literal == "von") return {Token::Von, ""};
 		if (_literal == "left") return {Token::Left, ""};
 		if (_literal == "library") return {Token::Library, ""};
 		if (_literal == "right") return {Token::Right, ""};

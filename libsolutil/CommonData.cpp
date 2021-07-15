@@ -126,10 +126,10 @@ bytes solidity::util::fromHex(std::string const& _s, WhenError _throw)
 
 bool solidity::util::passesAddressChecksum(string const& _str, bool _strict)
 {
-	string s = _str.substr(0, 2) == "0x" ? _str : "0x" + _str;
-	if (s.length() != 42)
+	if (_str.length() != 42 && _str.length() != 40)
 		return false;
-		
+	string s = _str.length() == 42 ? _str : "0x" + _str;
+	
 	string prefix = s.substr(0, 3);	
 	bool isBech32 = false;
 	if (prefix == "atp" || prefix == "atx")
@@ -211,6 +211,14 @@ const int8_t charset_rev[128] = {
      1,  0,  3, 16, 11, 28, 12, 14,  6,  4,  2, -1, -1, -1, -1, -1
 };
 
+/// Bech32
+bytes cat(bytes x, const bytes& y);
+uint32_t polymod(const bytes& values);
+unsigned char lc(unsigned char c);
+bytes expand_hrp(const string& hrp);
+bool verify_checksum(const string& hrp, const bytes& values);
+bytes create_checksum(const string& hrp, const bytes& values);
+
 /** Concatenate two byte arrays. */
 bytes cat(bytes x, const bytes& y) {
     x.insert(x.end(), y.begin(), y.end());
@@ -219,17 +227,61 @@ bytes cat(bytes x, const bytes& y) {
 
 /** Find the polynomial with value coefficients mod the generator as 30-bit. */
 uint32_t polymod(const bytes& values) {
-    uint32_t chk = 1;
-    for (size_t i = 0; i < values.size(); ++i) {
-        uint8_t top = chk >> 25;
-        chk = (chk & 0x1ffffff) << 5 ^ values[i] ^
-            (-((top >> 0) & 1) & 0x3b6a57b2UL) ^
-            (-((top >> 1) & 1) & 0x26508e6dUL) ^
-            (-((top >> 2) & 1) & 0x1ea119faUL) ^
-            (-((top >> 3) & 1) & 0x3d4233ddUL) ^
-            (-((top >> 4) & 1) & 0x2a1462b3UL);
+    // The input is interpreted as a list of coefficients of a polynomial over F = GF(32), with an
+    // implicit 1 in front. If the input is [v0,v1,v2,v3,v4], that polynomial is v(x) =
+    // 1*x^5 + v0*x^4 + v1*x^3 + v2*x^2 + v3*x + v4. The implicit 1 guarantees that
+    // [v0,v1,v2,...] has a distinct checksum from [0,v0,v1,v2,...].
+
+    // The output is a 30-bit integer whose 5-bit groups are the coefficients of the remainder of
+    // v(x) mod g(x), where g(x) is the Bech32 generator,
+    // x^6 + {29}x^5 + {22}x^4 + {20}x^3 + {21}x^2 + {29}x + {18}. g(x) is chosen in such a way
+    // that the resulting code is a BCH code, guaranteeing detection of up to 3 errors within a
+    // window of 1023 characters. Among the various possible BCH codes, one was selected to in
+    // fact guarantee detection of up to 4 errors within a window of 89 characters.
+
+    // Note that the coefficients are elements of GF(32), here represented as decimal numbers
+    // between {}. In this finite field, addition is just XOR of the corresponding numbers. For
+    // example, {27} + {13} = {27 ^ 13} = {22}. Multiplication is more complicated, and requires
+    // treating the bits of values themselves as coefficients of a polynomial over a smaller field,
+    // GF(2), and multiplying those polynomials mod a^5 + a^3 + 1. For example, {5} * {26} =
+    // (a^2 + 1) * (a^4 + a^3 + a) = (a^4 + a^3 + a) * a^2 + (a^4 + a^3 + a) = a^6 + a^5 + a^4 + a
+    // = a^3 + 1 (mod a^5 + a^3 + 1) = {9}.
+
+    // During the course of the loop below, `c` contains the bitpacked coefficients of the
+    // polynomial constructed from just the values of v that were processed so far, mod g(x). In
+    // the above example, `c` initially corresponds to 1 mod g(x), and after processing 2 inputs of
+    // v, it corresponds to x^2 + v0*x + v1 mod g(x). As 1 mod g(x) = 1, that is the starting value
+    // for `c`.
+    uint32_t c = 1;
+    for (const auto v_i : values) {
+        // We want to update `c` to correspond to a polynomial with one extra term. If the initial
+        // value of `c` consists of the coefficients of c(x) = f(x) mod g(x), we modify it to
+        // correspond to c'(x) = (f(x) * x + v_i) mod g(x), where v_i is the next input to
+        // process. Simplifying:
+        // c'(x) = (f(x) * x + v_i) mod g(x)
+        //         ((f(x) mod g(x)) * x + v_i) mod g(x)
+        //         (c(x) * x + v_i) mod g(x)
+        // If c(x) = c0*x^5 + c1*x^4 + c2*x^3 + c3*x^2 + c4*x + c5, we want to compute
+        // c'(x) = (c0*x^5 + c1*x^4 + c2*x^3 + c3*x^2 + c4*x + c5) * x + v_i mod g(x)
+        //       = c0*x^6 + c1*x^5 + c2*x^4 + c3*x^3 + c4*x^2 + c5*x + v_i mod g(x)
+        //       = c0*(x^6 mod g(x)) + c1*x^5 + c2*x^4 + c3*x^3 + c4*x^2 + c5*x + v_i
+        // If we call (x^6 mod g(x)) = k(x), this can be written as
+        // c'(x) = (c1*x^5 + c2*x^4 + c3*x^3 + c4*x^2 + c5*x + v_i) + c0*k(x)
+
+        // First, determine the value of c0:
+        uint8_t c0 = (uint8_t)(c >> 25);
+
+        // Then compute c1*x^5 + c2*x^4 + c3*x^3 + c4*x^2 + c5*x + v_i:
+        c = ((c & 0x1ffffff) << 5) ^ v_i;
+
+        // Finally, for each set bit n in c0, conditionally add {2^n}k(x):
+        if (c0 & 1)  c ^= 0x3b6a57b2; //     k(x) = {29}x^5 + {22}x^4 + {20}x^3 + {21}x^2 + {29}x + {18}
+        if (c0 & 2)  c ^= 0x26508e6d; //  {2}k(x) = {19}x^5 +  {5}x^4 +     x^3 +  {3}x^2 + {19}x + {13}
+        if (c0 & 4)  c ^= 0x1ea119fa; //  {4}k(x) = {15}x^5 + {10}x^4 +  {2}x^3 +  {6}x^2 + {15}x + {26}
+        if (c0 & 8)  c ^= 0x3d4233dd; //  {8}k(x) = {30}x^5 + {20}x^4 +  {4}x^3 + {12}x^2 + {30}x + {29}
+        if (c0 & 16) c ^= 0x2a1462b3; // {16}k(x) = {21}x^5 +     x^4 +  {8}x^3 + {24}x^2 + {21}x + {19}
     }
-    return chk;
+    return c;
 }
 
 /** Convert to lower case. */
@@ -314,7 +366,7 @@ bool convertbits(bytes& out, const bytes& in) {
         bits += frombits;
         while (bits >= tobits) {
             bits -= tobits;
-            out.push_back((acc >> bits) & maxv);
+	    out.push_back((uint8_t)((acc >> bits) & maxv));
         }
     }
     if (pad) {
@@ -327,7 +379,7 @@ bool convertbits(bytes& out, const bytes& in) {
 
 /** Decode a bech32 address. */
 bytes solidity::util::decodeAddress(const std::string& hrp, const std::string& addr) {
-	pair<string, bytes> dec = solidity::util::bech32decode(addr);
+    pair<string, bytes> dec = solidity::util::bech32decode(addr);
     if (dec.first != hrp || dec.second.size() < 1) return bytes();
     bytes output;
 	bool r = convertbits<5, 8, false>(output, dec.second);
